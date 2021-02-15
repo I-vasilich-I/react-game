@@ -3,7 +3,7 @@ const ESLintPlugin = require("eslint-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
+// const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 // const isDev = process.env.NODE_ENV === 'development';
 // const isProd = !isDev;
@@ -24,7 +24,7 @@ module.exports = (env, options) => {
   const config = {
     mode: isProd ? "production" : "development",
     devtool: isProd ? false : "source-map",
-    watch: !isProd,
+    // watch: !isProd,
     watchOptions: {
       aggregateTimeout: 6000,
     },
@@ -119,18 +119,18 @@ module.exports = (env, options) => {
         fix: true,
       }),
 
-      new CopyWebpackPlugin({
-        patterns: [
-          // { from: 'src/assets/audio/shifting.wav'},
-          // { from: 'src/assets/audio/', to: 'assets/audio/' },
-          // { from: 'src/assets/images/svg/favicon.svg' },
-          // { from: 'rs_school_js.svg' },
-          { from: "src/assets/images/", to: "assets/images/" },
-          { from: "src/assets/icons/", to: "assets/icons/" },
-          { from: "src/assets/favicon/", to: "assets/favicon/" },
-          // { from: 'src/assets/fonts/', to: 'assets/fonts/'},
-        ],
-      }),
+      // new CopyWebpackPlugin({
+      //   patterns: [
+      //     // { from: 'src/assets/audio/shifting.wav'},
+      //     // { from: 'src/assets/audio/', to: 'assets/audio/' },
+      //     // { from: 'src/assets/images/svg/favicon.svg' },
+      //     // { from: 'rs_school_js.svg' },
+      //     // { from: "src/assets/images/", to: "assets/images/" },
+      //     // { from: "src/assets/icons/", to: "assets/icons/" },
+      //     // { from: "src/assets/favicon/", to: "assets/favicon/" },
+      //     // { from: 'src/assets/fonts/', to: 'assets/fonts/'},
+      //   ],
+      // }),
     ],
   };
 
