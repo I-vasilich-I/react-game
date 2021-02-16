@@ -1,8 +1,9 @@
-const path = require("path");
-const ESLintPlugin = require("eslint-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const HTMLWebpackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const path = require('path');
+const ESLintPlugin = require('eslint-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
 // const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 // const isDev = process.env.NODE_ENV === 'development';
@@ -19,23 +20,20 @@ const optimization = () => {
 */
 
 module.exports = (env, options) => {
-  const isProd = options.mode === "production";
+  const isProd = options.mode === 'production';
 
   const config = {
-    mode: isProd ? "production" : "development",
-    devtool: isProd ? false : "source-map",
+    mode: isProd ? 'production' : 'development',
+    devtool: isProd ? false : 'source-map',
     // watch: !isProd,
     watchOptions: {
       aggregateTimeout: 6000,
     },
-    entry: [
-      "@babel/polyfill",
-      "./src/index.js",
-      "./src/assets/sass/style.scss",
-    ],
+    entry: ['@babel/polyfill', './src/index.jsx', './src/assets/sass/style.scss'],
     output: {
-      path: path.join(__dirname, "/dist"),
-      filename: "script.js",
+      path: path.join(__dirname, '/dist'),
+      publicPath: '/dist/',
+      filename: 'script.js',
     },
 
     module: {
@@ -46,11 +44,11 @@ module.exports = (env, options) => {
             {
               loader: MiniCssExtractPlugin.loader,
               options: {
-                publicPath: "",
+                publicPath: '',
               },
             },
-            "css-loader",
-            "sass-loader",
+            'css-loader',
+            'sass-loader',
           ],
         },
         {
@@ -58,10 +56,10 @@ module.exports = (env, options) => {
           // use: ['file-loader'],
           use: [
             {
-              loader: "file-loader",
+              loader: 'file-loader',
               options: {
-                outputPath: "assets/images",
-                name: "[name].[ext]",
+                outputPath: 'assets/images',
+                name: '[name].[ext]',
               },
             },
           ],
@@ -70,49 +68,58 @@ module.exports = (env, options) => {
           test: /\.(svg)$/,
           use: [
             {
-              loader: "file-loader",
+              loader: 'file-loader',
               options: {
-                outputPath: "assets/icons",
-                name: "[name].[ext]",
+                outputPath: 'assets/icons',
+                name: '[name].[ext]',
               },
             },
           ],
         },
         {
           test: /\.(ttf|woff|woff2|eot)$/,
-          use: ["file-loader"],
+          use: ['file-loader'],
         },
         {
           test: /\.html$/i,
-          loader: "html-loader",
+          loader: 'html-loader',
         },
         {
-          test: /\.js$/,
+          test: /\.(js|jsx)$/,
           exclude: /node_modules/,
           use: {
-            loader: "babel-loader",
+            loader: 'babel-loader',
             options: {
-              presets: ["@babel/preset-env"],
+              presets: ['@babel/preset-env'],
             },
           },
         },
       ],
     },
 
+    resolve: { extensions: ['*', '.js', '.jsx'] },
+
+    devServer: {
+      contentBase: path.join(__dirname, 'public/'),
+      port: 3000,
+      publicPath: 'http://localhost:3000/dist/',
+      hotOnly: true,
+    },
+
     plugins: [
       new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
       new HTMLWebpackPlugin({
-        template: "./src/index.html",
+        template: './src/index.html',
         output: {
-          path: path.resolve(__dirname, "./dist"),
-          filename: "index.html",
+          path: path.resolve(__dirname, './dist'),
+          filename: 'index.html',
         },
         minify: {
           // collapseWhitespace: isProd
         },
       }),
       new MiniCssExtractPlugin({
-        filename: "style.css",
+        filename: 'style.css',
       }),
 
       new ESLintPlugin({
