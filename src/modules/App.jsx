@@ -1,8 +1,10 @@
 import React from 'react';
+import Game from './Game';
 
 const App = () => (
   <div className="App">
-    <h1> Hello, World!!! </h1>
+    <h1 className="hidden">2048</h1>
+    <Game />
   </div>
 );
 
