@@ -1,10 +1,12 @@
 import React from 'react';
-import Game from './Game';
+import Board from './Board';
+import Header from './Header';
 
 const App = () => (
   <div className="App">
     <h1 className="hidden">2048</h1>
-    <Game />
+    <Header />
+    <Board />
   </div>
 );
 
