@@ -3,7 +3,7 @@ import React from 'react';
 const Header = () => (
   <header className="header">
     <div className="header__top">
-      <div className="logo">2048</div>
+      <h2 className="logo">2048</h2>
       <div className="score__container">
         <div className="score">0</div>
         <div className="score">0</div>

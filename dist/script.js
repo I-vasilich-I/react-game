@@ -108,7 +108,7 @@ var Board = function Board() {
       react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         key: id,
         className: "tile"
-      }, elem)
+      }, "0")
     );
   })));
 };
@@ -136,7 +136,7 @@ var Header = function Header() {
     className: "header"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "header__top"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
     className: "logo"
   }, "2048"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "score__container"

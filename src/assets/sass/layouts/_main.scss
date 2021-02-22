@@ -1,0 +1,24 @@
+.main {
+  width: 100%;
+
+}
+
+.board {
+  display: grid;
+  grid-template: "a a a a"
+                 "b b b b"
+                 "c c c c"
+                 "d d d d";
+  justify-content: space-around;
+  align-items: center;
+  width: 500px;
+  height: 500px;
+  background-color: #776e65;
+  padding: 15px 15px;
+}
+
+.tile {
+  width: 100px;
+  height: 100px;
+  background-color: rgba(238, 228, 218, 0.35);
+}
