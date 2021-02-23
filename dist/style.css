@@ -519,6 +519,18 @@ p {
   width: 100px;
   height: 100px;
   background-color: rgba(238, 228, 218, 0.35);
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 5rem;
+  line-height: 150%;
+  letter-spacing: unset;
+  color: black;
+  text-align: center;
+  padding-top: 15%;
+}
+.tile-zero {
+  visibility: hidden;
 }
 
 /*# sourceMappingURL=style.css.map*/

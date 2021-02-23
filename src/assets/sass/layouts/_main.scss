@@ -21,4 +21,10 @@
   width: 100px;
   height: 100px;
   background-color: rgba(238, 228, 218, 0.35);
+  @include font(5rem, 150%, black);
+  text-align: center;
+  padding-top: 15%;
+  &-zero {
+    visibility: hidden;
+  }
 }
