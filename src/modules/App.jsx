@@ -6,6 +6,7 @@ import { getInitialBoardArray } from './utils/helpers';
 
 const App = () => {
   const [board, setBoard] = useState(getInitialBoardArray());
+  // const [board, setBoard] = useState([...Array(16).keys()]);
 
   return (
     <div className="App">

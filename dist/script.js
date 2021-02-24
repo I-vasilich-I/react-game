@@ -78,7 +78,8 @@ var App = function App() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((0,_utils_helpers__WEBPACK_IMPORTED_MODULE_4__.getInitialBoardArray)()),
       _useState2 = _slicedToArray(_useState, 2),
       board = _useState2[0],
-      setBoard = _useState2[1];
+      setBoard = _useState2[1]; // const [board, setBoard] = useState([...Array(16).keys()]);
+
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "App"
@@ -173,7 +174,45 @@ var Footer = function Footer(props) {
     setBoard(newBoard);
   };
 
-  var moveUp = function moveUp() {};
+  var moveUp = function moveUp() {
+    var newBoard = new Array(16);
+
+    var _loop = function _loop(i) {
+      var row = board.filter(function (elem, id) {
+        return (id - i) % 4 === 0;
+      });
+      var trimRow = row.filter(function (elem) {
+        return !!elem;
+      });
+
+      for (var j = 0; j < trimRow.length; j++) {
+        if (trimRow[j] !== 0 && trimRow[j] === trimRow[j + 1]) {
+          var _ref = [trimRow[j] + trimRow[j + 1], 0];
+          trimRow[j] = _ref[0];
+          trimRow[j + 1] = _ref[1];
+        }
+      }
+
+      var newRow = trimRow.filter(function (elem) {
+        return !!elem;
+      });
+
+      while (newRow.length < row.length) {
+        newRow.push(0);
+      } // console.log(newRow);
+
+
+      newRow.map(function (elem, id) {
+        newBoard[id * 4 + i] = elem;
+        return elem;
+      });
+      setBoard(newBoard);
+    };
+
+    for (var i = 0; i < 4; i++) {
+      _loop(i);
+    }
+  };
 
   var moveRight = function moveRight() {};
 

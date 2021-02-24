@@ -14,8 +14,32 @@ const Footer = (props) => {
     }
     setBoard(newBoard);
   };
-  const moveUp = () => {};
+
+  const moveUp = () => {
+    const newBoard = new Array(16);
+    for (let i = 0; i < 4; i++) {
+      const row = board.filter((elem, id) => (id - i) % 4 === 0);
+      const trimRow = row.filter((elem) => !!elem);
+      for (let j = 0; j < trimRow.length; j++) {
+        if (trimRow[j] !== 0 && trimRow[j] === trimRow[j + 1]) {
+          [trimRow[j], trimRow[j + 1]] = [trimRow[j] + trimRow[j + 1], 0];
+        }
+      }
+      const newRow = trimRow.filter((elem) => !!elem);
+      while (newRow.length < row.length) {
+        newRow.push(0);
+      }
+      // console.log(newRow);
+      newRow.map((elem, id) => {
+        newBoard[id * 4 + i] = elem;
+        return elem;
+      });
+      setBoard(newBoard);
+    }
+  };
+
   const moveRight = () => {};
+
   const moveDown = () => {};
 
   return (
