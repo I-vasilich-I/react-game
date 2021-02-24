@@ -18,13 +18,72 @@
 }
 
 .tile {
+  // display: flex;
+  // align-content: center;
+  // justify-content: center;
   width: 100px;
   height: 100px;
   background-color: rgba(238, 228, 218, 0.35);
-  @include font(5rem, 150%, black);
+  @include font(5rem, 200%, black);
   text-align: center;
-  padding-top: 15%;
-  &-zero {
-    visibility: hidden;
+  //padding-top: 15%;
+  &--0 {
+    background-color: rgba(238, 228, 218, 0.35);
   }
+
+  &--2 {
+    background-color: #ffedd3;
+  }
+  &--4 {
+    background-color: #fad5a2;
+  }
+  &--8 {
+    background-color: #ffb855;
+    color: white;
+  }
+
+  &--16 {
+    background-color: #ff9705;
+    color: white;
+  }
+
+  &--32 {
+    background-color: #ff7605;
+    color: white;
+  }
+
+  &--64 {
+    background-color: #ff5100;
+    color: white;
+  }
+
+  &--128 {
+    background-color: #ec3a03;
+    color: white;
+  }
+
+  &--256 {
+    background-color: #ff0000ce;
+    color: white;
+  }
+
+  &--512 {
+    background-color: #ff0080;
+    color: white;
+  }
+
+  &--1024 {
+    background-color: #ea00ff;
+    color: white;
+    font-size: 4rem;
+    line-height: 250%;
+  }
+
+  &--2048 {
+    background-color: #6200ff;
+    color: white;
+    font-size: 4rem;
+    line-height: 250%;
+  }
+
 }

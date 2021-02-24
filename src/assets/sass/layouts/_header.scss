@@ -24,7 +24,7 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-
+  @include font(1.7rem, 130%, black, $spacing: 0.06em);
 }
 .header__bottom {
   width: 100%;
@@ -54,11 +54,15 @@
 .button {
   width: 150px;
   height: 40px;
-  background: rgb(3, 255, 213);
+  background: $color-prime;
   border-radius: 100px;
   border: none;
-  @include font(1.7rem, 130%, gray, $spacing: 0.06em);
+  @include font(1.7rem, 130%, black, $spacing: 0.06em);
+  &--arrow {
+    width: 70px;
+    height: 70px;
+  }
   &:hover {
-    background:   rgb(1, 201, 167);
+    background:   $color-prime;
   }
 }

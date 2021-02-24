@@ -456,6 +456,13 @@ p {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.7rem;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  color: black;
 }
 
 .header__bottom {
@@ -494,10 +501,14 @@ p {
   font-size: 1.7rem;
   line-height: 130%;
   letter-spacing: 0.06em;
-  color: gray;
+  color: black;
+}
+.button--arrow {
+  width: 70px;
+  height: 70px;
 }
 .button:hover {
-  background: #01c9a7;
+  background: #03ffd5;
 }
 
 .main {
@@ -523,14 +534,108 @@ p {
   font-style: normal;
   font-weight: normal;
   font-size: 5rem;
-  line-height: 150%;
+  line-height: 200%;
   letter-spacing: unset;
   color: black;
   text-align: center;
-  padding-top: 15%;
 }
-.tile-zero {
-  visibility: hidden;
+.tile--0 {
+  background-color: rgba(238, 228, 218, 0.35);
+}
+.tile--2 {
+  background-color: #ffedd3;
+}
+.tile--4 {
+  background-color: #fad5a2;
+}
+.tile--8 {
+  background-color: #ffb855;
+  color: white;
+}
+.tile--16 {
+  background-color: #ff9705;
+  color: white;
+}
+.tile--32 {
+  background-color: #ff7605;
+  color: white;
+}
+.tile--64 {
+  background-color: #ff5100;
+  color: white;
+}
+.tile--128 {
+  background-color: #ec3a03;
+  color: white;
+}
+.tile--256 {
+  background-color: #ff0000ce;
+  color: white;
+}
+.tile--512 {
+  background-color: #ff0080;
+  color: white;
+}
+.tile--1024 {
+  background-color: #ea00ff;
+  color: white;
+  font-size: 4rem;
+  line-height: 250%;
+}
+.tile--2048 {
+  background-color: #6200ff;
+  color: white;
+  font-size: 4rem;
+  line-height: 250%;
+}
+
+.footer {
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item-a {
+  grid-area: upArrow;
+}
+
+.item-b {
+  grid-area: leftArrow;
+}
+
+.item-c {
+  grid-area: douwnArrow;
+}
+
+.item-d {
+  grid-area: rightArrow;
+}
+
+.footer__info {
+  width: 50%;
+  height: 50%;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.7rem;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  color: black;
+}
+
+.button__container {
+  width: 240px;
+  display: grid;
+  grid-template-columns: 70px 70px 70px;
+  grid-template-rows: auto;
+  grid-template-areas: ". upArrow ." "leftArrow douwnArrow rightArrow";
+  column-gap: 10px;
+  row-gap: 10px;
+  justify-content: space-around;
+  align-items: center;
 }
 
 /*# sourceMappingURL=style.css.map*/
