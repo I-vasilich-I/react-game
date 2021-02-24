@@ -4,8 +4,7 @@ import Header from './Header';
 import Footer from './Footer';
 
 const App = () => {
-  const [board, setBoard] = useState([...Array(16).keys()]);
-
+  const [board, setBoard] = useState([...Array(16).keys()].map(() => 0));
 
   return (
     <div className="App">

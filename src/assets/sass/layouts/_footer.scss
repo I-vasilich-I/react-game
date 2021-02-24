@@ -14,7 +14,7 @@
   grid-area: leftArrow;
 }
 .item-c {
-  grid-area: douwnArrow;
+  grid-area: downArrow;
 }
 .item-d {
   grid-area: rightArrow;
@@ -23,7 +23,7 @@
 .footer__info {
   width: 50%;
   height: 50%;
-  @include font(1.7rem, 130%, black, $spacing: 0.06em);
+  @include font(1.7rem, 130%, $color-tile-text-dark, $spacing: 0.06em);
 }
 
 .button__container {
@@ -32,7 +32,7 @@
   grid-template-columns: 70px 70px 70px;
   grid-template-rows: auto;
   grid-template-areas: ". upArrow ."
-                       "leftArrow douwnArrow rightArrow";
+                       "leftArrow downArrow rightArrow";
   column-gap: 10px;
   row-gap: 10px;
   justify-content: space-around;

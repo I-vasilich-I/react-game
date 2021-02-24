@@ -542,17 +542,17 @@ p {
   background-color: rgba(238, 228, 218, 0.35);
 }
 .tile--2 {
-  background-color: #ffedd3;
-}
-.tile--4 {
   background-color: #fad5a2;
 }
-.tile--8 {
+.tile--4 {
   background-color: #ffb855;
+}
+.tile--8 {
+  background-color: #ff9705;
   color: white;
 }
 .tile--16 {
-  background-color: #ff9705;
+  background-color: #ff7605;
   color: white;
 }
 .tile--32 {
@@ -576,13 +576,13 @@ p {
   color: white;
 }
 .tile--1024 {
-  background-color: #ea00ff;
+  background-color: #6200ff;
   color: white;
   font-size: 4rem;
   line-height: 250%;
 }
 .tile--2048 {
-  background-color: #6200ff;
+  background-color: #ea00ff;
   color: white;
   font-size: 4rem;
   line-height: 250%;
@@ -606,7 +606,7 @@ p {
 }
 
 .item-c {
-  grid-area: douwnArrow;
+  grid-area: downArrow;
 }
 
 .item-d {
@@ -630,7 +630,7 @@ p {
   display: grid;
   grid-template-columns: 70px 70px 70px;
   grid-template-rows: auto;
-  grid-template-areas: ". upArrow ." "leftArrow douwnArrow rightArrow";
+  grid-template-areas: ". upArrow ." "leftArrow downArrow rightArrow";
   column-gap: 10px;
   row-gap: 10px;
   justify-content: space-around;

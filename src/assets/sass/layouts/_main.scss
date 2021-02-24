@@ -1,6 +1,5 @@
 .main {
   width: 100%;
-
 }
 
 .board {
@@ -13,77 +12,74 @@
   align-items: center;
   width: 500px;
   height: 500px;
-  background-color: #776e65;
+  background-color: $color-board-background;
   padding: 15px 15px;
 }
 
 .tile {
-  // display: flex;
-  // align-content: center;
-  // justify-content: center;
   width: 100px;
   height: 100px;
-  // background-color: rgba(238, 228, 218, 0.35);
-  @include font(5rem, 200%, black);
+  @include font(5rem, 200%, $color-tile-text-dark);
   text-align: center;
-  // padding-top: 15%;
+
   &--0 {
-    background-color: rgba(238, 228, 218, 0.35);
+    background-color: $color-tile-0;
   }
 
   &--2 {
-    background-color: #ffedd3;
+    background-color: $color-tile-2;
   }
+
   &--4 {
-    background-color: #fad5a2;
+    background-color: $color-tile-4;
   }
+
   &--8 {
-    background-color: #ffb855;
-    color: white;
+    background-color: $color-tile-8;
+    color: $color-tile-text-light;
   }
 
   &--16 {
-    background-color: #ff9705;
-    color: white;
+    background-color: $color-tile-16;
+    color: $color-tile-text-light;
   }
 
   &--32 {
-    background-color: #ff7605;
-    color: white;
+    background-color: $color-tile-32;
+    color: $color-tile-text-light;
   }
 
   &--64 {
-    background-color: #ff5100;
-    color: white;
+    background-color: $color-tile-64;
+    color: $color-tile-text-light;
   }
 
   &--128 {
-    background-color: #ec3a03;
-    color: white;
+    background-color: $color-tile-128;
+    color: $color-tile-text-light;
   }
 
   &--256 {
-    background-color: #ff0000ce;
-    color: white;
+    background-color: $color-tile-256;
+    color: $color-tile-text-light;
   }
 
   &--512 {
-    background-color: #ff0080;
-    color: white;
+    background-color: $color-tile-512;
+    color: $color-tile-text-light;
   }
 
   &--1024 {
-    background-color: #ea00ff;
-    color: white;
+    background-color: $color-tile-1024;
+    color: $color-tile-text-light;
     font-size: 4rem;
     line-height: 250%;
   }
 
   &--2048 {
-    background-color: #6200ff;
-    color: white;
+    background-color: $color-tile-2048;
+    color: $color-tile-text-light;
     font-size: 4rem;
     line-height: 250%;
   }
-
 }

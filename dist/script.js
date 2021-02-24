@@ -81,7 +81,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var App = function App() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(_toConsumableArray(Array(16).keys())),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(_toConsumableArray(Array(16).keys()).map(function () {
+    return 0;
+  })),
       _useState2 = _slicedToArray(_useState, 2),
       board = _useState2[0],
       setBoard = _useState2[1];
@@ -176,9 +178,27 @@ var Footer = function Footer(props) {
   var board = props.board,
       setBoard = props.setBoard;
 
-  var handleClick = function handleClick() {
+  var moveLeft = function moveLeft() {
     setBoard(_toConsumableArray(Array(16).keys()).map(function (elem) {
       return elem = 2;
+    }));
+  };
+
+  var moveUp = function moveUp() {
+    setBoard(_toConsumableArray(Array(16).keys()).map(function (elem) {
+      return elem = 4;
+    }));
+  };
+
+  var moveRight = function moveRight() {
+    setBoard(_toConsumableArray(Array(16).keys()).map(function (elem) {
+      return elem = 6;
+    }));
+  };
+
+  var moveDown = function moveDown() {
+    setBoard(_toConsumableArray(Array(16).keys()).map(function (elem) {
+      return elem = 8;
     }));
   };
 
@@ -190,13 +210,16 @@ var Footer = function Footer(props) {
     className: "button__container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     className: "button button--arrow item-b",
-    onClick: handleClick
+    onClick: moveLeft
   }, "Left"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-    className: "button button--arrow item-a"
+    className: "button button--arrow item-a",
+    onClick: moveUp
   }, "Up"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-    className: "button button--arrow item-d"
+    className: "button button--arrow item-d",
+    onClick: moveRight
   }, "Right"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-    className: "button button--arrow item-c"
+    className: "button button--arrow item-c",
+    onClick: moveDown
   }, "Down")));
 };
 
