@@ -23,10 +23,10 @@
   // justify-content: center;
   width: 100px;
   height: 100px;
-  background-color: rgba(238, 228, 218, 0.35);
+  // background-color: rgba(238, 228, 218, 0.35);
   @include font(5rem, 200%, black);
   text-align: center;
-  //padding-top: 15%;
+  // padding-top: 15%;
   &--0 {
     background-color: rgba(238, 228, 218, 0.35);
   }
