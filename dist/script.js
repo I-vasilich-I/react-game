@@ -175,6 +175,7 @@ var Footer = function Footer(props) {
   };
 
   var moveUp = function moveUp() {
+    var hasMove = false;
     var newBoard = new Array(16);
 
     var _loop = function _loop(i) {
@@ -186,7 +187,8 @@ var Footer = function Footer(props) {
       });
 
       for (var j = 0; j < trimRow.length; j++) {
-        if (trimRow[j] !== 0 && trimRow[j] === trimRow[j + 1]) {
+        if (trimRow[j] === trimRow[j + 1]) {
+          hasMove = true;
           var _ref = [trimRow[j] + trimRow[j + 1], 0];
           trimRow[j] = _ref[0];
           trimRow[j + 1] = _ref[1];
@@ -199,24 +201,71 @@ var Footer = function Footer(props) {
 
       while (newRow.length < row.length) {
         newRow.push(0);
-      } // console.log(newRow);
-
+      }
 
       newRow.map(function (elem, id) {
         newBoard[id * 4 + i] = elem;
         return elem;
       });
-      setBoard(newBoard);
     };
 
     for (var i = 0; i < 4; i++) {
       _loop(i);
-    }
+    } // const tempBoard = getNewBoardArray(newBoard);
+    // setBoard(hasMove && tempBoard !== -1 ? tempBoard : newBoard);
+
+
+    setBoard(newBoard);
   };
 
   var moveRight = function moveRight() {};
 
-  var moveDown = function moveDown() {};
+  var moveDown = function moveDown() {
+    var hasMove = false;
+    var newBoard = new Array(16);
+
+    var _loop2 = function _loop2(i) {
+      var row = board.filter(function (elem, id) {
+        return (id - i) % 4 === 0;
+      });
+      var trimRow = row.filter(function (elem) {
+        return !!elem;
+      });
+
+      for (var j = 0; j < trimRow.length; j++) {
+        if (trimRow[j] === trimRow[j + 1]) {
+          hasMove = true;
+          var _ref2 = [trimRow[j] + trimRow[j + 1], 0];
+          trimRow[j] = _ref2[0];
+          trimRow[j + 1] = _ref2[1];
+        }
+      }
+
+      var newRow = trimRow.filter(function (elem) {
+        return !!elem;
+      }).reverse();
+
+      while (newRow.length < row.length) {
+        newRow.push(0);
+      }
+
+      newRow.reverse().map(function (elem, id) {
+        newBoard[id * 4 + i] = elem;
+        return elem;
+      });
+    };
+
+    for (var i = 0; i < 4; i++) {
+      _loop2(i);
+    } // const tempBoard = getNewBoardArray(newBoard);
+    // if (tempBoard !== -1) {
+    //   setBoard(newBoard);
+    // } else if (hasMove) setBoard(tempBoard);
+    // setBoard(hasMove && tempBoard !== -1 ? tempBoard : newBoard);
+
+
+    setBoard(newBoard);
+  };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("footer", {
     className: "footer"

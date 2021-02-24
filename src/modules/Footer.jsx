@@ -16,31 +16,69 @@ const Footer = (props) => {
   };
 
   const moveUp = () => {
+    let hasMove = false;
     const newBoard = new Array(16);
     for (let i = 0; i < 4; i++) {
       const row = board.filter((elem, id) => (id - i) % 4 === 0);
       const trimRow = row.filter((elem) => !!elem);
+
       for (let j = 0; j < trimRow.length; j++) {
-        if (trimRow[j] !== 0 && trimRow[j] === trimRow[j + 1]) {
+        if (trimRow[j] === trimRow[j + 1]) {
+          hasMove = true;
           [trimRow[j], trimRow[j + 1]] = [trimRow[j] + trimRow[j + 1], 0];
         }
       }
+
       const newRow = trimRow.filter((elem) => !!elem);
       while (newRow.length < row.length) {
         newRow.push(0);
       }
-      // console.log(newRow);
+
       newRow.map((elem, id) => {
         newBoard[id * 4 + i] = elem;
         return elem;
       });
-      setBoard(newBoard);
     }
+    // const tempBoard = getNewBoardArray(newBoard);
+    // setBoard(hasMove && tempBoard !== -1 ? tempBoard : newBoard);
+    setBoard(newBoard);
   };
 
   const moveRight = () => {};
 
-  const moveDown = () => {};
+  const moveDown = () => {
+    let hasMove = false;
+    const newBoard = new Array(16);
+    for (let i = 0; i < 4; i++) {
+      const row = board.filter((elem, id) => (id - i) % 4 === 0);
+      const trimRow = row.filter((elem) => !!elem);
+
+      for (let j = 0; j < trimRow.length; j++) {
+        if (trimRow[j] === trimRow[j + 1]) {
+          hasMove = true;
+          [trimRow[j], trimRow[j + 1]] = [trimRow[j] + trimRow[j + 1], 0];
+        }
+      }
+
+      const newRow = trimRow.filter((elem) => !!elem).reverse();
+
+      while (newRow.length < row.length) {
+        newRow.push(0);
+      }
+
+      newRow.reverse().map((elem, id) => {
+        newBoard[id * 4 + i] = elem;
+        return elem;
+      });
+    }
+
+    // const tempBoard = getNewBoardArray(newBoard);
+    // if (tempBoard !== -1) {
+    //   setBoard(newBoard);
+    // } else if (hasMove) setBoard(tempBoard);
+    // setBoard(hasMove && tempBoard !== -1 ? tempBoard : newBoard);
+    setBoard(newBoard);
+  };
 
   return (
     <footer className="footer">
