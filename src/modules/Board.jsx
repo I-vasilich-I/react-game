@@ -1,15 +1,12 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
-import { useState } from 'react';
-
 
 const Board = (props) => {
   const { board } = props;
-
-  const setValue = (id) => {
-    if (!id) return '';
-    if (id <= 11) return Math.pow(2, id);
-    return Math.pow(2, 11);
-  }
+  const setValue = (elem) => {
+    if (!elem) return '';
+    return elem;
+  };
 
   return (
     <main className="main">
@@ -22,8 +19,7 @@ const Board = (props) => {
         ))}
       </section>
     </main>
-  )
-
-}
+  );
+};
 
 export default Board;

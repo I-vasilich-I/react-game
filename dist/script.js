@@ -55,14 +55,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Board__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Board */ "./src/modules/Board.jsx");
 /* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Header */ "./src/modules/Header.jsx");
 /* harmony import */ var _Footer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Footer */ "./src/modules/Footer.jsx");
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
+/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -80,10 +73,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var App = function App() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(_toConsumableArray(Array(16).keys()).map(function () {
-    return 0;
-  })),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((0,_utils_helpers__WEBPACK_IMPORTED_MODULE_4__.getInitialBoardArray)()),
       _useState2 = _slicedToArray(_useState, 2),
       board = _useState2[0],
       setBoard = _useState2[1];
@@ -93,7 +85,8 @@ var App = function App() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
     className: "hidden"
   }, "2048"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Header__WEBPACK_IMPORTED_MODULE_2__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Board__WEBPACK_IMPORTED_MODULE_1__.default, {
-    board: board
+    board: board,
+    setBoard: setBoard
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Footer__WEBPACK_IMPORTED_MODULE_3__.default, {
     board: board,
     setBoard: setBoard
@@ -116,16 +109,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
+/* eslint-disable react/prop-types */
 
 
 var Board = function Board(props) {
   var board = props.board;
 
-  var setValue = function setValue(id) {
-    if (!id) return '';
-    if (id <= 11) return Math.pow(2, id);
-    return Math.pow(2, 11);
+  var setValue = function setValue(elem) {
+    if (!elem) return '';
+    return elem;
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("main", {
@@ -160,17 +152,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
+/* eslint-disable react/prop-types */
 
 
 
@@ -179,28 +162,22 @@ var Footer = function Footer(props) {
       setBoard = props.setBoard;
 
   var moveLeft = function moveLeft() {
-    setBoard(_toConsumableArray(Array(16).keys()).map(function (elem) {
-      return elem = 2;
-    }));
+    var newBoard = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.getNewBoardArray)(board);
+
+    if (newBoard === -1) {
+      // should change that console.log later
+      console.log('array is full');
+      return;
+    }
+
+    setBoard(newBoard);
   };
 
-  var moveUp = function moveUp() {
-    setBoard(_toConsumableArray(Array(16).keys()).map(function (elem) {
-      return elem = 4;
-    }));
-  };
+  var moveUp = function moveUp() {};
 
-  var moveRight = function moveRight() {
-    setBoard(_toConsumableArray(Array(16).keys()).map(function (elem) {
-      return elem = 6;
-    }));
-  };
+  var moveRight = function moveRight() {};
 
-  var moveDown = function moveDown() {
-    setBoard(_toConsumableArray(Array(16).keys()).map(function (elem) {
-      return elem = 8;
-    }));
-  };
+  var moveDown = function moveDown() {};
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("footer", {
     className: "footer"
@@ -209,15 +186,19 @@ var Footer = function Footer(props) {
   }, "HOW TO PLAY: Use your arrow keys to move the tiles. Tiles with the same number merge into one when they touch. Add them up to reach 2048!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "button__container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "button",
     className: "button button--arrow item-b",
     onClick: moveLeft
   }, "Left"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "button",
     className: "button button--arrow item-a",
     onClick: moveUp
   }, "Up"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "button",
     className: "button button--arrow item-d",
     onClick: moveRight
   }, "Right"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "button",
     className: "button button--arrow item-c",
     onClick: moveDown
   }, "Down")));
@@ -265,6 +246,64 @@ var Header = function Header() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Header);
+
+/***/ }),
+
+/***/ "./src/modules/utils/helpers.js":
+/*!**************************************!*\
+  !*** ./src/modules/utils/helpers.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getNewBoardArray": () => (/* binding */ getNewBoardArray),
+/* harmony export */   "getInitialBoardArray": () => (/* binding */ getInitialBoardArray)
+/* harmony export */ });
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+var getArrayOfEmptySpotIds = function getArrayOfEmptySpotIds(array) {
+  return array.map(function (elem, id) {
+    return !elem ? id : -1;
+  }).filter(function (elem) {
+    return elem !== -1;
+  });
+};
+
+var getRandomEmptySpotId = function getRandomEmptySpotId(Arraylength) {
+  return Math.floor(Math.random() * Math.floor(Arraylength));
+};
+
+var getNewBoardArray = function getNewBoardArray(array) {
+  var newBoard = _toConsumableArray(array);
+
+  var emptySpotsOnBoard = getArrayOfEmptySpotIds(array);
+  if (!emptySpotsOnBoard.length) return -1;
+  var number = Math.floor(Math.random() < 0.8 ? 2 : 4);
+  var spotId = getRandomEmptySpotId(emptySpotsOnBoard.length);
+  var id = emptySpotsOnBoard[spotId];
+  newBoard[id] = number;
+  return newBoard;
+};
+
+var getInitialBoardArray = function getInitialBoardArray() {
+  return getNewBoardArray(getNewBoardArray(_toConsumableArray(Array(16).keys()).map(function () {
+    return 0;
+  })));
+};
+
+
 
 /***/ }),
 
