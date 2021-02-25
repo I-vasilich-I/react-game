@@ -52,15 +52,420 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _Board__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Board */ "./src/modules/Board.jsx");
+/* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Header */ "./src/modules/Header.jsx");
+/* harmony import */ var _Footer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Footer */ "./src/modules/Footer.jsx");
+/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
 
 
 var App = function App() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+      _useState2 = _slicedToArray(_useState, 2),
+      score = _useState2[0],
+      setScore = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((0,_utils_helpers__WEBPACK_IMPORTED_MODULE_4__.getBestScoreFromStorage)()),
+      _useState4 = _slicedToArray(_useState3, 2),
+      bestScore = _useState4[0],
+      setBestScore = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((0,_utils_helpers__WEBPACK_IMPORTED_MODULE_4__.getInitialBoardArray)()),
+      _useState6 = _slicedToArray(_useState5, 2),
+      board = _useState6[0],
+      setBoard = _useState6[1]; // const [board, setBoard] = useState([...Array(16).keys()]);
+
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "App"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, " Hello, World!!! "));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
+    className: "hidden"
+  }, "2048"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Header__WEBPACK_IMPORTED_MODULE_2__.default, {
+    score: score,
+    setScore: setScore,
+    setBoard: setBoard,
+    bestScore: bestScore,
+    setBestScore: setBestScore
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Board__WEBPACK_IMPORTED_MODULE_1__.default, {
+    board: board,
+    setBoard: setBoard
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Footer__WEBPACK_IMPORTED_MODULE_3__.default, {
+    board: board,
+    setBoard: setBoard,
+    score: score,
+    setScore: setScore,
+    bestScore: bestScore,
+    setBestScore: setBestScore
+  }));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
+
+/***/ }),
+
+/***/ "./src/modules/Board.jsx":
+/*!*******************************!*\
+  !*** ./src/modules/Board.jsx ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* eslint-disable react/prop-types */
+
+
+var Board = function Board(props) {
+  var board = props.board;
+
+  var setValue = function setValue(elem) {
+    if (!elem) return '';
+    return elem;
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("main", {
+    className: "main"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
+    className: "board"
+  }, board.map(function (elem, id) {
+    return (
+      /*#__PURE__*/
+      // eslint-disable-next-line react/no-array-index-key
+      react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        key: id,
+        className: "tile tile--".concat(setValue(elem) ? setValue(elem) : 0)
+      }, setValue(elem))
+    );
+  })));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Board);
+
+/***/ }),
+
+/***/ "./src/modules/Footer.jsx":
+/*!********************************!*\
+  !*** ./src/modules/Footer.jsx ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
+/* eslint-disable react/prop-types */
+
+
+
+var Footer = function Footer(props) {
+  var board = props.board,
+      setBoard = props.setBoard,
+      score = props.score,
+      setScore = props.setScore,
+      bestScore = props.bestScore,
+      setBestScore = props.setBestScore;
+  var newScore = 0;
+
+  var setNewBoard = function setNewBoard(newBoard) {
+    if (!(0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.areArraysEqual)(newBoard, board)) {
+      var tempBoard = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.getNewBoardArray)(newBoard);
+      setBoard(tempBoard !== -1 ? tempBoard : newBoard);
+    }
+
+    var newBestScore = score + newScore > bestScore ? score + newScore : bestScore;
+    setBestScore(newBestScore);
+    (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.setBestScoreInStorage)(newBestScore);
+    setScore(score + newScore);
+  };
+
+  var processLine = function processLine(line) {
+    var direction = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+    var trimLine = line.filter(function (elem) {
+      return !!elem;
+    });
+
+    for (var j = 0; j < trimLine.length; j++) {
+      if (trimLine[j] === trimLine[j + 1]) {
+        newScore += trimLine[j] + trimLine[j + 1];
+        var _ref = [trimLine[j] + trimLine[j + 1], 0];
+        trimLine[j] = _ref[0];
+        trimLine[j + 1] = _ref[1];
+      }
+    }
+
+    var newLine = trimLine.filter(function (elem) {
+      return !!elem;
+    });
+    if (direction) newLine.reverse();
+
+    while (newLine.length < line.length) {
+      newLine.push(0);
+    }
+
+    return direction ? newLine.reverse() : newLine;
+  };
+
+  var getRow = function getRow(array, i) {
+    return array.filter(function (elem, id) {
+      return id >= i && id < i + 4;
+    });
+  };
+
+  var getColumn = function getColumn(array, i) {
+    return array.filter(function (elem, id) {
+      return (id - i) % 4 === 0;
+    });
+  };
+
+  var updateNewBoardHorizontal = function updateNewBoardHorizontal(newBoard, i) {
+    var direction = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+    var newLine = processLine(getRow(board, i), direction);
+    newLine.map(function (elem, id) {
+      // eslint-disable-next-line no-param-reassign
+      newBoard[id + i] = elem;
+      return elem;
+    });
+  };
+
+  var updateNewBoardVertical = function updateNewBoardVertical(newBoard, i) {
+    var direction = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+    var newLine = processLine(getColumn(board, i), direction);
+    newLine.map(function (elem, id) {
+      // eslint-disable-next-line no-param-reassign
+      newBoard[id * 4 + i] = elem;
+      return elem;
+    });
+  };
+
+  var moveLeft = function moveLeft() {
+    var newBoard = new Array(16);
+
+    for (var i = 0; i < 16; i += 4) {
+      updateNewBoardHorizontal(newBoard, i);
+    }
+
+    setNewBoard(newBoard);
+  };
+
+  var moveRight = function moveRight() {
+    var newBoard = new Array(16);
+
+    for (var i = 0; i < 16; i += 4) {
+      updateNewBoardHorizontal(newBoard, i, true);
+    }
+
+    setNewBoard(newBoard);
+  };
+
+  var moveUp = function moveUp() {
+    var newBoard = new Array(16);
+
+    for (var i = 0; i < 4; i++) {
+      updateNewBoardVertical(newBoard, i);
+    }
+
+    setNewBoard(newBoard);
+  };
+
+  var moveDown = function moveDown() {
+    var newBoard = new Array(16);
+
+    for (var i = 0; i < 4; i++) {
+      updateNewBoardVertical(newBoard, i, true);
+    }
+
+    setNewBoard(newBoard);
+  };
+
+  var handleEvent = function handleEvent(e) {
+    if (e.stopPropagation) e.stopPropagation();
+    if (e.code === 'ArrowLeft' || e.code === 'KeyA') moveLeft();
+    if (e.code === 'ArrowRight' || e.code === 'KeyD') moveRight();
+    if (e.code === 'ArrowUp' || e.code === 'KeyW') moveUp();
+    if (e.code === 'ArrowDown' || e.code === 'KeyS') moveDown();
+  };
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    document.addEventListener('keydown', handleEvent);
+    return function () {
+      document.removeEventListener('keydown', handleEvent);
+    };
+  }, ['keydown', handleEvent]);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("footer", {
+    className: "footer"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "footer__info"
+  }, "HOW TO PLAY: Use your arrow keys to move the tiles. Tiles with the same number merge into one when they touch. Add them up to reach 2048!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "button__container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "button",
+    className: "button button--arrow item-b",
+    onClick: moveLeft
+  }, "Left"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "button",
+    className: "button button--arrow item-a",
+    onClick: moveUp
+  }, "Up"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "button",
+    className: "button button--arrow item-d",
+    onClick: moveRight
+  }, "Right"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "button",
+    className: "button button--arrow item-c",
+    onClick: moveDown
+  }, "Down")));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Footer);
+
+/***/ }),
+
+/***/ "./src/modules/Header.jsx":
+/*!********************************!*\
+  !*** ./src/modules/Header.jsx ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
+/* eslint-disable react/prop-types */
+
+
+
+var Header = function Header(props) {
+  var score = props.score,
+      setScore = props.setScore,
+      setBoard = props.setBoard,
+      bestScore = props.bestScore;
+
+  var newGame = function newGame() {
+    setBoard((0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.getInitialBoardArray)());
+    setScore(0);
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("header", {
+    className: "header"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "header__top"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
+    className: "logo"
+  }, "2048"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "score__container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "score"
+  }, score), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "score"
+  }, bestScore))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "header__bottom"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    className: "title"
+  }, "Start new game."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "button",
+    className: "button",
+    onClick: newGame
+  }, "New Game")));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Header);
+
+/***/ }),
+
+/***/ "./src/modules/utils/helpers.js":
+/*!**************************************!*\
+  !*** ./src/modules/utils/helpers.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getNewBoardArray": () => (/* binding */ getNewBoardArray),
+/* harmony export */   "getInitialBoardArray": () => (/* binding */ getInitialBoardArray),
+/* harmony export */   "areArraysEqual": () => (/* binding */ areArraysEqual),
+/* harmony export */   "getBestScoreFromStorage": () => (/* binding */ getBestScoreFromStorage),
+/* harmony export */   "setBestScoreInStorage": () => (/* binding */ setBestScoreInStorage)
+/* harmony export */ });
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+var areArraysEqual = function areArraysEqual(arr1, arr2) {
+  return arr1.toString() === arr2.toString();
+};
+
+var getBestScoreFromStorage = function getBestScoreFromStorage() {
+  return localStorage.getItem('bestScore') || 0;
+};
+
+var setBestScoreInStorage = function setBestScoreInStorage(value) {
+  return localStorage.setItem('bestScore', value);
+};
+
+var getArrayOfEmptySpotIds = function getArrayOfEmptySpotIds(array) {
+  return array.map(function (elem, id) {
+    return !elem ? id : -1;
+  }).filter(function (elem) {
+    return elem !== -1;
+  });
+};
+
+var getRandomEmptySpotId = function getRandomEmptySpotId(Arraylength) {
+  return Math.floor(Math.random() * Math.floor(Arraylength));
+};
+
+var getNewBoardArray = function getNewBoardArray(array) {
+  var newBoard = _toConsumableArray(array);
+
+  var emptySpotsOnBoard = getArrayOfEmptySpotIds(array);
+  if (!emptySpotsOnBoard.length) return -1;
+  var number = Math.floor(Math.random() < 0.8 ? 2 : 4);
+  var spotId = getRandomEmptySpotId(emptySpotsOnBoard.length);
+  var id = emptySpotsOnBoard[spotId];
+  newBoard[id] = number;
+  return newBoard;
+};
+
+var getInitialBoardArray = function getInitialBoardArray() {
+  return getNewBoardArray(getNewBoardArray(_toConsumableArray(Array(16).keys()).map(function () {
+    return 0;
+  })));
+};
+
+
 
 /***/ }),
 

@@ -1,0 +1,43 @@
+.footer {
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item-a {
+  grid-area: upArrow;
+}
+.item-b {
+  grid-area: leftArrow;
+}
+.item-c {
+  grid-area: downArrow;
+}
+.item-d {
+  grid-area: rightArrow;
+}
+
+.footer__info {
+  width: 50%;
+  height: 50%;
+  @include font(1.7rem, 130%, $color-tile-text-dark, $spacing: 0.06em);
+}
+
+.button__container {
+  width: 240px;
+  display: grid;
+  grid-template-columns: 70px 70px 70px;
+  grid-template-rows: auto;
+  grid-template-areas: ". upArrow ."
+                       "leftArrow downArrow rightArrow";
+  column-gap: 10px;
+  row-gap: 10px;
+  justify-content: space-around;
+  align-items: center;
+
+}
+
+
