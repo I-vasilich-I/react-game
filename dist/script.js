@@ -162,191 +162,107 @@ var Footer = function Footer(props) {
   var board = props.board,
       setBoard = props.setBoard;
 
-  var moveLeft = function moveLeft() {
-    // const newBoard = getNewBoardArray(board);
-    // if (newBoard === -1) {
-    //   // should change that console.log later
-    //   console.log('array is full');
-    //   return;
-    // }
-    // setBoard(newBoard);
-    var newBoard = new Array(16);
-
-    var _loop = function _loop(i) {
-      // const row = board.slice(i, i + 4);
-      var row = [];
-
-      for (var k = i; k < i + 4; k++) {
-        row.push(board[k]);
-      }
-
-      var trimRow = row.filter(function (elem) {
-        return !!elem;
-      });
-
-      for (var j = 0; j < trimRow.length; j++) {
-        if (trimRow[j] === trimRow[j + 1]) {
-          var _ref = [trimRow[j] + trimRow[j + 1], 0];
-          trimRow[j] = _ref[0];
-          trimRow[j + 1] = _ref[1];
-        }
-      }
-
-      var newRow = trimRow.filter(function (elem) {
-        return !!elem;
-      });
-
-      while (newRow.length < row.length) {
-        newRow.push(0);
-      }
-
-      newRow.map(function (elem, id) {
-        newBoard[id + i] = elem;
-        return elem;
-      });
-    };
-
-    for (var i = 0; i < 16; i += 4) {
-      _loop(i);
-    }
-
+  var setNewBoard = function setNewBoard(newBoard) {
     if (!(0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.areArraysEqual)(newBoard, board)) {
       var tempBoard = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.getNewBoardArray)(newBoard);
       setBoard(tempBoard !== -1 ? tempBoard : newBoard);
     }
   };
 
-  var moveUp = function moveUp() {
+  var processLine = function processLine(line) {
+    var direction = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+    var trimLine = line.filter(function (elem) {
+      return !!elem;
+    });
+
+    for (var j = 0; j < trimLine.length; j++) {
+      if (trimLine[j] === trimLine[j + 1]) {
+        var _ref = [trimLine[j] + trimLine[j + 1], 0];
+        trimLine[j] = _ref[0];
+        trimLine[j + 1] = _ref[1];
+      }
+    }
+
+    var newLine = trimLine.filter(function (elem) {
+      return !!elem;
+    });
+    if (direction) newLine.reverse();
+
+    while (newLine.length < line.length) {
+      newLine.push(0);
+    }
+
+    return direction ? newLine.reverse() : newLine;
+  };
+
+  var getRow = function getRow(board, i) {
+    return board.filter(function (elem, id) {
+      return id >= i && id < i + 4;
+    });
+  };
+
+  var getColumn = function getColumn(board, i) {
+    return board.filter(function (elem, id) {
+      return (id - i) % 4 === 0;
+    });
+  };
+
+  var updateNewBoardHorizontal = function updateNewBoardHorizontal(newBoard, i) {
+    var direction = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+    var newLine = processLine(getRow(board, i), direction);
+    newLine.map(function (elem, id) {
+      newBoard[id + i] = elem;
+      return elem;
+    });
+  };
+
+  var updateNewBoardVertical = function updateNewBoardVertical(newBoard, i) {
+    var direction = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+    var newLine = processLine(getColumn(board, i), direction);
+    newLine.map(function (elem, id) {
+      newBoard[id * 4 + i] = elem;
+      return elem;
+    });
+  };
+
+  var moveLeft = function moveLeft() {
     var newBoard = new Array(16);
 
-    var _loop2 = function _loop2(i) {
-      var row = board.filter(function (elem, id) {
-        return (id - i) % 4 === 0;
-      });
-      var trimRow = row.filter(function (elem) {
-        return !!elem;
-      });
-
-      for (var j = 0; j < trimRow.length; j++) {
-        if (trimRow[j] === trimRow[j + 1]) {
-          var _ref2 = [trimRow[j] + trimRow[j + 1], 0];
-          trimRow[j] = _ref2[0];
-          trimRow[j + 1] = _ref2[1];
-        }
-      }
-
-      var newRow = trimRow.filter(function (elem) {
-        return !!elem;
-      });
-
-      while (newRow.length < row.length) {
-        newRow.push(0);
-      }
-
-      newRow.map(function (elem, id) {
-        newBoard[id * 4 + i] = elem;
-        return elem;
-      });
-    };
-
-    for (var i = 0; i < 4; i++) {
-      _loop2(i);
+    for (var i = 0; i < 16; i += 4) {
+      updateNewBoardHorizontal(newBoard, i);
     }
 
-    if (!(0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.areArraysEqual)(newBoard, board)) {
-      var tempBoard = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.getNewBoardArray)(newBoard);
-      setBoard(tempBoard !== -1 ? tempBoard : newBoard);
-    }
+    setNewBoard(newBoard);
   };
 
   var moveRight = function moveRight() {
     var newBoard = new Array(16);
 
-    var _loop3 = function _loop3(i) {
-      // const row = board.slice(i, i + 4);
-      var row = [];
-
-      for (var k = i; k < i + 4; k++) {
-        row.push(board[k]);
-      }
-
-      var trimRow = row.filter(function (elem) {
-        return !!elem;
-      });
-
-      for (var j = 0; j < trimRow.length; j++) {
-        if (trimRow[j] === trimRow[j + 1]) {
-          var _ref3 = [trimRow[j] + trimRow[j + 1], 0];
-          trimRow[j] = _ref3[0];
-          trimRow[j + 1] = _ref3[1];
-        }
-      }
-
-      var newRow = trimRow.filter(function (elem) {
-        return !!elem;
-      }).reverse();
-
-      while (newRow.length < row.length) {
-        newRow.push(0);
-      }
-
-      newRow.reverse().map(function (elem, id) {
-        newBoard[id + i] = elem;
-        return elem;
-      });
-    };
-
     for (var i = 0; i < 16; i += 4) {
-      _loop3(i);
+      updateNewBoardHorizontal(newBoard, i, true);
     }
 
-    if (!(0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.areArraysEqual)(newBoard, board)) {
-      var tempBoard = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.getNewBoardArray)(newBoard);
-      setBoard(tempBoard !== -1 ? tempBoard : newBoard);
+    setNewBoard(newBoard);
+  };
+
+  var moveUp = function moveUp() {
+    var newBoard = new Array(16);
+
+    for (var i = 0; i < 4; i++) {
+      updateNewBoardVertical(newBoard, i);
     }
+
+    setNewBoard(newBoard);
   };
 
   var moveDown = function moveDown() {
     var newBoard = new Array(16);
 
-    var _loop4 = function _loop4(i) {
-      var row = board.filter(function (elem, id) {
-        return (id - i) % 4 === 0;
-      });
-      var trimRow = row.filter(function (elem) {
-        return !!elem;
-      });
-
-      for (var j = 0; j < trimRow.length; j++) {
-        if (trimRow[j] === trimRow[j + 1]) {
-          var _ref4 = [trimRow[j] + trimRow[j + 1], 0];
-          trimRow[j] = _ref4[0];
-          trimRow[j + 1] = _ref4[1];
-        }
-      }
-
-      var newRow = trimRow.filter(function (elem) {
-        return !!elem;
-      }).reverse();
-
-      while (newRow.length < row.length) {
-        newRow.push(0);
-      }
-
-      newRow.reverse().map(function (elem, id) {
-        newBoard[id * 4 + i] = elem;
-        return elem;
-      });
-    };
-
     for (var i = 0; i < 4; i++) {
-      _loop4(i);
+      updateNewBoardVertical(newBoard, i, true);
     }
 
-    if (!(0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.areArraysEqual)(newBoard, board)) {
-      var tempBoard = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.getNewBoardArray)(newBoard);
-      setBoard(tempBoard !== -1 ? tempBoard : newBoard);
-    }
+    setNewBoard(newBoard);
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("footer", {
