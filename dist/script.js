@@ -226,14 +226,14 @@ var Footer = function Footer(props) {
     return direction ? newLine.reverse() : newLine;
   };
 
-  var getRow = function getRow(board, i) {
-    return board.filter(function (elem, id) {
+  var getRow = function getRow(array, i) {
+    return array.filter(function (elem, id) {
       return id >= i && id < i + 4;
     });
   };
 
-  var getColumn = function getColumn(board, i) {
-    return board.filter(function (elem, id) {
+  var getColumn = function getColumn(array, i) {
+    return array.filter(function (elem, id) {
       return (id - i) % 4 === 0;
     });
   };
@@ -242,6 +242,7 @@ var Footer = function Footer(props) {
     var direction = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
     var newLine = processLine(getRow(board, i), direction);
     newLine.map(function (elem, id) {
+      // eslint-disable-next-line no-param-reassign
       newBoard[id + i] = elem;
       return elem;
     });
@@ -251,6 +252,7 @@ var Footer = function Footer(props) {
     var direction = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
     var newLine = processLine(getColumn(board, i), direction);
     newLine.map(function (elem, id) {
+      // eslint-disable-next-line no-param-reassign
       newBoard[id * 4 + i] = elem;
       return elem;
     });
@@ -296,6 +298,20 @@ var Footer = function Footer(props) {
     setNewBoard(newBoard);
   };
 
+  var handleEvent = function handleEvent(e) {
+    if (e.stopPropagation) e.stopPropagation();
+    if (e.code === 'ArrowLeft' || e.code === 'KeyA') moveLeft();
+    if (e.code === 'ArrowRight' || e.code === 'KeyD') moveRight();
+    if (e.code === 'ArrowUp' || e.code === 'KeyW') moveUp();
+    if (e.code === 'ArrowDown' || e.code === 'KeyS') moveDown();
+  };
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    document.addEventListener('keydown', handleEvent);
+    return function () {
+      document.removeEventListener('keydown', handleEvent);
+    };
+  }, ['keydown', handleEvent]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("footer", {
     className: "footer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -338,6 +354,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
+/* eslint-disable react/prop-types */
 
 
 

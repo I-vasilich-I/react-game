@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+/* eslint-disable react/prop-types */
+import React from 'react';
 import { getInitialBoardArray } from './utils/helpers';
 
-const Header = (props) =>{
+const Header = (props) => {
   const { score, setScore, setBoard, bestScore } = props;
-
 
   const newGame = () => {
     setBoard(getInitialBoardArray());
     setScore(0);
-  }
+  };
   return (
     <header className="header">
       <div className="header__top">
@@ -26,6 +26,6 @@ const Header = (props) =>{
       </div>
     </header>
   );
-}
+};
 
 export default Header;
