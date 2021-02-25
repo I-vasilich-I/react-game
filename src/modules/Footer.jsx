@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { getNewBoardArray } from './utils/helpers';
+import { getNewBoardArray, areArraysEqual } from './utils/helpers';
 
 const Footer = (props) => {
   const { board, setBoard } = props;
@@ -16,7 +16,6 @@ const Footer = (props) => {
   };
 
   const moveUp = () => {
-    let hasMove = false;
     const newBoard = new Array(16);
     for (let i = 0; i < 4; i++) {
       const row = board.filter((elem, id) => (id - i) % 4 === 0);
@@ -24,7 +23,6 @@ const Footer = (props) => {
 
       for (let j = 0; j < trimRow.length; j++) {
         if (trimRow[j] === trimRow[j + 1]) {
-          hasMove = true;
           [trimRow[j], trimRow[j + 1]] = [trimRow[j] + trimRow[j + 1], 0];
         }
       }
@@ -39,15 +37,15 @@ const Footer = (props) => {
         return elem;
       });
     }
-    // const tempBoard = getNewBoardArray(newBoard);
-    // setBoard(hasMove && tempBoard !== -1 ? tempBoard : newBoard);
-    setBoard(newBoard);
+    if (!areArraysEqual(newBoard, board)) {
+      const tempBoard = getNewBoardArray(newBoard);
+      setBoard(tempBoard !== -1 ? tempBoard : newBoard);
+    }
   };
 
   const moveRight = () => {};
 
   const moveDown = () => {
-    let hasMove = false;
     const newBoard = new Array(16);
     for (let i = 0; i < 4; i++) {
       const row = board.filter((elem, id) => (id - i) % 4 === 0);
@@ -55,7 +53,6 @@ const Footer = (props) => {
 
       for (let j = 0; j < trimRow.length; j++) {
         if (trimRow[j] === trimRow[j + 1]) {
-          hasMove = true;
           [trimRow[j], trimRow[j + 1]] = [trimRow[j] + trimRow[j + 1], 0];
         }
       }
@@ -72,12 +69,10 @@ const Footer = (props) => {
       });
     }
 
-    // const tempBoard = getNewBoardArray(newBoard);
-    // if (tempBoard !== -1) {
-    //   setBoard(newBoard);
-    // } else if (hasMove) setBoard(tempBoard);
-    // setBoard(hasMove && tempBoard !== -1 ? tempBoard : newBoard);
-    setBoard(newBoard);
+    if (!areArraysEqual(newBoard, board)) {
+      const tempBoard = getNewBoardArray(newBoard);
+      setBoard(tempBoard !== -1 ? tempBoard : newBoard);
+    }
   };
 
   return (

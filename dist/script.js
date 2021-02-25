@@ -175,7 +175,6 @@ var Footer = function Footer(props) {
   };
 
   var moveUp = function moveUp() {
-    var hasMove = false;
     var newBoard = new Array(16);
 
     var _loop = function _loop(i) {
@@ -188,7 +187,6 @@ var Footer = function Footer(props) {
 
       for (var j = 0; j < trimRow.length; j++) {
         if (trimRow[j] === trimRow[j + 1]) {
-          hasMove = true;
           var _ref = [trimRow[j] + trimRow[j + 1], 0];
           trimRow[j] = _ref[0];
           trimRow[j + 1] = _ref[1];
@@ -211,17 +209,17 @@ var Footer = function Footer(props) {
 
     for (var i = 0; i < 4; i++) {
       _loop(i);
-    } // const tempBoard = getNewBoardArray(newBoard);
-    // setBoard(hasMove && tempBoard !== -1 ? tempBoard : newBoard);
+    }
 
-
-    setBoard(newBoard);
+    if (!(0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.areArraysEqual)(newBoard, board)) {
+      var tempBoard = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.getNewBoardArray)(newBoard);
+      setBoard(tempBoard !== -1 ? tempBoard : newBoard);
+    }
   };
 
   var moveRight = function moveRight() {};
 
   var moveDown = function moveDown() {
-    var hasMove = false;
     var newBoard = new Array(16);
 
     var _loop2 = function _loop2(i) {
@@ -234,7 +232,6 @@ var Footer = function Footer(props) {
 
       for (var j = 0; j < trimRow.length; j++) {
         if (trimRow[j] === trimRow[j + 1]) {
-          hasMove = true;
           var _ref2 = [trimRow[j] + trimRow[j + 1], 0];
           trimRow[j] = _ref2[0];
           trimRow[j + 1] = _ref2[1];
@@ -257,14 +254,12 @@ var Footer = function Footer(props) {
 
     for (var i = 0; i < 4; i++) {
       _loop2(i);
-    } // const tempBoard = getNewBoardArray(newBoard);
-    // if (tempBoard !== -1) {
-    //   setBoard(newBoard);
-    // } else if (hasMove) setBoard(tempBoard);
-    // setBoard(hasMove && tempBoard !== -1 ? tempBoard : newBoard);
+    }
 
-
-    setBoard(newBoard);
+    if (!(0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.areArraysEqual)(newBoard, board)) {
+      var tempBoard = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.getNewBoardArray)(newBoard);
+      setBoard(tempBoard !== -1 ? tempBoard : newBoard);
+    }
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("footer", {
@@ -347,7 +342,8 @@ var Header = function Header() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getNewBoardArray": () => (/* binding */ getNewBoardArray),
-/* harmony export */   "getInitialBoardArray": () => (/* binding */ getInitialBoardArray)
+/* harmony export */   "getInitialBoardArray": () => (/* binding */ getInitialBoardArray),
+/* harmony export */   "areArraysEqual": () => (/* binding */ areArraysEqual)
 /* harmony export */ });
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -360,6 +356,10 @@ function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.it
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+var areArraysEqual = function areArraysEqual(arr1, arr2) {
+  return arr1.toString() === arr2.toString();
+};
 
 var getArrayOfEmptySpotIds = function getArrayOfEmptySpotIds(array) {
   return array.map(function (elem, id) {
