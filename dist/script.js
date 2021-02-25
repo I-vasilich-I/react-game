@@ -163,24 +163,23 @@ var Footer = function Footer(props) {
       setBoard = props.setBoard;
 
   var moveLeft = function moveLeft() {
-    var newBoard = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.getNewBoardArray)(board);
-
-    if (newBoard === -1) {
-      // should change that console.log later
-      console.log('array is full');
-      return;
-    }
-
-    setBoard(newBoard);
-  };
-
-  var moveUp = function moveUp() {
+    // const newBoard = getNewBoardArray(board);
+    // if (newBoard === -1) {
+    //   // should change that console.log later
+    //   console.log('array is full');
+    //   return;
+    // }
+    // setBoard(newBoard);
     var newBoard = new Array(16);
 
     var _loop = function _loop(i) {
-      var row = board.filter(function (elem, id) {
-        return (id - i) % 4 === 0;
-      });
+      // const row = board.slice(i, i + 4);
+      var row = [];
+
+      for (var k = i; k < i + 4; k++) {
+        row.push(board[k]);
+      }
+
       var trimRow = row.filter(function (elem) {
         return !!elem;
       });
@@ -202,12 +201,12 @@ var Footer = function Footer(props) {
       }
 
       newRow.map(function (elem, id) {
-        newBoard[id * 4 + i] = elem;
+        newBoard[id + i] = elem;
         return elem;
       });
     };
 
-    for (var i = 0; i < 4; i++) {
+    for (var i = 0; i < 16; i += 4) {
       _loop(i);
     }
 
@@ -217,9 +216,7 @@ var Footer = function Footer(props) {
     }
   };
 
-  var moveRight = function moveRight() {};
-
-  var moveDown = function moveDown() {
+  var moveUp = function moveUp() {
     var newBoard = new Array(16);
 
     var _loop2 = function _loop2(i) {
@@ -240,6 +237,96 @@ var Footer = function Footer(props) {
 
       var newRow = trimRow.filter(function (elem) {
         return !!elem;
+      });
+
+      while (newRow.length < row.length) {
+        newRow.push(0);
+      }
+
+      newRow.map(function (elem, id) {
+        newBoard[id * 4 + i] = elem;
+        return elem;
+      });
+    };
+
+    for (var i = 0; i < 4; i++) {
+      _loop2(i);
+    }
+
+    if (!(0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.areArraysEqual)(newBoard, board)) {
+      var tempBoard = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.getNewBoardArray)(newBoard);
+      setBoard(tempBoard !== -1 ? tempBoard : newBoard);
+    }
+  };
+
+  var moveRight = function moveRight() {
+    var newBoard = new Array(16);
+
+    var _loop3 = function _loop3(i) {
+      // const row = board.slice(i, i + 4);
+      var row = [];
+
+      for (var k = i; k < i + 4; k++) {
+        row.push(board[k]);
+      }
+
+      var trimRow = row.filter(function (elem) {
+        return !!elem;
+      });
+
+      for (var j = 0; j < trimRow.length; j++) {
+        if (trimRow[j] === trimRow[j + 1]) {
+          var _ref3 = [trimRow[j] + trimRow[j + 1], 0];
+          trimRow[j] = _ref3[0];
+          trimRow[j + 1] = _ref3[1];
+        }
+      }
+
+      var newRow = trimRow.filter(function (elem) {
+        return !!elem;
+      }).reverse();
+
+      while (newRow.length < row.length) {
+        newRow.push(0);
+      }
+
+      newRow.reverse().map(function (elem, id) {
+        newBoard[id + i] = elem;
+        return elem;
+      });
+    };
+
+    for (var i = 0; i < 16; i += 4) {
+      _loop3(i);
+    }
+
+    if (!(0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.areArraysEqual)(newBoard, board)) {
+      var tempBoard = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.getNewBoardArray)(newBoard);
+      setBoard(tempBoard !== -1 ? tempBoard : newBoard);
+    }
+  };
+
+  var moveDown = function moveDown() {
+    var newBoard = new Array(16);
+
+    var _loop4 = function _loop4(i) {
+      var row = board.filter(function (elem, id) {
+        return (id - i) % 4 === 0;
+      });
+      var trimRow = row.filter(function (elem) {
+        return !!elem;
+      });
+
+      for (var j = 0; j < trimRow.length; j++) {
+        if (trimRow[j] === trimRow[j + 1]) {
+          var _ref4 = [trimRow[j] + trimRow[j + 1], 0];
+          trimRow[j] = _ref4[0];
+          trimRow[j + 1] = _ref4[1];
+        }
+      }
+
+      var newRow = trimRow.filter(function (elem) {
+        return !!elem;
       }).reverse();
 
       while (newRow.length < row.length) {
@@ -253,7 +340,7 @@ var Footer = function Footer(props) {
     };
 
     for (var i = 0; i < 4; i++) {
-      _loop2(i);
+      _loop4(i);
     }
 
     if (!(0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.areArraysEqual)(newBoard, board)) {

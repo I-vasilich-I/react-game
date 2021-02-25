@@ -6,13 +6,44 @@ const Footer = (props) => {
   const { board, setBoard } = props;
 
   const moveLeft = () => {
-    const newBoard = getNewBoardArray(board);
-    if (newBoard === -1) {
-      // should change that console.log later
-      console.log('array is full');
-      return;
+    // const newBoard = getNewBoardArray(board);
+    // if (newBoard === -1) {
+    //   // should change that console.log later
+    //   console.log('array is full');
+    //   return;
+    // }
+    // setBoard(newBoard);
+
+    const newBoard = new Array(16);
+    for (let i = 0; i < 16; i+=4) {
+      // const row = board.slice(i, i + 4);
+      const row = [];
+      for (let k = i; k < i + 4; k++) {
+        row.push(board[k]);
+      }
+      const trimRow = row.filter((elem) => !!elem);
+
+      for (let j = 0; j < trimRow.length; j++) {
+        if (trimRow[j] === trimRow[j + 1]) {
+          [trimRow[j], trimRow[j + 1]] = [trimRow[j] + trimRow[j + 1], 0];
+        }
+      }
+
+      const newRow = trimRow.filter((elem) => !!elem);
+
+      while (newRow.length < row.length) {
+        newRow.push(0);
+      }
+      newRow.map((elem, id) => {
+        newBoard[id + i] = elem;
+        return elem;
+      });
     }
-    setBoard(newBoard);
+
+    if (!areArraysEqual(newBoard, board)) {
+      const tempBoard = getNewBoardArray(newBoard);
+      setBoard(tempBoard !== -1 ? tempBoard : newBoard);
+    }
   };
 
   const moveUp = () => {
@@ -43,7 +74,38 @@ const Footer = (props) => {
     }
   };
 
-  const moveRight = () => {};
+  const moveRight = () => {
+    const newBoard = new Array(16);
+    for (let i = 0; i < 16; i+=4) {
+      // const row = board.slice(i, i + 4);
+      const row = [];
+      for (let k = i; k < i + 4; k++) {
+        row.push(board[k]);
+      }
+      const trimRow = row.filter((elem) => !!elem);
+
+      for (let j = 0; j < trimRow.length; j++) {
+        if (trimRow[j] === trimRow[j + 1]) {
+          [trimRow[j], trimRow[j + 1]] = [trimRow[j] + trimRow[j + 1], 0];
+        }
+      }
+
+      const newRow = trimRow.filter((elem) => !!elem).reverse();
+
+      while (newRow.length < row.length) {
+        newRow.push(0);
+      }
+      newRow.reverse().map((elem, id) => {
+        newBoard[id + i] = elem;
+        return elem;
+      });
+    }
+
+    if (!areArraysEqual(newBoard, board)) {
+      const tempBoard = getNewBoardArray(newBoard);
+      setBoard(tempBoard !== -1 ? tempBoard : newBoard);
+    }
+  };
 
   const moveDown = () => {
     const newBoard = new Array(16);
