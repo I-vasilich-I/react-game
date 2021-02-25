@@ -174,6 +174,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 /* eslint-disable react/prop-types */
 
 
@@ -187,12 +199,31 @@ var Footer = function Footer(props) {
       setBestScore = props.setBestScore;
   var newScore = 0;
 
+  var isWin = function isWin(array) {
+    var tempArr = _toConsumableArray(array).sort(function (a, b) {
+      return a - b;
+    });
+
+    return tempArr[tempArr.length - 1] >= 2048;
+  };
+
+  var handleGameOver = function handleGameOver(array) {
+    if (isWin(array)) console.log('you won!');
+    console.log('game over');
+  };
+
   var setNewBoard = function setNewBoard(newBoard) {
     if (!(0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.areArraysEqual)(newBoard, board)) {
       var tempBoard = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.getNewBoardArray)(newBoard);
-      setBoard(tempBoard !== -1 ? tempBoard : newBoard);
-    }
+      var resultBoard = tempBoard !== -1 ? tempBoard : newBoard;
+      setBoard(resultBoard);
+      if (isWin(resultBoard)) console.log('you won! You may continue playing'); // eslint-disable-next-line no-use-before-define
 
+      if (isGameOver(resultBoard)) handleGameOver(resultBoard);
+    } // eslint-disable-next-line no-use-before-define
+
+
+    if (isGameOver(board)) handleGameOver(_toConsumableArray(board));
     var newBestScore = score + newScore > bestScore ? score + newScore : bestScore;
     setBestScore(newBestScore);
     (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.setBestScoreInStorage)(newBestScore);
@@ -296,6 +327,35 @@ var Footer = function Footer(props) {
     }
 
     setNewBoard(newBoard);
+  };
+
+  var isGameOver = function isGameOver(array) {
+    var emptySpots = array.filter(function (elem) {
+      return !elem;
+    }).length;
+    if (emptySpots) return false;
+
+    for (var i = 0; i < 16; i += 4) {
+      var line = getRow(array, i);
+
+      for (var j = 0; j < line.length - 1; j++) {
+        if (line[j] === line[j + 1]) {
+          return false;
+        }
+      }
+    }
+
+    for (var _i = 0; _i < 4; _i++) {
+      var _line = getColumn(array, _i);
+
+      for (var _j = 0; _j < _line.length - 1; _j++) {
+        if (_line[_j] === _line[_j + 1]) {
+          return false;
+        }
+      }
+    }
+
+    return true;
   };
 
   var handleEvent = function handleEvent(e) {

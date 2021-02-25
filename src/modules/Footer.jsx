@@ -6,11 +6,27 @@ const Footer = (props) => {
   const { board, setBoard, score, setScore, bestScore, setBestScore } = props;
   let newScore = 0;
 
+  const isWin = (array) => {
+    const tempArr = [...array].sort((a, b) => a - b);
+    return tempArr[tempArr.length - 1] >= 2048;
+  };
+
+  const handleGameOver = (array) => {
+    if (isWin(array)) console.log('you won!');
+    console.log('game over');
+  };
+
   const setNewBoard = (newBoard) => {
     if (!areArraysEqual(newBoard, board)) {
       const tempBoard = getNewBoardArray(newBoard);
-      setBoard(tempBoard !== -1 ? tempBoard : newBoard);
+      const resultBoard = tempBoard !== -1 ? tempBoard : newBoard;
+      setBoard(resultBoard);
+      if (isWin(resultBoard)) console.log('you won! You may continue playing');
+      // eslint-disable-next-line no-use-before-define
+      if (isGameOver(resultBoard)) handleGameOver(resultBoard);
     }
+    // eslint-disable-next-line no-use-before-define
+    if (isGameOver(board)) handleGameOver([...board]);
     const newBestScore = score + newScore > bestScore ? score + newScore : bestScore;
     setBestScore(newBestScore);
     setBestScoreInStorage(newBestScore);
@@ -35,13 +51,9 @@ const Footer = (props) => {
     return direction ? newLine.reverse() : newLine;
   };
 
-  const getRow = (array, i) => {
-    return array.filter((elem, id) => id >= i && id < i + 4);
-  };
+  const getRow = (array, i) => array.filter((elem, id) => id >= i && id < i + 4);
 
-  const getColumn = (array, i) => {
-    return array.filter((elem, id) => (id - i) % 4 === 0);
-  };
+  const getColumn = (array, i) => array.filter((elem, id) => (id - i) % 4 === 0);
 
   const updateNewBoardHorizontal = (newBoard, i, direction = false) => {
     const newLine = processLine(getRow(board, i), direction);
@@ -91,6 +103,30 @@ const Footer = (props) => {
       updateNewBoardVertical(newBoard, i, true);
     }
     setNewBoard(newBoard);
+  };
+
+  const isGameOver = (array) => {
+    const emptySpots = array.filter((elem) => !elem).length;
+    if (emptySpots) return false;
+    for (let i = 0; i < 16; i += 4) {
+      const line = getRow(array, i);
+      for (let j = 0; j < line.length - 1; j++) {
+        if (line[j] === line[j + 1]) {
+          return false;
+        }
+      }
+    }
+
+    for (let i = 0; i < 4; i++) {
+      const line = getColumn(array, i);
+      for (let j = 0; j < line.length - 1; j++) {
+        if (line[j] === line[j + 1]) {
+          return false;
+        }
+      }
+    }
+
+    return true;
   };
 
   const handleEvent = (e) => {
