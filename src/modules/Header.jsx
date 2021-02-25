@@ -1,21 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { getInitialBoardArray } from './utils/helpers';
 
-const Header = () => (
-  <header className="header">
-    <div className="header__top">
-      <h2 className="logo">2048</h2>
-      <div className="score__container">
-        <div className="score">0</div>
-        <div className="score">0</div>
+const Header = (props) =>{
+  const { score, setScore, setBoard, bestScore } = props;
+
+
+  const newGame = () => {
+    setBoard(getInitialBoardArray());
+    setScore(0);
+  }
+  return (
+    <header className="header">
+      <div className="header__top">
+        <h2 className="logo">2048</h2>
+        <div className="score__container">
+          <div className="score">{score}</div>
+          <div className="score">{bestScore}</div>
+        </div>
       </div>
-    </div>
-    <div className="header__bottom">
-      <p className="title">Start new game.</p>
-      <button type="button" className="button">
-        New Game
-      </button>
-    </div>
-  </header>
-);
+      <div className="header__bottom">
+        <p className="title">Start new game.</p>
+        <button type="button" className="button" onClick={newGame}>
+          New Game
+        </button>
+      </div>
+    </header>
+  );
+}
 
 export default Header;

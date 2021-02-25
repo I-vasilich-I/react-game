@@ -1,22 +1,29 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { getNewBoardArray, areArraysEqual } from './utils/helpers';
+import { getNewBoardArray, areArraysEqual, setBestScoreInStorage } from './utils/helpers';
 
 const Footer = (props) => {
-  const { board, setBoard } = props;
-
+  const { board, setBoard, score, setScore, bestScore, setBestScore } = props;
+  let newScore = 0;
+  
   const setNewBoard = (newBoard) => {
     if (!areArraysEqual(newBoard, board)) {
       const tempBoard = getNewBoardArray(newBoard);
       setBoard(tempBoard !== -1 ? tempBoard : newBoard);
     }
+    const newBestScore = score + newScore > bestScore ? score + newScore : bestScore;
+    setBestScore(newBestScore);
+    setBestScoreInStorage(newBestScore);
+    setScore(score + newScore);
   }
 
   const processLine = (line, direction = false) => {
+
     const trimLine = line.filter((elem) => !!elem);
 
     for (let j = 0; j < trimLine.length; j++) {
       if (trimLine[j] === trimLine[j + 1]) {
+        newScore += trimLine[j] + trimLine[j + 1];
         [trimLine[j], trimLine[j + 1]] = [trimLine[j] + trimLine[j + 1], 0];
       }
     }

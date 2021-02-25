@@ -75,22 +75,42 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var App = function App() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((0,_utils_helpers__WEBPACK_IMPORTED_MODULE_4__.getInitialBoardArray)()),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
       _useState2 = _slicedToArray(_useState, 2),
-      board = _useState2[0],
-      setBoard = _useState2[1]; // const [board, setBoard] = useState([...Array(16).keys()]);
+      score = _useState2[0],
+      setScore = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((0,_utils_helpers__WEBPACK_IMPORTED_MODULE_4__.getBestScoreFromStorage)()),
+      _useState4 = _slicedToArray(_useState3, 2),
+      bestScore = _useState4[0],
+      setBestScore = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((0,_utils_helpers__WEBPACK_IMPORTED_MODULE_4__.getInitialBoardArray)()),
+      _useState6 = _slicedToArray(_useState5, 2),
+      board = _useState6[0],
+      setBoard = _useState6[1]; // const [board, setBoard] = useState([...Array(16).keys()]);
 
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "App"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
     className: "hidden"
-  }, "2048"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Header__WEBPACK_IMPORTED_MODULE_2__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Board__WEBPACK_IMPORTED_MODULE_1__.default, {
+  }, "2048"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Header__WEBPACK_IMPORTED_MODULE_2__.default, {
+    score: score,
+    setScore: setScore,
+    setBoard: setBoard,
+    bestScore: bestScore,
+    setBestScore: setBestScore
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Board__WEBPACK_IMPORTED_MODULE_1__.default, {
     board: board,
     setBoard: setBoard
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Footer__WEBPACK_IMPORTED_MODULE_3__.default, {
     board: board,
-    setBoard: setBoard
+    setBoard: setBoard,
+    score: score,
+    setScore: setScore,
+    bestScore: bestScore,
+    setBestScore: setBestScore
   }));
 };
 
@@ -160,13 +180,23 @@ __webpack_require__.r(__webpack_exports__);
 
 var Footer = function Footer(props) {
   var board = props.board,
-      setBoard = props.setBoard;
+      setBoard = props.setBoard,
+      score = props.score,
+      setScore = props.setScore,
+      bestScore = props.bestScore,
+      setBestScore = props.setBestScore;
+  var newScore = 0;
 
   var setNewBoard = function setNewBoard(newBoard) {
     if (!(0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.areArraysEqual)(newBoard, board)) {
       var tempBoard = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.getNewBoardArray)(newBoard);
       setBoard(tempBoard !== -1 ? tempBoard : newBoard);
     }
+
+    var newBestScore = score + newScore > bestScore ? score + newScore : bestScore;
+    setBestScore(newBestScore);
+    (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.setBestScoreInStorage)(newBestScore);
+    setScore(score + newScore);
   };
 
   var processLine = function processLine(line) {
@@ -177,6 +207,7 @@ var Footer = function Footer(props) {
 
     for (var j = 0; j < trimLine.length; j++) {
       if (trimLine[j] === trimLine[j + 1]) {
+        newScore += trimLine[j] + trimLine[j + 1];
         var _ref = [trimLine[j] + trimLine[j + 1], 0];
         trimLine[j] = _ref[0];
         trimLine[j + 1] = _ref[1];
@@ -306,9 +337,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
 
 
-var Header = function Header() {
+
+var Header = function Header(props) {
+  var score = props.score,
+      setScore = props.setScore,
+      setBoard = props.setBoard,
+      bestScore = props.bestScore;
+
+  var newGame = function newGame() {
+    setBoard((0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.getInitialBoardArray)());
+    setScore(0);
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("header", {
     className: "header"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -319,15 +362,16 @@ var Header = function Header() {
     className: "score__container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "score"
-  }, "0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, score), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "score"
-  }, "0"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, bestScore))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "header__bottom"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
     className: "title"
   }, "Start new game."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     type: "button",
-    className: "button"
+    className: "button",
+    onClick: newGame
   }, "New Game")));
 };
 
@@ -346,7 +390,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getNewBoardArray": () => (/* binding */ getNewBoardArray),
 /* harmony export */   "getInitialBoardArray": () => (/* binding */ getInitialBoardArray),
-/* harmony export */   "areArraysEqual": () => (/* binding */ areArraysEqual)
+/* harmony export */   "areArraysEqual": () => (/* binding */ areArraysEqual),
+/* harmony export */   "getBestScoreFromStorage": () => (/* binding */ getBestScoreFromStorage),
+/* harmony export */   "setBestScoreInStorage": () => (/* binding */ setBestScoreInStorage)
 /* harmony export */ });
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -362,6 +408,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 var areArraysEqual = function areArraysEqual(arr1, arr2) {
   return arr1.toString() === arr2.toString();
+};
+
+var getBestScoreFromStorage = function getBestScoreFromStorage() {
+  return localStorage.getItem('bestScore') || 0;
+};
+
+var setBestScoreInStorage = function setBestScoreInStorage(value) {
+  return localStorage.setItem('bestScore', value);
 };
 
 var getArrayOfEmptySpotIds = function getArrayOfEmptySpotIds(array) {
