@@ -75,20 +75,35 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var App = function App() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(5),
       _useState2 = _slicedToArray(_useState, 2),
-      score = _useState2[0],
-      setScore = _useState2[1];
+      boardSize = _useState2[0],
+      setBoardSize = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((0,_utils_helpers__WEBPACK_IMPORTED_MODULE_4__.getBestScoreFromStorage)()),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
       _useState4 = _slicedToArray(_useState3, 2),
-      bestScore = _useState4[0],
-      setBestScore = _useState4[1];
+      score = _useState4[0],
+      setScore = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((0,_utils_helpers__WEBPACK_IMPORTED_MODULE_4__.getInitialBoardArray)()),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((0,_utils_helpers__WEBPACK_IMPORTED_MODULE_4__.getBestScoreFromStorage)()),
       _useState6 = _slicedToArray(_useState5, 2),
-      board = _useState6[0],
-      setBoard = _useState6[1]; // const [board, setBoard] = useState([...Array(16).keys()]);
+      bestScore = _useState6[0],
+      setBestScore = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((0,_utils_helpers__WEBPACK_IMPORTED_MODULE_4__.getInitialBoardArray)(boardSize * boardSize)),
+      _useState8 = _slicedToArray(_useState7, 2),
+      board = _useState8[0],
+      setBoard = _useState8[1];
+
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState10 = _slicedToArray(_useState9, 2),
+      gameOver = _useState10[0],
+      setGameOver = _useState10[1];
+
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState12 = _slicedToArray(_useState11, 2),
+      win = _useState12[0],
+      setWin = _useState12[1]; // const [board, setBoard] = useState([...Array(16).keys()]);
 
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -103,14 +118,16 @@ var App = function App() {
     setBestScore: setBestScore
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Board__WEBPACK_IMPORTED_MODULE_1__.default, {
     board: board,
-    setBoard: setBoard
+    setBoard: setBoard,
+    boardSize: boardSize
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Footer__WEBPACK_IMPORTED_MODULE_3__.default, {
     board: board,
     setBoard: setBoard,
     score: score,
     setScore: setScore,
     bestScore: bestScore,
-    setBestScore: setBestScore
+    setBestScore: setBestScore,
+    boardSize: boardSize
   }));
 };
 
@@ -134,7 +151,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Board = function Board(props) {
-  var board = props.board;
+  var board = props.board,
+      boardSize = props.boardSize;
+  var tileStyle = {
+    4: 'tile',
+    3: 'tile tile--3',
+    5: 'tile tile--5'
+  };
 
   var setValue = function setValue(elem) {
     if (!elem) return '';
@@ -144,14 +167,14 @@ var Board = function Board(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("main", {
     className: "main"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
-    className: "board"
+    className: "board".concat(boardSize !== 4 ? ' board-' + boardSize : '')
   }, board.map(function (elem, id) {
     return (
       /*#__PURE__*/
       // eslint-disable-next-line react/no-array-index-key
       react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         key: id,
-        className: "tile tile--".concat(setValue(elem) ? setValue(elem) : 0)
+        className: "".concat(tileStyle[boardSize], " tile--").concat(setValue(elem) ? setValue(elem) : 0)
       }, setValue(elem))
     );
   })));
@@ -196,15 +219,17 @@ var Footer = function Footer(props) {
       score = props.score,
       setScore = props.setScore,
       bestScore = props.bestScore,
-      setBestScore = props.setBestScore;
+      setBestScore = props.setBestScore,
+      boardSize = props.boardSize;
   var newScore = 0;
+  var squareBoardSize = boardSize * boardSize;
 
   var isWin = function isWin(array) {
     var tempArr = _toConsumableArray(array).sort(function (a, b) {
       return a - b;
     });
 
-    return tempArr[tempArr.length - 1] >= 2048;
+    return tempArr[tempArr.length - 1] >= 32;
   };
 
   var handleGameOver = function handleGameOver(array) {
@@ -259,13 +284,13 @@ var Footer = function Footer(props) {
 
   var getRow = function getRow(array, i) {
     return array.filter(function (elem, id) {
-      return id >= i && id < i + 4;
+      return id >= i && id < i + boardSize;
     });
   };
 
   var getColumn = function getColumn(array, i) {
     return array.filter(function (elem, id) {
-      return (id - i) % 4 === 0;
+      return (id - i) % boardSize === 0;
     });
   };
 
@@ -284,15 +309,15 @@ var Footer = function Footer(props) {
     var newLine = processLine(getColumn(board, i), direction);
     newLine.map(function (elem, id) {
       // eslint-disable-next-line no-param-reassign
-      newBoard[id * 4 + i] = elem;
+      newBoard[id * boardSize + i] = elem;
       return elem;
     });
   };
 
   var moveLeft = function moveLeft() {
-    var newBoard = new Array(16);
+    var newBoard = new Array(squareBoardSize);
 
-    for (var i = 0; i < 16; i += 4) {
+    for (var i = 0; i < squareBoardSize; i += boardSize) {
       updateNewBoardHorizontal(newBoard, i);
     }
 
@@ -300,9 +325,9 @@ var Footer = function Footer(props) {
   };
 
   var moveRight = function moveRight() {
-    var newBoard = new Array(16);
+    var newBoard = new Array(squareBoardSize);
 
-    for (var i = 0; i < 16; i += 4) {
+    for (var i = 0; i < squareBoardSize; i += boardSize) {
       updateNewBoardHorizontal(newBoard, i, true);
     }
 
@@ -310,9 +335,9 @@ var Footer = function Footer(props) {
   };
 
   var moveUp = function moveUp() {
-    var newBoard = new Array(16);
+    var newBoard = new Array(squareBoardSize);
 
-    for (var i = 0; i < 4; i++) {
+    for (var i = 0; i < boardSize; i++) {
       updateNewBoardVertical(newBoard, i);
     }
 
@@ -320,9 +345,9 @@ var Footer = function Footer(props) {
   };
 
   var moveDown = function moveDown() {
-    var newBoard = new Array(16);
+    var newBoard = new Array(squareBoardSize);
 
-    for (var i = 0; i < 4; i++) {
+    for (var i = 0; i < boardSize; i++) {
       updateNewBoardVertical(newBoard, i, true);
     }
 
@@ -335,7 +360,7 @@ var Footer = function Footer(props) {
     }).length;
     if (emptySpots) return false;
 
-    for (var i = 0; i < 16; i += 4) {
+    for (var i = 0; i < squareBoardSize; i += boardSize) {
       var line = getRow(array, i);
 
       for (var j = 0; j < line.length - 1; j++) {
@@ -345,7 +370,7 @@ var Footer = function Footer(props) {
       }
     }
 
-    for (var _i = 0; _i < 4; _i++) {
+    for (var _i = 0; _i < boardSize; _i++) {
       var _line = getColumn(array, _i);
 
       for (var _j = 0; _j < _line.length - 1; _j++) {
@@ -519,8 +544,8 @@ var getNewBoardArray = function getNewBoardArray(array) {
   return newBoard;
 };
 
-var getInitialBoardArray = function getInitialBoardArray() {
-  return getNewBoardArray(getNewBoardArray(_toConsumableArray(Array(16).keys()).map(function () {
+var getInitialBoardArray = function getInitialBoardArray(squareBoardSize) {
+  return getNewBoardArray(getNewBoardArray(_toConsumableArray(Array(squareBoardSize).keys()).map(function () {
     return 0;
   })));
 };

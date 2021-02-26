@@ -5,9 +5,13 @@ import Footer from './Footer';
 import { getInitialBoardArray, getBestScoreFromStorage } from './utils/helpers';
 
 const App = () => {
+  const [boardSize, setBoardSize] = useState(5);
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(getBestScoreFromStorage());
-  const [board, setBoard] = useState(getInitialBoardArray());
+  const [board, setBoard] = useState(getInitialBoardArray(boardSize * boardSize));
+  const [gameOver, setGameOver] = useState(false);
+  const [win, setWin] = useState(false);
+
   // const [board, setBoard] = useState([...Array(16).keys()]);
 
   return (
@@ -20,7 +24,11 @@ const App = () => {
         bestScore={bestScore}
         setBestScore={setBestScore}
       />
-      <Board board={board} setBoard={setBoard} />
+      <Board
+        board={board}
+        setBoard={setBoard}
+        boardSize={boardSize}
+      />
       <Footer
         board={board}
         setBoard={setBoard}
@@ -28,6 +36,7 @@ const App = () => {
         setScore={setScore}
         bestScore={bestScore}
         setBestScore={setBestScore}
+        boardSize={boardSize}
       />
     </div>
   );

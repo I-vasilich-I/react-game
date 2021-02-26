@@ -3,12 +3,13 @@ import React, { useEffect } from 'react';
 import { getNewBoardArray, areArraysEqual, setBestScoreInStorage } from './utils/helpers';
 
 const Footer = (props) => {
-  const { board, setBoard, score, setScore, bestScore, setBestScore } = props;
+  const { board, setBoard, score, setScore, bestScore, setBestScore, boardSize } = props;
   let newScore = 0;
+  const squareBoardSize = boardSize * boardSize;
 
   const isWin = (array) => {
     const tempArr = [...array].sort((a, b) => a - b);
-    return tempArr[tempArr.length - 1] >= 2048;
+    return tempArr[tempArr.length - 1] >= 32;
   };
 
   const handleGameOver = (array) => {
@@ -51,9 +52,9 @@ const Footer = (props) => {
     return direction ? newLine.reverse() : newLine;
   };
 
-  const getRow = (array, i) => array.filter((elem, id) => id >= i && id < i + 4);
+  const getRow = (array, i) => array.filter((elem, id) => id >= i && id < i + boardSize);
 
-  const getColumn = (array, i) => array.filter((elem, id) => (id - i) % 4 === 0);
+  const getColumn = (array, i) => array.filter((elem, id) => (id - i) % boardSize === 0);
 
   const updateNewBoardHorizontal = (newBoard, i, direction = false) => {
     const newLine = processLine(getRow(board, i), direction);
@@ -68,38 +69,38 @@ const Footer = (props) => {
     const newLine = processLine(getColumn(board, i), direction);
     newLine.map((elem, id) => {
       // eslint-disable-next-line no-param-reassign
-      newBoard[id * 4 + i] = elem;
+      newBoard[id * boardSize + i] = elem;
       return elem;
     });
   };
 
   const moveLeft = () => {
-    const newBoard = new Array(16);
-    for (let i = 0; i < 16; i += 4) {
+    const newBoard = new Array(squareBoardSize);
+    for (let i = 0; i < squareBoardSize; i += boardSize) {
       updateNewBoardHorizontal(newBoard, i);
     }
     setNewBoard(newBoard);
   };
 
   const moveRight = () => {
-    const newBoard = new Array(16);
-    for (let i = 0; i < 16; i += 4) {
+    const newBoard = new Array(squareBoardSize);
+    for (let i = 0; i < squareBoardSize; i += boardSize) {
       updateNewBoardHorizontal(newBoard, i, true);
     }
     setNewBoard(newBoard);
   };
 
   const moveUp = () => {
-    const newBoard = new Array(16);
-    for (let i = 0; i < 4; i++) {
+    const newBoard = new Array(squareBoardSize);
+    for (let i = 0; i < boardSize; i++) {
       updateNewBoardVertical(newBoard, i);
     }
     setNewBoard(newBoard);
   };
 
   const moveDown = () => {
-    const newBoard = new Array(16);
-    for (let i = 0; i < 4; i++) {
+    const newBoard = new Array(squareBoardSize);
+    for (let i = 0; i < boardSize; i++) {
       updateNewBoardVertical(newBoard, i, true);
     }
     setNewBoard(newBoard);
@@ -108,7 +109,7 @@ const Footer = (props) => {
   const isGameOver = (array) => {
     const emptySpots = array.filter((elem) => !elem).length;
     if (emptySpots) return false;
-    for (let i = 0; i < 16; i += 4) {
+    for (let i = 0; i < squareBoardSize; i += boardSize) {
       const line = getRow(array, i);
       for (let j = 0; j < line.length - 1; j++) {
         if (line[j] === line[j + 1]) {
@@ -117,7 +118,7 @@ const Footer = (props) => {
       }
     }
 
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < boardSize; i++) {
       const line = getColumn(array, i);
       for (let j = 0; j < line.length - 1; j++) {
         if (line[j] === line[j + 1]) {
