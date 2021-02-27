@@ -525,6 +525,12 @@ p {
   background-color: #776e65;
   padding: 15px 15px;
 }
+.board-3 {
+  grid-template: "a a a" "b b b" "c c c";
+}
+.board-5 {
+  grid-template: "a a a a a" "b b b b b" "c c c c c" "d d d d d" "e e e e e";
+}
 
 .tile {
   width: 100px;
@@ -537,6 +543,15 @@ p {
   letter-spacing: unset;
   color: black;
   text-align: center;
+}
+.tile--3 {
+  width: 150px;
+  height: 150px;
+}
+.tile--5 {
+  width: 80px;
+  height: 80px;
+  font-size: 4rem;
 }
 .tile--0 {
   background-color: rgba(238, 228, 218, 0.35);
@@ -578,13 +593,13 @@ p {
 .tile--1024 {
   background-color: #6200ff;
   color: white;
-  font-size: 4rem;
+  font-size: 3rem;
   line-height: 250%;
 }
 .tile--2048 {
   background-color: #ea00ff;
   color: white;
-  font-size: 4rem;
+  font-size: 3rem;
   line-height: 250%;
 }
 

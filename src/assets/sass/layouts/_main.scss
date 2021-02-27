@@ -14,6 +14,20 @@
   height: 500px;
   background-color: $color-board-background;
   padding: 15px 15px;
+
+  &-3 {
+    grid-template: "a a a"
+                   "b b b"
+                   "c c c";
+  }
+
+  &-5 {
+    grid-template: "a a a a a"
+                   "b b b b b"
+                   "c c c c c"
+                   "d d d d d"
+                   "e e e e e";
+  }
 }
 
 .tile {
@@ -21,7 +35,16 @@
   height: 100px;
   @include font(5rem, 200%, $color-tile-text-dark);
   text-align: center;
+  &--3 {
+    width: 150px;
+    height: 150px;
+  }
 
+  &--5 {
+    width: 80px;
+    height: 80px;
+    font-size: 4rem;
+  }
   &--0 {
     background-color: $color-tile-0;
   }
@@ -72,14 +95,14 @@
   &--1024 {
     background-color: $color-tile-1024;
     color: $color-tile-text-light;
-    font-size: 4rem;
+    font-size: 3rem;
     line-height: 250%;
   }
 
   &--2048 {
     background-color: $color-tile-2048;
     color: $color-tile-text-light;
-    font-size: 4rem;
+    font-size: 3rem;
     line-height: 250%;
   }
 }

@@ -19,8 +19,8 @@ const getNewBoardArray = (array) => {
   return newBoard;
 };
 
-const getInitialBoardArray = () =>
-  getNewBoardArray(getNewBoardArray([...Array(16).keys()].map(() => 0)));
+const getInitialBoardArray = (squareBoardSize) =>
+  getNewBoardArray(getNewBoardArray(Array(squareBoardSize).fill(0)));
 
 export {
   getNewBoardArray,
