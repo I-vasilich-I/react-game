@@ -12,6 +12,13 @@ const App = () => {
   const [gameOver, setGameOver] = useState(false);
   const [win, setWin] = useState(false);
 
+  const [history, setHistory] = useState([
+    {
+      boards: getInitialBoardArray(boardSize * boardSize),
+      score: 0,
+    },
+  ]);
+
   // const [board, setBoard] = useState([...Array(16).keys()]);
 
   return (
@@ -24,6 +31,8 @@ const App = () => {
         bestScore={bestScore}
         setBestScore={setBestScore}
         boardSize={boardSize}
+        setGameOver={setGameOver}
+        setWin={setWin}
       />
       <Board board={board} setBoard={setBoard} boardSize={boardSize} />
       <Footer
@@ -34,6 +43,10 @@ const App = () => {
         bestScore={bestScore}
         setBestScore={setBestScore}
         boardSize={boardSize}
+        win={win}
+        setWin={setWin}
+        gameOver={gameOver}
+        setGameOver={setGameOver}
       />
     </div>
   );

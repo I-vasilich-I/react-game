@@ -3,7 +3,19 @@ import React, { useEffect } from 'react';
 import { getNewBoardArray, areArraysEqual, setBestScoreInStorage } from './utils/helpers';
 
 const Footer = (props) => {
-  const { board, setBoard, score, setScore, bestScore, setBestScore, boardSize } = props;
+  const {
+    board,
+    setBoard,
+    score,
+    setScore,
+    bestScore,
+    setBestScore,
+    boardSize,
+    win,
+    setWin,
+    gameOver,
+    setGameOver,
+  } = props;
   let newScore = 0;
   const squareBoardSize = boardSize * boardSize;
 
@@ -12,9 +24,9 @@ const Footer = (props) => {
     return tempArr[tempArr.length - 1] >= 32;
   };
 
-  const handleGameOver = (array) => {
-    if (isWin(array)) console.log('you won!');
-    console.log('game over');
+  const handleGameOver = () => {
+    if (!gameOver) alert(`Game over. Your score is ${score}`);
+    setGameOver(true);
   };
 
   const setNewBoard = (newBoard) => {
@@ -22,9 +34,12 @@ const Footer = (props) => {
       const tempBoard = getNewBoardArray(newBoard);
       const resultBoard = tempBoard !== -1 ? tempBoard : newBoard;
       setBoard(resultBoard);
-      if (isWin(resultBoard)) console.log('you won! You may continue playing');
+      if (isWin(resultBoard) && !win) {
+        setWin(true);
+        alert('Congrats, you won! You can continue playing or start new game.');
+      }
       // eslint-disable-next-line no-use-before-define
-      if (isGameOver(resultBoard)) handleGameOver(resultBoard);
+      if (isGameOver(resultBoard)) handleGameOver();
     }
     // eslint-disable-next-line no-use-before-define
     if (isGameOver(board)) handleGameOver([...board]);
@@ -149,8 +164,9 @@ const Footer = (props) => {
   return (
     <footer className="footer">
       <div className="footer__info">
-        HOW TO PLAY: Use your arrow keys to move the tiles. Tiles with the same number merge into
-        one when they touch. Add them up to reach 2048!
+        HOW TO PLAY: Use your arrow keys(w,a,s,d also works) or control buttons to move the tiles.
+        Tiles with the same number merge into one when they touch. Add them up to reach 2048! You
+        can continue to play after you have reached 2048.
       </div>
       <div className="button__container">
         <button type="button" className="button button--arrow item-b" onClick={moveLeft}>

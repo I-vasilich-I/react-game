@@ -103,7 +103,18 @@ var App = function App() {
   var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState12 = _slicedToArray(_useState11, 2),
       win = _useState12[0],
-      setWin = _useState12[1]; // const [board, setBoard] = useState([...Array(16).keys()]);
+      setWin = _useState12[1];
+
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([{
+    boards: (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_4__.getInitialBoardArray)(boardSize * boardSize),
+    score: 0,
+    bestScore: (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_4__.getBestScoreFromStorage)(),
+    gameOver: false,
+    win: false
+  }]),
+      _useState14 = _slicedToArray(_useState13, 2),
+      history = _useState14[0],
+      setHistory = _useState14[1]; // const [board, setBoard] = useState([...Array(16).keys()]);
 
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -116,7 +127,9 @@ var App = function App() {
     setBoard: setBoard,
     bestScore: bestScore,
     setBestScore: setBestScore,
-    boardSize: boardSize
+    boardSize: boardSize,
+    setGameOver: setGameOver,
+    setWin: setWin
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Board__WEBPACK_IMPORTED_MODULE_1__.default, {
     board: board,
     setBoard: setBoard,
@@ -128,7 +141,11 @@ var App = function App() {
     setScore: setScore,
     bestScore: bestScore,
     setBestScore: setBestScore,
-    boardSize: boardSize
+    boardSize: boardSize,
+    win: win,
+    setWin: setWin,
+    gameOver: gameOver,
+    setGameOver: setGameOver
   }));
 };
 
@@ -219,7 +236,11 @@ var Footer = function Footer(props) {
       setScore = props.setScore,
       bestScore = props.bestScore,
       setBestScore = props.setBestScore,
-      boardSize = props.boardSize;
+      boardSize = props.boardSize,
+      win = props.win,
+      setWin = props.setWin,
+      gameOver = props.gameOver,
+      setGameOver = props.setGameOver;
   var newScore = 0;
   var squareBoardSize = boardSize * boardSize;
 
@@ -231,9 +252,9 @@ var Footer = function Footer(props) {
     return tempArr[tempArr.length - 1] >= 32;
   };
 
-  var handleGameOver = function handleGameOver(array) {
-    if (isWin(array)) console.log('you won!');
-    console.log('game over');
+  var handleGameOver = function handleGameOver() {
+    if (!gameOver) alert("Game over. Your score is ".concat(score));
+    setGameOver(true);
   };
 
   var setNewBoard = function setNewBoard(newBoard) {
@@ -241,9 +262,14 @@ var Footer = function Footer(props) {
       var tempBoard = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.getNewBoardArray)(newBoard);
       var resultBoard = tempBoard !== -1 ? tempBoard : newBoard;
       setBoard(resultBoard);
-      if (isWin(resultBoard)) console.log('you won! You may continue playing'); // eslint-disable-next-line no-use-before-define
 
-      if (isGameOver(resultBoard)) handleGameOver(resultBoard);
+      if (isWin(resultBoard) && !win) {
+        setWin(true);
+        alert('Congrats, you won! You can continue playing or start new game.');
+      } // eslint-disable-next-line no-use-before-define
+
+
+      if (isGameOver(resultBoard)) handleGameOver();
     } // eslint-disable-next-line no-use-before-define
 
 
@@ -400,7 +426,7 @@ var Footer = function Footer(props) {
     className: "footer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "footer__info"
-  }, "HOW TO PLAY: Use your arrow keys to move the tiles. Tiles with the same number merge into one when they touch. Add them up to reach 2048!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, "HOW TO PLAY: Use your arrow keys(w,a,s,d also works) or control buttons to move the tiles. Tiles with the same number merge into one when they touch. Add them up to reach 2048! You can continue to play after you have reached 2048."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "button__container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     type: "button",
@@ -447,11 +473,15 @@ var Header = function Header(props) {
       setScore = props.setScore,
       setBoard = props.setBoard,
       bestScore = props.bestScore,
-      boardSize = props.boardSize;
+      boardSize = props.boardSize,
+      setWin = props.setWin,
+      setGameOver = props.setGameOver;
 
   var newGame = function newGame() {
     setBoard((0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.getInitialBoardArray)(boardSize * boardSize));
     setScore(0);
+    setWin(false);
+    setGameOver(false);
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("header", {
