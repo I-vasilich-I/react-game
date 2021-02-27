@@ -80,72 +80,40 @@ var App = function App() {
       boardSize = _useState2[0],
       setBoardSize = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((0,_utils_helpers__WEBPACK_IMPORTED_MODULE_4__.getBestScoreFromStorage)()),
       _useState4 = _slicedToArray(_useState3, 2),
-      score = _useState4[0],
-      setScore = _useState4[1];
+      bestScore = _useState4[0],
+      setBestScore = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((0,_utils_helpers__WEBPACK_IMPORTED_MODULE_4__.getBestScoreFromStorage)()),
-      _useState6 = _slicedToArray(_useState5, 2),
-      bestScore = _useState6[0],
-      setBestScore = _useState6[1];
-
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((0,_utils_helpers__WEBPACK_IMPORTED_MODULE_4__.getInitialBoardArray)(boardSize * boardSize)),
-      _useState8 = _slicedToArray(_useState7, 2),
-      board = _useState8[0],
-      setBoard = _useState8[1];
-
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-      _useState10 = _slicedToArray(_useState9, 2),
-      gameOver = _useState10[0],
-      setGameOver = _useState10[1];
-
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-      _useState12 = _slicedToArray(_useState11, 2),
-      win = _useState12[0],
-      setWin = _useState12[1];
-
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([{
-    boards: (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_4__.getInitialBoardArray)(boardSize * boardSize),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([{
+    board: (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_4__.getInitialBoardArray)(boardSize * boardSize),
     score: 0,
-    bestScore: (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_4__.getBestScoreFromStorage)(),
-    gameOver: false,
-    win: false
+    win: false,
+    gameOver: false
   }]),
-      _useState14 = _slicedToArray(_useState13, 2),
-      history = _useState14[0],
-      setHistory = _useState14[1]; // const [board, setBoard] = useState([...Array(16).keys()]);
-
+      _useState6 = _slicedToArray(_useState5, 2),
+      history = _useState6[0],
+      setHistory = _useState6[1];
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "App"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
     className: "hidden"
   }, "2048"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Header__WEBPACK_IMPORTED_MODULE_2__.default, {
-    score: score,
-    setScore: setScore,
-    setBoard: setBoard,
     bestScore: bestScore,
-    setBestScore: setBestScore,
     boardSize: boardSize,
-    setGameOver: setGameOver,
-    setWin: setWin
+    setBoardSize: setBoardSize,
+    history: history,
+    setHistory: setHistory
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Board__WEBPACK_IMPORTED_MODULE_1__.default, {
-    board: board,
-    setBoard: setBoard,
+    history: history,
     boardSize: boardSize
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Footer__WEBPACK_IMPORTED_MODULE_3__.default, {
-    board: board,
-    setBoard: setBoard,
-    score: score,
-    setScore: setScore,
     bestScore: bestScore,
     setBestScore: setBestScore,
     boardSize: boardSize,
-    win: win,
-    setWin: setWin,
-    gameOver: gameOver,
-    setGameOver: setGameOver
+    history: history,
+    setHistory: setHistory
   }));
 };
 
@@ -169,8 +137,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Board = function Board(props) {
-  var board = props.board,
+  var history = props.history,
       boardSize = props.boardSize;
+  var current = history[history.length - 1];
+  var board = current.board;
   var tileStyle = {
     4: 'tile',
     3: 'tile tile--3',
@@ -230,19 +200,18 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 
 var Footer = function Footer(props) {
-  var board = props.board,
-      setBoard = props.setBoard,
-      score = props.score,
-      setScore = props.setScore,
-      bestScore = props.bestScore,
+  var bestScore = props.bestScore,
       setBestScore = props.setBestScore,
       boardSize = props.boardSize,
-      win = props.win,
-      setWin = props.setWin,
-      gameOver = props.gameOver,
-      setGameOver = props.setGameOver;
-  var newScore = 0;
+      history = props.history,
+      setHistory = props.setHistory;
+  var current = history[history.length - 1];
+  var board = current.board,
+      score = current.score,
+      win = current.win,
+      gameOver = current.gameOver;
   var squareBoardSize = boardSize * boardSize;
+  var newScore = 0;
 
   var isWin = function isWin(array) {
     var tempArr = _toConsumableArray(array).sort(function (a, b) {
@@ -254,30 +223,41 @@ var Footer = function Footer(props) {
 
   var handleGameOver = function handleGameOver() {
     if (!gameOver) alert("Game over. Your score is ".concat(score));
-    setGameOver(true);
+    return true;
   };
 
   var setNewBoard = function setNewBoard(newBoard) {
+    var checkObj = {
+      resultBoard: null,
+      winCheck: null,
+      gameOver: null
+    };
+
     if (!(0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.areArraysEqual)(newBoard, board)) {
       var tempBoard = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.getNewBoardArray)(newBoard);
-      var resultBoard = tempBoard !== -1 ? tempBoard : newBoard;
-      setBoard(resultBoard);
+      checkObj.resultBoard = tempBoard !== -1 ? tempBoard : newBoard;
 
-      if (isWin(resultBoard) && !win) {
-        setWin(true);
+      if (isWin(checkObj.resultBoard) && !win) {
+        checkObj.winCheck = true;
         alert('Congrats, you won! You can continue playing or start new game.');
       } // eslint-disable-next-line no-use-before-define
 
 
-      if (isGameOver(resultBoard)) handleGameOver();
-    } // eslint-disable-next-line no-use-before-define
+      if (isGameOver(checkObj.resultBoard)) checkObj.gameOver = handleGameOver();
 
+      if (!gameOver) {
+        setHistory(history.concat({
+          board: checkObj.resultBoard || board,
+          score: score + newScore,
+          win: checkObj.winCheck || win,
+          gameOver: checkObj.gameOver || gameOver
+        }));
+      }
+    }
 
-    if (isGameOver(board)) handleGameOver(_toConsumableArray(board));
     var newBestScore = score + newScore > bestScore ? score + newScore : bestScore;
     setBestScore(newBestScore);
     (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.setBestScoreInStorage)(newBestScore);
-    setScore(score + newScore);
   };
 
   var processLine = function processLine(line) {
@@ -298,7 +278,7 @@ var Footer = function Footer(props) {
 
     var newLine = trimLine.filter(function (elem) {
       return !!elem;
-    }); // if (direction) newLine.reverse();
+    });
 
     while (newLine.length < line.length) {
       newLine.push(0);
@@ -469,19 +449,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Header = function Header(props) {
-  var score = props.score,
-      setScore = props.setScore,
-      setBoard = props.setBoard,
-      bestScore = props.bestScore,
+  var bestScore = props.bestScore,
       boardSize = props.boardSize,
-      setWin = props.setWin,
-      setGameOver = props.setGameOver;
+      history = props.history,
+      setHistory = props.setHistory;
+  var current = history[history.length - 1];
+  var score = current.score;
 
   var newGame = function newGame() {
-    setBoard((0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.getInitialBoardArray)(boardSize * boardSize));
-    setScore(0);
-    setWin(false);
-    setGameOver(false);
+    setHistory([{
+      board: (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.getInitialBoardArray)(boardSize * boardSize),
+      score: 0,
+      win: false,
+      gameOver: false
+    }]);
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("header", {

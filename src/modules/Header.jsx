@@ -3,13 +3,19 @@ import React from 'react';
 import { getInitialBoardArray } from './utils/helpers';
 
 const Header = (props) => {
-  const { score, setScore, setBoard, bestScore, boardSize, setWin, setGameOver } = props;
+  const { bestScore, boardSize, history, setHistory } = props;
+  const current = history[history.length - 1];
+  const { score } = current;
 
   const newGame = () => {
-    setBoard(getInitialBoardArray(boardSize * boardSize));
-    setScore(0);
-    setWin(false);
-    setGameOver(false);
+    setHistory([
+      {
+        board: getInitialBoardArray(boardSize * boardSize),
+        score: 0,
+        win: false,
+        gameOver: false,
+      },
+    ]);
   };
   return (
     <header className="header">

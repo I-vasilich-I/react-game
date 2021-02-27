@@ -3,21 +3,11 @@ import React, { useEffect } from 'react';
 import { getNewBoardArray, areArraysEqual, setBestScoreInStorage } from './utils/helpers';
 
 const Footer = (props) => {
-  const {
-    board,
-    setBoard,
-    score,
-    setScore,
-    bestScore,
-    setBestScore,
-    boardSize,
-    win,
-    setWin,
-    gameOver,
-    setGameOver,
-  } = props;
-  let newScore = 0;
+  const { bestScore, setBestScore, boardSize, history, setHistory } = props;
+  const current = history[history.length - 1];
+  const { board, score, win, gameOver } = current;
   const squareBoardSize = boardSize * boardSize;
+  let newScore = 0;
 
   const isWin = (array) => {
     const tempArr = [...array].sort((a, b) => a - b);
@@ -26,27 +16,39 @@ const Footer = (props) => {
 
   const handleGameOver = () => {
     if (!gameOver) alert(`Game over. Your score is ${score}`);
-    setGameOver(true);
+    return true;
   };
 
   const setNewBoard = (newBoard) => {
+    const checkObj = {
+      resultBoard: null,
+      winCheck: null,
+      gameOver: null,
+    };
+
     if (!areArraysEqual(newBoard, board)) {
       const tempBoard = getNewBoardArray(newBoard);
-      const resultBoard = tempBoard !== -1 ? tempBoard : newBoard;
-      setBoard(resultBoard);
-      if (isWin(resultBoard) && !win) {
-        setWin(true);
+      checkObj.resultBoard = tempBoard !== -1 ? tempBoard : newBoard;
+      if (isWin(checkObj.resultBoard) && !win) {
+        checkObj.winCheck = true;
         alert('Congrats, you won! You can continue playing or start new game.');
       }
       // eslint-disable-next-line no-use-before-define
-      if (isGameOver(resultBoard)) handleGameOver();
+      if (isGameOver(checkObj.resultBoard)) checkObj.gameOver = handleGameOver();
+      if (!gameOver) {
+        setHistory(
+          history.concat({
+            board: checkObj.resultBoard || board,
+            score: score + newScore,
+            win: checkObj.winCheck || win,
+            gameOver: checkObj.gameOver || gameOver,
+          })
+        );
+      }
     }
-    // eslint-disable-next-line no-use-before-define
-    if (isGameOver(board)) handleGameOver([...board]);
     const newBestScore = score + newScore > bestScore ? score + newScore : bestScore;
     setBestScore(newBestScore);
     setBestScoreInStorage(newBestScore);
-    setScore(score + newScore);
   };
 
   const processLine = (line, direction = false) => {
@@ -58,10 +60,7 @@ const Footer = (props) => {
         [trimLine[j], trimLine[j + 1]] = [trimLine[j] + trimLine[j + 1], 0];
       }
     }
-
     const newLine = trimLine.filter((elem) => !!elem);
-    // if (direction) newLine.reverse();
-
     while (newLine.length < line.length) {
       newLine.push(0);
     }

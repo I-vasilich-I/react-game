@@ -2,7 +2,9 @@
 import React from 'react';
 
 const Board = (props) => {
-  const { board, boardSize } = props;
+  const { history, boardSize } = props;
+  const current = history[history.length - 1];
+  const { board } = current;
   const tileStyle = {
     4: 'tile',
     3: 'tile tile--3',
