@@ -1,7 +1,7 @@
 const areArraysEqual = (arr1, arr2) => arr1.toString() === arr2.toString();
 
-const getBestScoreFromStorage = () => localStorage.getItem('bestScore') || 0;
-const setBestScoreInStorage = (value) => localStorage.setItem('bestScore', value);
+const getValueFromLocalStorage = (name) => JSON.parse(localStorage.getItem(name)) || null;
+const setValueInLocalStorage = (name, value) => localStorage.setItem(name, JSON.stringify(value));
 
 const getArrayOfEmptySpotIds = (array) =>
   array.map((elem, id) => (!elem ? id : -1)).filter((elem) => elem !== -1);
@@ -26,6 +26,6 @@ export {
   getNewBoardArray,
   getInitialBoardArray,
   areArraysEqual,
-  getBestScoreFromStorage,
-  setBestScoreInStorage,
+  getValueFromLocalStorage,
+  setValueInLocalStorage,
 };

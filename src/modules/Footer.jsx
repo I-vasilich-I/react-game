@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
-import { getNewBoardArray, areArraysEqual, setBestScoreInStorage } from './utils/helpers';
+import { getNewBoardArray, areArraysEqual, setValueInLocalStorage } from './utils/helpers';
 
 const Footer = (props) => {
   const { bestScore, setBestScore, boardSize, history, setHistory } = props;
@@ -44,11 +44,20 @@ const Footer = (props) => {
             gameOver: checkObj.gameOver || gameOver,
           })
         );
+        setValueInLocalStorage(
+          '2048-history',
+          history.concat({
+            board: checkObj.resultBoard || board,
+            score: score + newScore,
+            win: checkObj.winCheck || win,
+            gameOver: checkObj.gameOver || gameOver,
+          })
+        );
       }
     }
     const newBestScore = score + newScore > bestScore ? score + newScore : bestScore;
     setBestScore(newBestScore);
-    setBestScoreInStorage(newBestScore);
+    setValueInLocalStorage('bestScore', newBestScore);
   };
 
   const processLine = (line, direction = false) => {

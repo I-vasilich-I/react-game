@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { getInitialBoardArray } from './utils/helpers';
+import { getInitialBoardArray, setValueInLocalStorage } from './utils/helpers';
 
 const Header = (props) => {
   const { bestScore, boardSize, history, setHistory } = props;
@@ -17,6 +17,13 @@ const Header = (props) => {
       },
     ]);
   };
+
+  const stepBack = () => {
+    if (history.length < 2) return;
+    setHistory(history.slice(0, history.length - 1));
+    setValueInLocalStorage('2048-history', history.slice(0, history.length - 1));
+  };
+
   return (
     <header className="header">
       <div className="header__top">
@@ -30,6 +37,9 @@ const Header = (props) => {
         {/* <p className="title">Start new game.</p> */}
         <button type="button" className="button" onClick={newGame}>
           New Game
+        </button>
+        <button type="button" className="button" onClick={stepBack}>
+          Step back
         </button>
       </div>
     </header>

@@ -80,12 +80,15 @@ var App = function App() {
       boardSize = _useState2[0],
       setBoardSize = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((0,_utils_helpers__WEBPACK_IMPORTED_MODULE_4__.getBestScoreFromStorage)()),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((0,_utils_helpers__WEBPACK_IMPORTED_MODULE_4__.getValueFromLocalStorage)('bestScore') || 0),
       _useState4 = _slicedToArray(_useState3, 2),
       bestScore = _useState4[0],
       setBestScore = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([{
+  var localHistory = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_4__.getValueFromLocalStorage)('2048-history');
+  var isLocalBoardSizeSame = localHistory && localHistory[localHistory.length - 1].board.length === boardSize * boardSize;
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(localHistory && isLocalBoardSizeSame ? localHistory : [{
     board: (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_4__.getInitialBoardArray)(boardSize * boardSize),
     score: 0,
     win: false,
@@ -253,12 +256,18 @@ var Footer = function Footer(props) {
           win: checkObj.winCheck || win,
           gameOver: checkObj.gameOver || gameOver
         }));
+        (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.setValueInLocalStorage)('2048-history', history.concat({
+          board: checkObj.resultBoard || board,
+          score: score + newScore,
+          win: checkObj.winCheck || win,
+          gameOver: checkObj.gameOver || gameOver
+        }));
       }
     }
 
     var newBestScore = score + newScore > bestScore ? score + newScore : bestScore;
     setBestScore(newBestScore);
-    (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.setBestScoreInStorage)(newBestScore);
+    (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.setValueInLocalStorage)('bestScore', newBestScore);
   };
 
   var processLine = function processLine(line) {
@@ -466,6 +475,12 @@ var Header = function Header(props) {
     }]);
   };
 
+  var stepBack = function stepBack() {
+    if (history.length < 2) return;
+    setHistory(history.slice(0, history.length - 1));
+    (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.setValueInLocalStorage)('2048-history', history.slice(0, history.length - 1));
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("header", {
     className: "header"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -484,7 +499,11 @@ var Header = function Header(props) {
     type: "button",
     className: "button",
     onClick: newGame
-  }, "New Game")));
+  }, "New Game"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "button",
+    className: "button",
+    onClick: stepBack
+  }, "Step back")));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Header);
@@ -503,8 +522,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "getNewBoardArray": () => (/* binding */ getNewBoardArray),
 /* harmony export */   "getInitialBoardArray": () => (/* binding */ getInitialBoardArray),
 /* harmony export */   "areArraysEqual": () => (/* binding */ areArraysEqual),
-/* harmony export */   "getBestScoreFromStorage": () => (/* binding */ getBestScoreFromStorage),
-/* harmony export */   "setBestScoreInStorage": () => (/* binding */ setBestScoreInStorage)
+/* harmony export */   "getValueFromLocalStorage": () => (/* binding */ getValueFromLocalStorage),
+/* harmony export */   "setValueInLocalStorage": () => (/* binding */ setValueInLocalStorage)
 /* harmony export */ });
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -522,12 +541,12 @@ var areArraysEqual = function areArraysEqual(arr1, arr2) {
   return arr1.toString() === arr2.toString();
 };
 
-var getBestScoreFromStorage = function getBestScoreFromStorage() {
-  return localStorage.getItem('bestScore') || 0;
+var getValueFromLocalStorage = function getValueFromLocalStorage(name) {
+  return JSON.parse(localStorage.getItem(name)) || null;
 };
 
-var setBestScoreInStorage = function setBestScoreInStorage(value) {
-  return localStorage.setItem('bestScore', value);
+var setValueInLocalStorage = function setValueInLocalStorage(name, value) {
+  return localStorage.setItem(name, JSON.stringify(value));
 };
 
 var getArrayOfEmptySpotIds = function getArrayOfEmptySpotIds(array) {

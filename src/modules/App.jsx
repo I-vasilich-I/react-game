@@ -2,19 +2,26 @@ import React, { useState } from 'react';
 import Board from './Board';
 import Header from './Header';
 import Footer from './Footer';
-import { getInitialBoardArray, getBestScoreFromStorage } from './utils/helpers';
+import { getInitialBoardArray, getValueFromLocalStorage } from './utils/helpers';
 
 const App = () => {
   const [boardSize, setBoardSize] = useState(4);
-  const [bestScore, setBestScore] = useState(getBestScoreFromStorage());
-  const [history, setHistory] = useState([
-    {
-      board: getInitialBoardArray(boardSize * boardSize),
-      score: 0,
-      win: false,
-      gameOver: false,
-    },
-  ]);
+  const [bestScore, setBestScore] = useState(getValueFromLocalStorage('bestScore') || 0);
+  const localHistory = getValueFromLocalStorage('2048-history');
+  const isLocalBoardSizeSame =
+    localHistory && localHistory[localHistory.length - 1].board.length === boardSize * boardSize;
+  const [history, setHistory] = useState(
+    localHistory && isLocalBoardSizeSame
+      ? localHistory
+      : [
+          {
+            board: getInitialBoardArray(boardSize * boardSize),
+            score: 0,
+            win: false,
+            gameOver: false,
+          },
+        ]
+  );
 
   return (
     <div className="App">
