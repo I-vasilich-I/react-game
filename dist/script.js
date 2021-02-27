@@ -75,7 +75,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var App = function App() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(5),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(4),
       _useState2 = _slicedToArray(_useState, 2),
       boardSize = _useState2[0],
       setBoardSize = _useState2[1];
@@ -115,7 +115,8 @@ var App = function App() {
     setScore: setScore,
     setBoard: setBoard,
     bestScore: bestScore,
-    setBestScore: setBestScore
+    setBestScore: setBestScore,
+    boardSize: boardSize
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Board__WEBPACK_IMPORTED_MODULE_1__.default, {
     board: board,
     setBoard: setBoard,
@@ -158,6 +159,7 @@ var Board = function Board(props) {
     3: 'tile tile--3',
     5: 'tile tile--5'
   };
+  var boardStyle = "board".concat(boardSize !== 4 ? " board-".concat(boardSize) : '');
 
   var setValue = function setValue(elem) {
     if (!elem) return '';
@@ -167,16 +169,13 @@ var Board = function Board(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("main", {
     className: "main"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
-    className: "board".concat(boardSize !== 4 ? ' board-' + boardSize : '')
+    className: boardStyle
   }, board.map(function (elem, id) {
-    return (
-      /*#__PURE__*/
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       // eslint-disable-next-line react/no-array-index-key
-      react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        key: id,
-        className: "".concat(tileStyle[boardSize], " tile--").concat(setValue(elem) ? setValue(elem) : 0)
-      }, setValue(elem))
-    );
+      key: id,
+      className: "".concat(tileStyle[boardSize], " tile--").concat(setValue(elem) ? setValue(elem) : 0)
+    }, setValue(elem));
   })));
 };
 
@@ -260,6 +259,7 @@ var Footer = function Footer(props) {
     var trimLine = line.filter(function (elem) {
       return !!elem;
     });
+    if (direction) trimLine.reverse();
 
     for (var j = 0; j < trimLine.length; j++) {
       if (trimLine[j] === trimLine[j + 1]) {
@@ -272,8 +272,7 @@ var Footer = function Footer(props) {
 
     var newLine = trimLine.filter(function (elem) {
       return !!elem;
-    });
-    if (direction) newLine.reverse();
+    }); // if (direction) newLine.reverse();
 
     while (newLine.length < line.length) {
       newLine.push(0);
@@ -447,10 +446,11 @@ var Header = function Header(props) {
   var score = props.score,
       setScore = props.setScore,
       setBoard = props.setBoard,
-      bestScore = props.bestScore;
+      bestScore = props.bestScore,
+      boardSize = props.boardSize;
 
   var newGame = function newGame() {
-    setBoard((0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.getInitialBoardArray)());
+    setBoard((0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.getInitialBoardArray)(boardSize * boardSize));
     setScore(0);
   };
 
@@ -545,9 +545,7 @@ var getNewBoardArray = function getNewBoardArray(array) {
 };
 
 var getInitialBoardArray = function getInitialBoardArray(squareBoardSize) {
-  return getNewBoardArray(getNewBoardArray(_toConsumableArray(Array(squareBoardSize).keys()).map(function () {
-    return 0;
-  })));
+  return getNewBoardArray(getNewBoardArray(Array(squareBoardSize).fill(0)));
 };
 
 

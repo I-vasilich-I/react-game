@@ -20,7 +20,7 @@ const getNewBoardArray = (array) => {
 };
 
 const getInitialBoardArray = (squareBoardSize) =>
-  getNewBoardArray(getNewBoardArray([...Array(squareBoardSize).keys()].map(() => 0)));
+  getNewBoardArray(getNewBoardArray(Array(squareBoardSize).fill(0)));
 
 export {
   getNewBoardArray,

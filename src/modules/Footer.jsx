@@ -36,6 +36,7 @@ const Footer = (props) => {
 
   const processLine = (line, direction = false) => {
     const trimLine = line.filter((elem) => !!elem);
+    if (direction) trimLine.reverse();
     for (let j = 0; j < trimLine.length; j++) {
       if (trimLine[j] === trimLine[j + 1]) {
         newScore += trimLine[j] + trimLine[j + 1];
@@ -44,7 +45,7 @@ const Footer = (props) => {
     }
 
     const newLine = trimLine.filter((elem) => !!elem);
-    if (direction) newLine.reverse();
+    // if (direction) newLine.reverse();
 
     while (newLine.length < line.length) {
       newLine.push(0);

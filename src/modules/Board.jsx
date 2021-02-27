@@ -7,7 +7,8 @@ const Board = (props) => {
     4: 'tile',
     3: 'tile tile--3',
     5: 'tile tile--5',
-  }
+  };
+  const boardStyle = `board${boardSize !== 4 ? ` board-${boardSize}` : ''}`;
   const setValue = (elem) => {
     if (!elem) return '';
     return elem;
@@ -15,10 +16,13 @@ const Board = (props) => {
 
   return (
     <main className="main">
-      <section className={`board${boardSize !== 4 ? ' board-'+boardSize : ''}`}>
+      <section className={boardStyle}>
         {board.map((elem, id) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <div key={id} className={`${tileStyle[boardSize]} tile--${setValue(elem) ? setValue(elem) : 0}`}>
+          <div
+            // eslint-disable-next-line react/no-array-index-key
+            key={id}
+            className={`${tileStyle[boardSize]} tile--${setValue(elem) ? setValue(elem) : 0}`}
+          >
             {setValue(elem)}
           </div>
         ))}

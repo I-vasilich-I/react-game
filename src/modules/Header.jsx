@@ -3,10 +3,10 @@ import React from 'react';
 import { getInitialBoardArray } from './utils/helpers';
 
 const Header = (props) => {
-  const { score, setScore, setBoard, bestScore } = props;
+  const { score, setScore, setBoard, bestScore, boardSize } = props;
 
   const newGame = () => {
-    setBoard(getInitialBoardArray());
+    setBoard(getInitialBoardArray(boardSize * boardSize));
     setScore(0);
   };
   return (
