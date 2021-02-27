@@ -27,7 +27,7 @@ const Header = (props) => {
         </div>
       </div>
       <div className="header__bottom">
-        <p className="title">Start new game.</p>
+        {/* <p className="title">Start new game.</p> */}
         <button type="button" className="button" onClick={newGame}>
           New Game
         </button>

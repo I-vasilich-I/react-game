@@ -144,7 +144,8 @@ var Board = function Board(props) {
   var tileStyle = {
     4: 'tile',
     3: 'tile tile--3',
-    5: 'tile tile--5'
+    5: 'tile tile--5',
+    6: 'tile tile--6'
   };
   var boardStyle = "board".concat(boardSize !== 4 ? " board-".concat(boardSize) : '');
 
@@ -218,7 +219,7 @@ var Footer = function Footer(props) {
       return a - b;
     });
 
-    return tempArr[tempArr.length - 1] >= 32;
+    return tempArr[tempArr.length - 1] >= 2048;
   };
 
   var handleGameOver = function handleGameOver() {
@@ -406,25 +407,25 @@ var Footer = function Footer(props) {
     className: "footer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "footer__info"
-  }, "HOW TO PLAY: Use your arrow keys(w,a,s,d also works) or control buttons to move the tiles. Tiles with the same number merge into one when they touch. Add them up to reach 2048! You can continue to play after you have reached 2048."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, "HOW TO PLAY: Use your arrow keys on keyboard(w,a,s,d works both on keyboard and in app) to move the tiles. Tiles with the same number merge into one when they touch. Add them up to reach 2048! You can continue to play after you have reached 2048."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "button__container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     type: "button",
     className: "button button--arrow item-b",
     onClick: moveLeft
-  }, "Left"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+  }, "A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     type: "button",
     className: "button button--arrow item-a",
     onClick: moveUp
-  }, "Up"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+  }, "W"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     type: "button",
     className: "button button--arrow item-d",
     onClick: moveRight
-  }, "Right"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+  }, "D"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     type: "button",
     className: "button button--arrow item-c",
     onClick: moveDown
-  }, "Down")));
+  }, "S")));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Footer);
@@ -479,9 +480,7 @@ var Header = function Header(props) {
     className: "score"
   }, bestScore))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "header__bottom"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
-    className: "title"
-  }, "Start new game."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     type: "button",
     className: "button",
     onClick: newGame

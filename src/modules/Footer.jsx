@@ -11,7 +11,7 @@ const Footer = (props) => {
 
   const isWin = (array) => {
     const tempArr = [...array].sort((a, b) => a - b);
-    return tempArr[tempArr.length - 1] >= 32;
+    return tempArr[tempArr.length - 1] >= 2048;
   };
 
   const handleGameOver = () => {
@@ -163,22 +163,22 @@ const Footer = (props) => {
   return (
     <footer className="footer">
       <div className="footer__info">
-        HOW TO PLAY: Use your arrow keys(w,a,s,d also works) or control buttons to move the tiles.
-        Tiles with the same number merge into one when they touch. Add them up to reach 2048! You
-        can continue to play after you have reached 2048.
+        HOW TO PLAY: Use your arrow keys on keyboard(w,a,s,d works both on keyboard and in app) to
+        move the tiles. Tiles with the same number merge into one when they touch. Add them up to
+        reach 2048! You can continue to play after you have reached 2048.
       </div>
       <div className="button__container">
         <button type="button" className="button button--arrow item-b" onClick={moveLeft}>
-          Left
+          A
         </button>
         <button type="button" className="button button--arrow item-a" onClick={moveUp}>
-          Up
+          W
         </button>
         <button type="button" className="button button--arrow item-d" onClick={moveRight}>
-          Right
+          D
         </button>
         <button type="button" className="button button--arrow item-c" onClick={moveDown}>
-          Down
+          S
         </button>
       </div>
     </footer>

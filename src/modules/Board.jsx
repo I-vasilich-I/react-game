@@ -9,6 +9,7 @@ const Board = (props) => {
     4: 'tile',
     3: 'tile tile--3',
     5: 'tile tile--5',
+    6: 'tile tile--6',
   };
   const boardStyle = `board${boardSize !== 4 ? ` board-${boardSize}` : ''}`;
   const setValue = (elem) => {
