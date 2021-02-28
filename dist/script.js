@@ -80,7 +80,7 @@ var App = function App() {
       boardSize = _useState2[0],
       setBoardSize = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((0,_utils_helpers__WEBPACK_IMPORTED_MODULE_4__.getValueFromLocalStorage)('bestScore') || 0),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((0,_utils_helpers__WEBPACK_IMPORTED_MODULE_4__.getValueFromLocalStorage)('bestScore') || [0]),
       _useState4 = _slicedToArray(_useState3, 2),
       bestScore = _useState4[0],
       setBestScore = _useState4[1];
@@ -209,6 +209,7 @@ var Footer = function Footer(props) {
       boardSize = props.boardSize,
       history = props.history,
       setHistory = props.setHistory;
+  var currentBestScore = bestScore[bestScore.length - 1] ? bestScore[bestScore.length - 1] : 0;
   var current = history[history.length - 1];
   var board = current.board,
       score = current.score,
@@ -265,9 +266,12 @@ var Footer = function Footer(props) {
       }
     }
 
-    var newBestScore = score + newScore > bestScore ? score + newScore : bestScore;
-    setBestScore(newBestScore);
-    (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.setValueInLocalStorage)('bestScore', newBestScore);
+    var newBestScore = score + newScore > currentBestScore ? score + newScore : null;
+
+    if (newBestScore) {
+      setBestScore(bestScore.concat(newBestScore));
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.setValueInLocalStorage)('bestScore', bestScore.concat(newBestScore));
+    }
   };
 
   var processLine = function processLine(line) {
@@ -484,6 +488,7 @@ var Header = function Header(props) {
       boardSize = props.boardSize,
       history = props.history,
       setHistory = props.setHistory;
+  var currentBestScore = bestScore ? bestScore[bestScore.length - 1] : 0;
   var current = history[history.length - 1];
   var score = current.score;
 
@@ -526,7 +531,7 @@ var Header = function Header(props) {
     className: "score__title"
   }, "Best score"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
     className: "score__count"
-  }, bestScore)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, currentBestScore)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "header__bottom"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     type: "button",

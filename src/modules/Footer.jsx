@@ -4,6 +4,7 @@ import { getNewBoardArray, areArraysEqual, setValueInLocalStorage } from './util
 
 const Footer = (props) => {
   const { bestScore, setBestScore, boardSize, history, setHistory } = props;
+  const currentBestScore = bestScore[bestScore.length - 1] ? bestScore[bestScore.length - 1] : 0;
   const current = history[history.length - 1];
   const { board, score, win, gameOver } = current;
   const squareBoardSize = boardSize * boardSize;
@@ -55,9 +56,11 @@ const Footer = (props) => {
         );
       }
     }
-    const newBestScore = score + newScore > bestScore ? score + newScore : bestScore;
-    setBestScore(newBestScore);
-    setValueInLocalStorage('bestScore', newBestScore);
+    const newBestScore = score + newScore > currentBestScore ? score + newScore : null;
+    if (newBestScore) {
+      setBestScore(bestScore.concat(newBestScore));
+      setValueInLocalStorage('bestScore', bestScore.concat(newBestScore));
+    }
   };
 
   const processLine = (line, direction = false) => {

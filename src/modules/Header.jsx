@@ -4,6 +4,7 @@ import { getInitialBoardArray, setValueInLocalStorage } from './utils/helpers';
 
 const Header = (props) => {
   const { bestScore, boardSize, history, setHistory } = props;
+  const currentBestScore = bestScore ? bestScore[bestScore.length - 1] : 0;
   const current = history[history.length - 1];
   const { score } = current;
 
@@ -39,7 +40,7 @@ const Header = (props) => {
           </div>
           <div className="score">
             <p className="score__title">Best score</p>
-            <p className="score__count">{bestScore}</p>
+            <p className="score__count">{currentBestScore}</p>
           </div>
         </div>
       </div>

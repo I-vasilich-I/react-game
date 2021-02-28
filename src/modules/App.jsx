@@ -6,7 +6,7 @@ import { getInitialBoardArray, getValueFromLocalStorage } from './utils/helpers'
 
 const App = () => {
   const [boardSize, setBoardSize] = useState(4);
-  const [bestScore, setBestScore] = useState(getValueFromLocalStorage('bestScore') || 0);
+  const [bestScore, setBestScore] = useState(getValueFromLocalStorage('bestScore') || [0]);
   const localHistory = getValueFromLocalStorage('2048-history');
   const isLocalBoardSizeSame =
     localHistory && localHistory[localHistory.length - 1].board.length === boardSize * boardSize;
