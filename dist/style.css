@@ -674,8 +674,8 @@ p {
   font-family: "Roboto";
   font-style: normal;
   font-weight: normal;
-  font-size: 1.7rem;
-  line-height: 130%;
+  font-size: 1.5rem;
+  line-height: 100%;
   letter-spacing: 0.06em;
   color: black;
 }

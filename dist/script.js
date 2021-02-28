@@ -222,7 +222,7 @@ var Footer = function Footer(props) {
       return a - b;
     });
 
-    return tempArr[tempArr.length - 1] >= 2048;
+    return tempArr[tempArr.length - 1] >= 64;
   };
 
   var handleGameOver = function handleGameOver() {
@@ -416,7 +416,7 @@ var Footer = function Footer(props) {
     className: "footer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "footer__info"
-  }, "HOW TO PLAY: Use your arrow keys on keyboard(w,a,s,d works both on keyboard and in app) to move the tiles. Tiles with the same number merge into one when they touch. Add them up to reach 2048! You can continue to play after you have reached 2048."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, "HOW TO PLAY: Use your arrow keys on keyboard(w,a,s,d works both on keyboard and in app) to move the tiles. Tiles with the same number merge into one when they touch. Add them up to reach 64(2048 hard to test)! You can continue to play after you have reached 64(2048 hard to test)."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "footer__bottom"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "footer__links"

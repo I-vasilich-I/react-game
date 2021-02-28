@@ -26,7 +26,7 @@
 .footer__info {
   width: 100%;
   // height: 50%;
-  @include font(1.7rem, 130%, $color-tile-text-dark, $spacing: 0.06em);
+  @include font(1.5rem, 100%, $color-tile-text-dark, $spacing: 0.06em);
 }
 
 .footer__bottom {

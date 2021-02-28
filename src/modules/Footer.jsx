@@ -11,7 +11,7 @@ const Footer = (props) => {
 
   const isWin = (array) => {
     const tempArr = [...array].sort((a, b) => a - b);
-    return tempArr[tempArr.length - 1] >= 2048;
+    return tempArr[tempArr.length - 1] >= 64;
   };
 
   const handleGameOver = () => {
@@ -174,7 +174,8 @@ const Footer = (props) => {
       <div className="footer__info">
         HOW TO PLAY: Use your arrow keys on keyboard(w,a,s,d works both on keyboard and in app) to
         move the tiles. Tiles with the same number merge into one when they touch. Add them up to
-        reach 2048! You can continue to play after you have reached 2048.
+        reach 64(2048 hard to test)! You can continue to play after you have reached 64(2048 hard to
+        test).
       </div>
       <div className="footer__bottom">
         <div className="footer__links">
