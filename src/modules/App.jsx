@@ -2,51 +2,44 @@ import React, { useState } from 'react';
 import Board from './Board';
 import Header from './Header';
 import Footer from './Footer';
-import { getInitialBoardArray, getBestScoreFromStorage } from './utils/helpers';
+import { getInitialBoardArray, getValueFromLocalStorage } from './utils/helpers';
 
 const App = () => {
   const [boardSize, setBoardSize] = useState(4);
-  const [score, setScore] = useState(0);
-  const [bestScore, setBestScore] = useState(getBestScoreFromStorage());
-  const [board, setBoard] = useState(getInitialBoardArray(boardSize * boardSize));
-  const [gameOver, setGameOver] = useState(false);
-  const [win, setWin] = useState(false);
-
-  const [history, setHistory] = useState([
-    {
-      boards: getInitialBoardArray(boardSize * boardSize),
-      score: 0,
-    },
-  ]);
-
-  // const [board, setBoard] = useState([...Array(16).keys()]);
+  const [bestScore, setBestScore] = useState(getValueFromLocalStorage('bestScore') || [0]);
+  const localHistory = getValueFromLocalStorage('2048-history');
+  const isLocalBoardSizeSame =
+    localHistory && localHistory[localHistory.length - 1].board.length === boardSize * boardSize;
+  const [history, setHistory] = useState(
+    localHistory && isLocalBoardSizeSame
+      ? localHistory
+      : [
+          {
+            board: getInitialBoardArray(boardSize * boardSize),
+            score: 0,
+            win: false,
+            gameOver: false,
+          },
+        ]
+  );
 
   return (
     <div className="App">
       <h1 className="hidden">2048</h1>
       <Header
-        score={score}
-        setScore={setScore}
-        setBoard={setBoard}
         bestScore={bestScore}
-        setBestScore={setBestScore}
         boardSize={boardSize}
-        setGameOver={setGameOver}
-        setWin={setWin}
+        setBoardSize={setBoardSize}
+        history={history}
+        setHistory={setHistory}
       />
-      <Board board={board} setBoard={setBoard} boardSize={boardSize} />
+      <Board history={history} boardSize={boardSize} />
       <Footer
-        board={board}
-        setBoard={setBoard}
-        score={score}
-        setScore={setScore}
         bestScore={bestScore}
         setBestScore={setBestScore}
         boardSize={boardSize}
-        win={win}
-        setWin={setWin}
-        gameOver={gameOver}
-        setGameOver={setGameOver}
+        history={history}
+        setHistory={setHistory}
       />
     </div>
   );

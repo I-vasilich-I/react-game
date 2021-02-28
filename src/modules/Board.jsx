@@ -2,11 +2,14 @@
 import React from 'react';
 
 const Board = (props) => {
-  const { board, boardSize } = props;
+  const { history, boardSize } = props;
+  const current = history[history.length - 1];
+  const { board } = current;
   const tileStyle = {
     4: 'tile',
     3: 'tile tile--3',
     5: 'tile tile--5',
+    6: 'tile tile--6',
   };
   const boardStyle = `board${boardSize !== 4 ? ` board-${boardSize}` : ''}`;
   const setValue = (elem) => {

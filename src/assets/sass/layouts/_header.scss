@@ -8,8 +8,10 @@
 }
 
 .header {
-  // position: absolute;
+  padding: 0 25px;
   width: 100%;
+  max-width: 500px;
+  margin: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -41,28 +43,49 @@
 }
 
 .score__container {
-  width: 40%;
+  width: 60%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-top: 5px;
 }
 
 .score {
-  width: 40%;
+  padding-top: 5px;
+  height: 50px;
+  width: 100%;
+  background-color: $color-score;
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.score__title {
+  color: $color-tile-text-light;
+
+}
+
+.score__count {
+  color: $color-tile-text-light;
+  font-size: 2.5rem;
+  
 }
 
 .button {
-  width: 150px;
+  width: 120px;
   height: 40px;
   background: $color-prime;
   border-radius: 100px;
   border: none;
   @include font(1.7rem, 130%, $color-tile-text-dark, $spacing: 0.06em);
   &--arrow {
-    width: 70px;
-    height: 70px;
+    width: 40px;
+    height: 40px;
   }
   &:hover {
-    background:   $color-prime;
+    background:   $color-prime-hover;
   }
 }

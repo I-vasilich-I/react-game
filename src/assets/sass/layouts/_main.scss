@@ -1,5 +1,7 @@
 .main {
+  max-width: 500px;
   width: 100%;
+  margin: auto;
 }
 
 .board {
@@ -10,10 +12,11 @@
                  "d d d d";
   justify-content: space-around;
   align-items: center;
-  width: 500px;
-  height: 500px;
+  margin: auto;
+  width: 450px;
+  height: 450px;
   background-color: $color-board-background;
-  padding: 15px 15px;
+  padding: 5px 5px;
 
   &-3 {
     grid-template: "a a a"
@@ -27,6 +30,14 @@
                    "c c c c c"
                    "d d d d d"
                    "e e e e e";
+  }
+  &-6 {
+    grid-template: "a a a a a a"
+                   "b b b b b b"
+                   "c c c c c c"
+                   "d d d d d d"
+                   "e e e e e e"
+                   "f f f f f f";
   }
 }
 
@@ -43,6 +54,12 @@
   &--5 {
     width: 80px;
     height: 80px;
+    font-size: 4rem;
+  }
+
+  &--6 {
+    width: 70px;
+    height: 70px;
     font-size: 4rem;
   }
   &--0 {

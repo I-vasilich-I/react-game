@@ -69,10 +69,10 @@ module.exports = (env, options) => {
           use: [
             {
               loader: 'file-loader',
-              options: {
-                outputPath: 'assets/icons',
-                name: '[name].[ext]',
-              },
+              // options: {
+              //   outputPath: 'assets/icons',
+              //   name: '[name].[ext]',
+              // },
             },
           ],
         },
