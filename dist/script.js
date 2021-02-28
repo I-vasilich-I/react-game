@@ -417,6 +417,27 @@ var Footer = function Footer(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "footer__info"
   }, "HOW TO PLAY: Use your arrow keys on keyboard(w,a,s,d works both on keyboard and in app) to move the tiles. Tiles with the same number merge into one when they touch. Add them up to reach 2048! You can continue to play after you have reached 2048."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "footer__bottom"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "footer__links"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "https://github.com/I-vasilich-I",
+    className: "footer__link",
+    target: "_blank",
+    rel: "noreferrer"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    className: "github__logo",
+    src: "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
+    alt: "Oleg Vaskevich"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "https://rs.school/js/",
+    className: "footer__link",
+    target: "_blank",
+    rel: "noreferrer"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: "https://rs.school/images/rs_school_js.svg",
+    alt: "The Rolling Scopes"
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "button__container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     type: "button",
@@ -434,7 +455,7 @@ var Footer = function Footer(props) {
     type: "button",
     className: "button button--arrow item-c",
     onClick: moveDown
-  }, "S")));
+  }, "S"))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Footer);
@@ -481,6 +502,10 @@ var Header = function Header(props) {
     (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.setValueInLocalStorage)('2048-history', history.slice(0, history.length - 1));
   };
 
+  var fullScreen = function fullScreen() {
+    document.body.requestFullscreen();
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("header", {
     className: "header"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -491,9 +516,17 @@ var Header = function Header(props) {
     className: "score__container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "score"
-  }, score), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    className: "score__title"
+  }, "Score"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    className: "score__count"
+  }, score)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "score"
-  }, bestScore))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    className: "score__title"
+  }, "Best score"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    className: "score__count"
+  }, bestScore)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "header__bottom"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     type: "button",
@@ -503,7 +536,11 @@ var Header = function Header(props) {
     type: "button",
     className: "button",
     onClick: stepBack
-  }, "Step back")));
+  }, "Step back"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "button",
+    className: "button",
+    onClick: fullScreen
+  }, "Full screen")));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Header);

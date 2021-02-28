@@ -24,13 +24,23 @@ const Header = (props) => {
     setValueInLocalStorage('2048-history', history.slice(0, history.length - 1));
   };
 
+  const fullScreen = () => {
+    document.body.requestFullscreen();
+  };
+
   return (
     <header className="header">
       <div className="header__top">
         <h2 className="logo">2048</h2>
         <div className="score__container">
-          <div className="score">{score}</div>
-          <div className="score">{bestScore}</div>
+          <div className="score">
+            <p className="score__title">Score</p>
+            <p className="score__count">{score}</p>
+          </div>
+          <div className="score">
+            <p className="score__title">Best score</p>
+            <p className="score__count">{bestScore}</p>
+          </div>
         </div>
       </div>
       <div className="header__bottom">
@@ -40,6 +50,9 @@ const Header = (props) => {
         </button>
         <button type="button" className="button" onClick={stepBack}>
           Step back
+        </button>
+        <button type="button" className="button" onClick={fullScreen}>
+          Full screen
         </button>
       </div>
     </header>

@@ -176,19 +176,38 @@ const Footer = (props) => {
         move the tiles. Tiles with the same number merge into one when they touch. Add them up to
         reach 2048! You can continue to play after you have reached 2048.
       </div>
-      <div className="button__container">
-        <button type="button" className="button button--arrow item-b" onClick={moveLeft}>
-          A
-        </button>
-        <button type="button" className="button button--arrow item-a" onClick={moveUp}>
-          W
-        </button>
-        <button type="button" className="button button--arrow item-d" onClick={moveRight}>
-          D
-        </button>
-        <button type="button" className="button button--arrow item-c" onClick={moveDown}>
-          S
-        </button>
+      <div className="footer__bottom">
+        <div className="footer__links">
+          <a
+            href="https://github.com/I-vasilich-I"
+            className="footer__link"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              className="github__logo"
+              src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+              alt="Oleg Vaskevich"
+            />
+          </a>
+          <a href="https://rs.school/js/" className="footer__link" target="_blank" rel="noreferrer">
+            <img src="https://rs.school/images/rs_school_js.svg" alt="The Rolling Scopes" />
+          </a>
+        </div>
+        <div className="button__container">
+          <button type="button" className="button button--arrow item-b" onClick={moveLeft}>
+            A
+          </button>
+          <button type="button" className="button button--arrow item-a" onClick={moveUp}>
+            W
+          </button>
+          <button type="button" className="button button--arrow item-d" onClick={moveRight}>
+            D
+          </button>
+          <button type="button" className="button button--arrow item-c" onClick={moveDown}>
+            S
+          </button>
+        </div>
       </div>
     </footer>
   );
