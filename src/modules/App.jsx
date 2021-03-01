@@ -29,6 +29,9 @@ const App = () => {
     <div className="App">
       <h1 className="hidden">2048</h1>
       <PopUp
+        boardSize={boardSize}
+        setBoardSize={setBoardSize}
+        setHistory={setHistory}
         bestScore={bestScore}
         isPopUpActive={isPopUpActive}
         setIsPopUpActive={setIsPopUpActive}
