@@ -9,13 +9,13 @@ import CloseIcon from '@material-ui/icons/Close';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '60%',
+    width: '80%',
     '& > * + *': {
       marginTop: theme.spacing(2),
     },
     position: 'absolute',
     top: 0,
-    left: '20%',
+    left: '10%',
   },
   alert__text: {
     fontSize: '3rem',
@@ -33,6 +33,7 @@ function TransitionAlertsWin(props) {
     <div className={classes.root}>
       <Collapse in={openWin}>
         <Alert
+          severity="success"
           className={classes.alert__text}
           action={(
             <IconButton
@@ -62,6 +63,7 @@ function TransitionAlertsLose(props) {
     <div className={classes.root}>
       <Collapse in={openLose}>
         <Alert
+          severity="error"
           className={classes.alert__text}
           action={(
             <IconButton

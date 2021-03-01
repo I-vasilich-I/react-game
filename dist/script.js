@@ -14552,13 +14552,13 @@ __webpack_require__.r(__webpack_exports__);
 var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__.default)(function (theme) {
   return {
     root: {
-      width: '60%',
+      width: '80%',
       '& > * + *': {
         marginTop: theme.spacing(2)
       },
       position: 'absolute',
       top: 0,
-      left: '20%'
+      left: '10%'
     },
     alert__text: {
       fontSize: '3rem',
@@ -14578,6 +14578,7 @@ function TransitionAlertsWin(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core_Collapse__WEBPACK_IMPORTED_MODULE_2__.default, {
     "in": openWin
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_lab_Alert__WEBPACK_IMPORTED_MODULE_3__.default, {
+    severity: "success",
     className: classes.alert__text,
     action: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_4__.default, {
       "aria-label": "close",
@@ -14601,6 +14602,7 @@ function TransitionAlertsLose(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core_Collapse__WEBPACK_IMPORTED_MODULE_2__.default, {
     "in": openLose
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_lab_Alert__WEBPACK_IMPORTED_MODULE_3__.default, {
+    severity: "error",
     className: classes.alert__text,
     action: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_4__.default, {
       "aria-label": "close",
