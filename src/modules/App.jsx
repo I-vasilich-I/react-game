@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Board from './Board';
 import Header from './Header';
 import Footer from './Footer';
+import PopUp from './PopUp';
 import { getInitialBoardArray, getValueFromLocalStorage } from './utils/helpers';
 
 const App = () => {
@@ -22,16 +23,24 @@ const App = () => {
           },
         ]
   );
+  const [isPopUpActive, setIsPopUpActive] = useState(false);
 
   return (
     <div className="App">
       <h1 className="hidden">2048</h1>
+      <PopUp
+        bestScore={bestScore}
+        isPopUpActive={isPopUpActive}
+        setIsPopUpActive={setIsPopUpActive}
+      />
       <Header
         bestScore={bestScore}
         boardSize={boardSize}
         setBoardSize={setBoardSize}
         history={history}
         setHistory={setHistory}
+        isPopUpActive={isPopUpActive}
+        setIsPopUpActive={setIsPopUpActive}
       />
       <Board history={history} boardSize={boardSize} />
       <Footer

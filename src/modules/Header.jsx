@@ -3,10 +3,14 @@ import React from 'react';
 import { getInitialBoardArray, setValueInLocalStorage } from './utils/helpers';
 
 const Header = (props) => {
-  const { bestScore, boardSize, history, setHistory } = props;
+  const { setIsPopUpActive, bestScore, boardSize, history, setHistory } = props;
   const currentBestScore = bestScore ? bestScore[bestScore.length - 1] : 0;
   const current = history[history.length - 1];
   const { score } = current;
+
+  const popUp = () => {
+    setIsPopUpActive(true);
+  };
 
   const newGame = () => {
     setHistory([
@@ -46,6 +50,10 @@ const Header = (props) => {
       </div>
       <div className="header__bottom">
         {/* <p className="title">Start new game.</p> */}
+
+        <button type="button" className="button button--menu" onClick={popUp}>
+          Menu
+        </button>
         <button type="button" className="button" onClick={newGame}>
           New Game
         </button>

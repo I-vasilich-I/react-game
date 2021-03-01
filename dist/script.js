@@ -55,7 +55,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Board__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Board */ "./src/modules/Board.jsx");
 /* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Header */ "./src/modules/Header.jsx");
 /* harmony import */ var _Footer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Footer */ "./src/modules/Footer.jsx");
-/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
+/* harmony import */ var _PopUp__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./PopUp */ "./src/modules/PopUp.jsx");
+/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -74,22 +75,23 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var App = function App() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(4),
       _useState2 = _slicedToArray(_useState, 2),
       boardSize = _useState2[0],
       setBoardSize = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((0,_utils_helpers__WEBPACK_IMPORTED_MODULE_4__.getValueFromLocalStorage)('bestScore') || [0]),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((0,_utils_helpers__WEBPACK_IMPORTED_MODULE_5__.getValueFromLocalStorage)('bestScore') || [0]),
       _useState4 = _slicedToArray(_useState3, 2),
       bestScore = _useState4[0],
       setBestScore = _useState4[1];
 
-  var localHistory = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_4__.getValueFromLocalStorage)('2048-history');
+  var localHistory = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_5__.getValueFromLocalStorage)('2048-history');
   var isLocalBoardSizeSame = localHistory && localHistory[localHistory.length - 1].board.length === boardSize * boardSize;
 
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(localHistory && isLocalBoardSizeSame ? localHistory : [{
-    board: (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_4__.getInitialBoardArray)(boardSize * boardSize),
+    board: (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_5__.getInitialBoardArray)(boardSize * boardSize),
     score: 0,
     win: false,
     gameOver: false
@@ -98,16 +100,27 @@ var App = function App() {
       history = _useState6[0],
       setHistory = _useState6[1];
 
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState8 = _slicedToArray(_useState7, 2),
+      isPopUpActive = _useState8[0],
+      setIsPopUpActive = _useState8[1];
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "App"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
     className: "hidden"
-  }, "2048"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Header__WEBPACK_IMPORTED_MODULE_2__.default, {
+  }, "2048"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_PopUp__WEBPACK_IMPORTED_MODULE_4__.default, {
+    bestScore: bestScore,
+    isPopUpActive: isPopUpActive,
+    setIsPopUpActive: setIsPopUpActive
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Header__WEBPACK_IMPORTED_MODULE_2__.default, {
     bestScore: bestScore,
     boardSize: boardSize,
     setBoardSize: setBoardSize,
     history: history,
-    setHistory: setHistory
+    setHistory: setHistory,
+    isPopUpActive: isPopUpActive,
+    setIsPopUpActive: setIsPopUpActive
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Board__WEBPACK_IMPORTED_MODULE_1__.default, {
     history: history,
     boardSize: boardSize
@@ -484,13 +497,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Header = function Header(props) {
-  var bestScore = props.bestScore,
+  var setIsPopUpActive = props.setIsPopUpActive,
+      bestScore = props.bestScore,
       boardSize = props.boardSize,
       history = props.history,
       setHistory = props.setHistory;
   var currentBestScore = bestScore ? bestScore[bestScore.length - 1] : 0;
   var current = history[history.length - 1];
   var score = current.score;
+
+  var popUp = function popUp() {
+    setIsPopUpActive(true);
+  };
 
   var newGame = function newGame() {
     setHistory([{
@@ -535,6 +553,10 @@ var Header = function Header(props) {
     className: "header__bottom"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     type: "button",
+    className: "button button--menu",
+    onClick: popUp
+  }, "Menu"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "button",
     className: "button",
     onClick: newGame
   }, "New Game"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
@@ -549,6 +571,62 @@ var Header = function Header(props) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Header);
+
+/***/ }),
+
+/***/ "./src/modules/PopUp.jsx":
+/*!*******************************!*\
+  !*** ./src/modules/PopUp.jsx ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* eslint-disable react/no-array-index-key */
+
+/* eslint-disable react/prop-types */
+
+
+var PopUp = function PopUp(props) {
+  var isPopUpActive = props.isPopUpActive,
+      setIsPopUpActive = props.setIsPopUpActive,
+      bestScore = props.bestScore;
+  var popupClassName = isPopUpActive ? 'popup blackout' : 'popup popup--hidden';
+  var bestScoreArray = bestScore.slice(bestScore.length - 10, bestScore.length);
+
+  var handleClick = function handleClick(e) {
+    if (e.target.className === 'popup blackout') setIsPopUpActive(false);
+  };
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    document.addEventListener('mousedown', handleClick);
+    return function () {
+      document.removeEventListener('mousedown', handleClick);
+    };
+  }, ['mousedown', handleClick]);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: popupClassName
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "popup__container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "best-score__list"
+  }, "Best score:", bestScoreArray.reverse().map(function (elem, id) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      key: id + 1,
+      className: "best-score__item"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "best-score__id"
+    }, id + 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "best-score__score"
+    }, elem));
+  }))));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PopUp);
 
 /***/ }),
 
