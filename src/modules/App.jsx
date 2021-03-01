@@ -3,6 +3,7 @@ import Board from './Board';
 import Header from './Header';
 import Footer from './Footer';
 import PopUp from './PopUp';
+import { TransitionAlertsWin, TransitionAlertsLose } from './Alert';
 import { getInitialBoardArray, getValueFromLocalStorage } from './utils/helpers';
 
 const App = () => {
@@ -24,10 +25,13 @@ const App = () => {
         ]
   );
   const [isPopUpActive, setIsPopUpActive] = useState(false);
-
+  const [openWin, setOpenWin] = useState(false);
+  const [openLose, setOpenLose] = useState(false);
   return (
     <div className="App">
       <h1 className="hidden">2048</h1>
+      <TransitionAlertsWin openWin={openWin} setOpenWin={setOpenWin} />
+      <TransitionAlertsLose openLose={openLose} setOpenLose={setOpenLose} />
       <PopUp
         boardSize={boardSize}
         setBoardSize={setBoardSize}
@@ -52,6 +56,8 @@ const App = () => {
         boardSize={boardSize}
         history={history}
         setHistory={setHistory}
+        setOpenWin={setOpenWin}
+        setOpenLose={setOpenLose}
       />
     </div>
   );

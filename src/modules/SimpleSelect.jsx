@@ -7,29 +7,26 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { getInitialBoardArray } from './utils/helpers';
 
-const useStyles = makeStyles((theme) => {
-  console.log(theme);
-  return {
-    formControl: {
-      margin: theme.spacing(1),
-      minWidth: 120,
-      fontSize: '2rem',
-    },
-    label: {
-      fontSize: '2rem',
-    },
-    select: {
-      fontSize: '2rem',
-    },
-    menuItem: {
-      fontSize: '2rem',
-      backgroundColor: `#e0e0e0`,
-    },
-    selectEmpty: {
-      marginTop: theme.spacing(2),
-    },
-  };
-});
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+    fontSize: '2rem',
+  },
+  label: {
+    fontSize: '2rem',
+  },
+  select: {
+    fontSize: '2rem',
+  },
+  menuItem: {
+    fontSize: '2rem',
+    backgroundColor: `#e0e0e0`,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+}));
 
 export default function SimpleSelect(props) {
   const classes = useStyles();

@@ -3,7 +3,15 @@ import React, { useEffect } from 'react';
 import { getNewBoardArray, areArraysEqual, setValueInLocalStorage } from './utils/helpers';
 
 const Footer = (props) => {
-  const { bestScore, setBestScore, boardSize, history, setHistory } = props;
+  const {
+    bestScore,
+    setBestScore,
+    boardSize,
+    history,
+    setHistory,
+    setOpenWin,
+    setOpenLose,
+  } = props;
   const currentBestScore = bestScore[bestScore.length - 1] ? bestScore[bestScore.length - 1] : 0;
   const current = history[history.length - 1];
   const { board, score, win, gameOver } = current;
@@ -16,7 +24,7 @@ const Footer = (props) => {
   };
 
   const handleGameOver = () => {
-    if (!gameOver) alert(`Game over. Your score is ${score}`);
+    if (!gameOver) setOpenLose(true); // alert(`Game over. Your score is ${score}`);
     return true;
   };
 
@@ -32,7 +40,10 @@ const Footer = (props) => {
       checkObj.resultBoard = tempBoard !== -1 ? tempBoard : newBoard;
       if (isWin(checkObj.resultBoard) && !win) {
         checkObj.winCheck = true;
-        alert('Congrats, you won! You can continue playing or start new game.');
+        // alert('Congrats, you won! You can continue playing or start new game.');
+        // return <DescriptionAlerts />;
+        setOpenWin(true);
+        // alert('error');
       }
       // eslint-disable-next-line no-use-before-define
       if (isGameOver(checkObj.resultBoard)) checkObj.gameOver = handleGameOver();
