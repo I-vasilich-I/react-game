@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+// import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+// import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+// import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+// import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+// import SlowMotionVideoIcon from '@material-ui/icons/SlowMotionVideo';
 import { getNewBoardArray, areArraysEqual, setValueInLocalStorage } from './utils/helpers';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
-import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
-import SlowMotionVideoIcon from '@material-ui/icons/SlowMotionVideo';
 
 const Footer = (props) => {
   const {
@@ -22,7 +22,7 @@ const Footer = (props) => {
   const { board, score, win, gameOver } = current;
   const squareBoardSize = boardSize * boardSize;
   let newScore = 0;
-  const [play, setPlay] = useState(false);
+  // const [play, setPlay] = useState(false);
 
   const isWin = (array) => {
     const tempArr = [...array].sort((a, b) => a - b);
@@ -202,9 +202,9 @@ const Footer = (props) => {
   return (
     <footer className="footer">
       <div className="footer__info">
-        HOW TO PLAY: Use your arrow keys on keyboard or in app to
-        move the tiles (w,a,s,d works too). Tiles with the same number merge into one when they touch. Add them up to
-        reach 64(2048 hard to test)! You can continue to play after you have reached 64(2048 hard to
+        HOW TO PLAY: Use your arrow keys on keyboard or in app to move the tiles (w,a,s,d works
+        too). Tiles with the same number merge into one when they touch. Add them up to reach
+        64(2048 hard to test)! You can continue to play after you have reached 64(2048 hard to
         test).
       </div>
       <div className="footer__bottom">
@@ -225,21 +225,21 @@ const Footer = (props) => {
             <img src="https://rs.school/images/rs_school_js.svg" alt="The Rolling Scopes" />
           </a>
         </div>
-        <button type="button" className="button button--nav" >
-          <SlowMotionVideoIcon fontSize="inherit" />
+        <button type="button" className="button button--nav">
+          {/* <SlowMotionVideoIcon fontSize="inherit" /> */}
         </button>
         <div className="button__container">
           <button type="button" className="button button--nav item-b" onClick={moveLeft}>
-            <ArrowBackIcon fontSize="large" />
+            {/* <ArrowBackIcon fontSize="large" /> */}
           </button>
           <button type="button" className="button button--nav item-a" onClick={moveUp}>
-            <ArrowUpwardIcon fontSize="large" />
+            {/* <ArrowUpwardIcon fontSize="large" /> */}
           </button>
           <button type="button" className="button button--nav item-d" onClick={moveRight}>
-            <ArrowForwardIcon fontSize="large" />
+            {/* <ArrowForwardIcon fontSize="large" /> */}
           </button>
           <button type="button" className="button button--nav item-c" onClick={moveDown}>
-            <ArrowDownwardIcon fontSize="large" />
+            {/* <ArrowDownwardIcon fontSize="large" /> */}
           </button>
         </div>
       </div>
