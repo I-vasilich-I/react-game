@@ -1,6 +1,11 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getNewBoardArray, areArraysEqual, setValueInLocalStorage } from './utils/helpers';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import SlowMotionVideoIcon from '@material-ui/icons/SlowMotionVideo';
 
 const Footer = (props) => {
   const {
@@ -17,6 +22,7 @@ const Footer = (props) => {
   const { board, score, win, gameOver } = current;
   const squareBoardSize = boardSize * boardSize;
   let newScore = 0;
+  const [play, setPlay] = useState(false);
 
   const isWin = (array) => {
     const tempArr = [...array].sort((a, b) => a - b);
@@ -183,11 +189,21 @@ const Footer = (props) => {
     };
   }, ['keydown', handleEvent]);
 
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     moveUp();
+  //     // moveLeft();
+  //   }, 2000);
+  //   return () => clearInterval(interval);
+  // }, [play, win, gameOver]);
+
+  // const autoPlay = () => play ? setPlay(false) : setPlay(true);
+
   return (
     <footer className="footer">
       <div className="footer__info">
-        HOW TO PLAY: Use your arrow keys on keyboard(w,a,s,d works both on keyboard and in app) to
-        move the tiles. Tiles with the same number merge into one when they touch. Add them up to
+        HOW TO PLAY: Use your arrow keys on keyboard or in app to
+        move the tiles (w,a,s,d works too). Tiles with the same number merge into one when they touch. Add them up to
         reach 64(2048 hard to test)! You can continue to play after you have reached 64(2048 hard to
         test).
       </div>
@@ -209,18 +225,21 @@ const Footer = (props) => {
             <img src="https://rs.school/images/rs_school_js.svg" alt="The Rolling Scopes" />
           </a>
         </div>
+        <button type="button" className="button button--nav" >
+          <SlowMotionVideoIcon fontSize="inherit" />
+        </button>
         <div className="button__container">
-          <button type="button" className="button button--arrow item-b" onClick={moveLeft}>
-            A
+          <button type="button" className="button button--nav item-b" onClick={moveLeft}>
+            <ArrowBackIcon fontSize="large" />
           </button>
-          <button type="button" className="button button--arrow item-a" onClick={moveUp}>
-            W
+          <button type="button" className="button button--nav item-a" onClick={moveUp}>
+            <ArrowUpwardIcon fontSize="large" />
           </button>
-          <button type="button" className="button button--arrow item-d" onClick={moveRight}>
-            D
+          <button type="button" className="button button--nav item-d" onClick={moveRight}>
+            <ArrowForwardIcon fontSize="large" />
           </button>
-          <button type="button" className="button button--arrow item-c" onClick={moveDown}>
-            S
+          <button type="button" className="button button--nav item-c" onClick={moveDown}>
+            <ArrowDownwardIcon fontSize="large" />
           </button>
         </div>
       </div>

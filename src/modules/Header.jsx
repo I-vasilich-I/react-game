@@ -1,6 +1,10 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { getInitialBoardArray, setValueInLocalStorage } from './utils/helpers';
+import ReplyIcon from '@material-ui/icons/Reply';
+import FiberNewOutlinedIcon from '@material-ui/icons/FiberNewOutlined';
+import FullscreenIcon from '@material-ui/icons/Fullscreen';
+import MenuIcon from '@material-ui/icons/Menu';
 
 const Header = (props) => {
   const { setIsPopUpActive, bestScore, boardSize, history, setHistory } = props;
@@ -49,19 +53,17 @@ const Header = (props) => {
         </div>
       </div>
       <div className="header__bottom">
-        {/* <p className="title">Start new game.</p> */}
-
-        <button type="button" className="button button--menu" onClick={popUp}>
-          Menu
+        <button type="button" className="button button--nav" onClick={popUp}>
+          <MenuIcon fontSize="inherit" />
         </button>
-        <button type="button" className="button" onClick={newGame}>
-          New Game
+        <button type="button" className="button button--nav" onClick={newGame}>
+          <FiberNewOutlinedIcon fontSize="inherit" />
         </button>
-        <button type="button" className="button" onClick={stepBack}>
-          Step back
+        <button type="button" className="button button--nav" onClick={stepBack}>
+          <ReplyIcon fontSize="inherit" />
         </button>
-        <button type="button" className="button" onClick={fullScreen}>
-          Full screen
+        <button type="button" className="button  button--nav" onClick={fullScreen}>
+          <FullscreenIcon fontSize="inherit" />
         </button>
       </div>
     </header>
