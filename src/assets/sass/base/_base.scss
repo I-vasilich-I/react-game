@@ -1,0 +1,38 @@
+html {
+  box-sizing: border-box;
+  font-size: 10px;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+*|*:not(:root):fullscreen::backdrop {
+  background:white;
+}
+
+body {
+  // width: 500px;
+  // height: 768px;
+  margin: auto;
+}
+
+h2 {
+  @include font(4.4rem, 130%, $color-tile-text-dark);
+}
+
+h3 {
+  @include font(3.5rem, 130%, $color-tile-text-dark);
+}
+
+h4 {
+  @include font(2rem, 130%, $color-tile-text-dark);
+}
+
+h5 {
+  @include font(1.5rem, 130%, $color-tile-text-dark);
+}
+
+p {
+  @include font(1.5rem, 100%, $color-tile-text-dark, $weight: 700);
+}
