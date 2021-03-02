@@ -1,9 +1,10 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
+import SimpleSelect from './SimpleSelect';
 
 const PopUp = (props) => {
-  const { isPopUpActive, setIsPopUpActive, bestScore } = props;
+  const { isPopUpActive, setIsPopUpActive, bestScore, boardSize, setBoardSize, setHistory } = props;
   const popupClassName = isPopUpActive ? 'popup blackout' : 'popup popup--hidden';
   const bestScoreArray = bestScore.slice(bestScore.length - 10, bestScore.length);
 
@@ -21,6 +22,12 @@ const PopUp = (props) => {
   return (
     <div className={popupClassName}>
       <div className="popup__container">
+        <SimpleSelect
+          setIsPopUpActive={setIsPopUpActive}
+          boardSize={boardSize}
+          setBoardSize={setBoardSize}
+          setHistory={setHistory}
+        />
         <div className="best-score__list">
           Best score:
           {bestScoreArray.reverse().map((elem, id) => (
