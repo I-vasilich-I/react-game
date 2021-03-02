@@ -2,7 +2,6 @@
 import React from 'react';
 import { getInitialBoardArray, setValueInLocalStorage } from './utils/helpers';
 import ReplyIcon from '@material-ui/icons/Reply';
-import FiberNewIcon from '@material-ui/icons/FiberNew';
 import FiberNewOutlinedIcon from '@material-ui/icons/FiberNewOutlined';
 import FullscreenIcon from '@material-ui/icons/Fullscreen';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -54,8 +53,6 @@ const Header = (props) => {
         </div>
       </div>
       <div className="header__bottom">
-        {/* <p className="title">Start new game.</p> */}
-
         <button type="button" className="button button--nav" onClick={popUp}>
           <MenuIcon fontSize="inherit" />
         </button>
