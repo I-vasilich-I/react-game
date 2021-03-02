@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-// import ReplyIcon from '@material-ui/icons/Reply';
-// import FiberNewOutlinedIcon from '@material-ui/icons/FiberNewOutlined';
-// import FullscreenIcon from '@material-ui/icons/Fullscreen';
-// import MenuIcon from '@material-ui/icons/Menu';
+import ReplyIcon from '@material-ui/icons/Reply';
+import FiberNewOutlinedIcon from '@material-ui/icons/FiberNewOutlined';
+import FullscreenIcon from '@material-ui/icons/Fullscreen';
+import MenuIcon from '@material-ui/icons/Menu';
 import { getInitialBoardArray, setValueInLocalStorage } from './utils/helpers';
 
 const Header = (props) => {
@@ -54,16 +54,16 @@ const Header = (props) => {
       </div>
       <div className="header__bottom">
         <button type="button" className="button button--nav" onClick={popUp}>
-          {/* <MenuIcon fontSize="inherit" /> */}
+          <MenuIcon fontSize="inherit" />
         </button>
         <button type="button" className="button button--nav" onClick={newGame}>
-          {/* <FiberNewOutlinedIcon fontSize="inherit" /> */}
+          <FiberNewOutlinedIcon fontSize="inherit" />
         </button>
         <button type="button" className="button button--nav" onClick={stepBack}>
-          {/* <ReplyIcon fontSize="inherit" /> */}
+          <ReplyIcon fontSize="inherit" />
         </button>
         <button type="button" className="button  button--nav" onClick={fullScreen}>
-          {/* <FullscreenIcon fontSize="inherit" /> */}
+          <FullscreenIcon fontSize="inherit" />
         </button>
       </div>
     </header>

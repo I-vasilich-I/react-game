@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
-// import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-// import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-// import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
-// import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
-// import SlowMotionVideoIcon from '@material-ui/icons/SlowMotionVideo';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import SlowMotionVideoIcon from '@material-ui/icons/SlowMotionVideo';
 import { getNewBoardArray, areArraysEqual, setValueInLocalStorage } from './utils/helpers';
 
 const Footer = (props) => {
@@ -14,8 +14,8 @@ const Footer = (props) => {
     boardSize,
     history,
     setHistory,
-    // setOpenWin,
-    // setOpenLose,
+    setOpenWin,
+    setOpenLose,
   } = props;
   const currentBestScore = bestScore[bestScore.length - 1] ? bestScore[bestScore.length - 1] : 0;
   const current = history[history.length - 1];
@@ -30,7 +30,7 @@ const Footer = (props) => {
   };
 
   const handleGameOver = () => {
-    if (!gameOver) alert(`Game over. Your score is ${score}`); // setOpenLose(true);
+    if (!gameOver) setOpenLose(true); // alert(`Game over. Your score is ${score}`);
     return true;
   };
 
@@ -46,9 +46,9 @@ const Footer = (props) => {
       checkObj.resultBoard = tempBoard !== -1 ? tempBoard : newBoard;
       if (isWin(checkObj.resultBoard) && !win) {
         checkObj.winCheck = true;
-        alert('Congrats, you won! You can continue playing or start new game.');
+        // alert('Congrats, you won! You can continue playing or start new game.');
         // return <DescriptionAlerts />;
-        // setOpenWin(true);
+        setOpenWin(true);
         // alert('error');
       }
       // eslint-disable-next-line no-use-before-define
@@ -208,7 +208,7 @@ const Footer = (props) => {
         test).
       </div>
       <div className="footer__bottom">
-        {/* <div className="footer__links">
+        <div className="footer__links">
           <a
             href="https://github.com/I-vasilich-I"
             className="footer__link"
@@ -217,29 +217,30 @@ const Footer = (props) => {
           >
             <img
               className="github__logo"
-              src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+              src="assets/images/GitHub-Mark.png"
               alt="Oleg Vaskevich"
             />
           </a>
           <a href="https://rs.school/js/" className="footer__link" target="_blank" rel="noreferrer">
-            <img src="https://rs.school/images/rs_school_js.svg" alt="The Rolling Scopes" />
+            <img src="assets/images/rs_school_js.svg" alt="The Rolling Scopes" />
           </a>
-        </div> */}
+        </div>
+        <h3>2021</h3>
         <button type="button" className="button button--nav">
-          {/* <SlowMotionVideoIcon fontSize="inherit" /> */}
+          <SlowMotionVideoIcon fontSize="inherit" />
         </button>
         <div className="button__container">
           <button type="button" className="button button--nav item-b" onClick={moveLeft}>
-            {/* <ArrowBackIcon fontSize="large" /> */}
+            <ArrowBackIcon fontSize="large" />
           </button>
           <button type="button" className="button button--nav item-a" onClick={moveUp}>
-            {/* <ArrowUpwardIcon fontSize="large" /> */}
+            <ArrowUpwardIcon fontSize="large" />
           </button>
           <button type="button" className="button button--nav item-d" onClick={moveRight}>
-            {/* <ArrowForwardIcon fontSize="large" /> */}
+            <ArrowForwardIcon fontSize="large" />
           </button>
           <button type="button" className="button button--nav item-c" onClick={moveDown}>
-            {/* <ArrowDownwardIcon fontSize="large" /> */}
+            <ArrowDownwardIcon fontSize="large" />
           </button>
         </div>
       </div>
