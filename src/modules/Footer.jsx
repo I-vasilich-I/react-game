@@ -208,7 +208,7 @@ const Footer = (props) => {
         test).
       </div>
       <div className="footer__bottom">
-        <div className="footer__links">
+        {/* <div className="footer__links">
           <a
             href="https://github.com/I-vasilich-I"
             className="footer__link"
@@ -224,7 +224,7 @@ const Footer = (props) => {
           <a href="https://rs.school/js/" className="footer__link" target="_blank" rel="noreferrer">
             <img src="https://rs.school/images/rs_school_js.svg" alt="The Rolling Scopes" />
           </a>
-        </div>
+        </div> */}
         <button type="button" className="button button--nav">
           {/* <SlowMotionVideoIcon fontSize="inherit" /> */}
         </button>
