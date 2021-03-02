@@ -89,7 +89,21 @@
   &--menu {
     width: 70px;
   }
+
   &:hover {
     background:   $color-prime-hover;
+  }
+
+  &--nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    font-size: 3rem;
+    background: rgb(224, 224, 224);
+    &:hover {
+      background: rgb(190, 190, 190);
+    }
   }
 }
