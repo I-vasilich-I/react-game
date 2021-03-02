@@ -14,8 +14,8 @@ const Footer = (props) => {
     boardSize,
     history,
     setHistory,
-    setOpenWin,
-    setOpenLose,
+    // setOpenWin,
+    // setOpenLose,
   } = props;
   const currentBestScore = bestScore[bestScore.length - 1] ? bestScore[bestScore.length - 1] : 0;
   const current = history[history.length - 1];
@@ -30,7 +30,7 @@ const Footer = (props) => {
   };
 
   const handleGameOver = () => {
-    if (!gameOver) setOpenLose(true); // alert(`Game over. Your score is ${score}`);
+    if (!gameOver) alert(`Game over. Your score is ${score}`); // setOpenLose(true);
     return true;
   };
 
@@ -46,9 +46,9 @@ const Footer = (props) => {
       checkObj.resultBoard = tempBoard !== -1 ? tempBoard : newBoard;
       if (isWin(checkObj.resultBoard) && !win) {
         checkObj.winCheck = true;
-        // alert('Congrats, you won! You can continue playing or start new game.');
+        alert('Congrats, you won! You can continue playing or start new game.');
         // return <DescriptionAlerts />;
-        setOpenWin(true);
+        // setOpenWin(true);
         // alert('error');
       }
       // eslint-disable-next-line no-use-before-define
