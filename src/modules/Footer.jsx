@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
@@ -22,7 +22,7 @@ const Footer = (props) => {
   const { board, score, win, gameOver } = current;
   const squareBoardSize = boardSize * boardSize;
   let newScore = 0;
-  // const [play, setPlay] = useState(false);
+  const [play, setPlay] = useState(false);
 
   const isWin = (array) => {
     const tempArr = [...array].sort((a, b) => a - b);
@@ -30,7 +30,11 @@ const Footer = (props) => {
   };
 
   const handleGameOver = () => {
-    if (!gameOver) setOpenLose(true); // alert(`Game over. Your score is ${score}`);
+    if (!gameOver) {
+      setOpenLose(true); // alert(`Game over. Your score is ${score}`);
+      setPlay(false);
+    }
+
     return true;
   };
 
@@ -49,6 +53,7 @@ const Footer = (props) => {
         // alert('Congrats, you won! You can continue playing or start new game.');
         // return <DescriptionAlerts />;
         setOpenWin(true);
+        // setPlay(false);
         // alert('error');
       }
       // eslint-disable-next-line no-use-before-define
@@ -62,6 +67,7 @@ const Footer = (props) => {
             gameOver: checkObj.gameOver || gameOver,
           })
         );
+
         setValueInLocalStorage(
           '2048-history',
           history.concat({
@@ -189,15 +195,21 @@ const Footer = (props) => {
     };
   }, ['keydown', handleEvent]);
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     moveUp();
-  //     // moveLeft();
-  //   }, 2000);
-  //   return () => clearInterval(interval);
-  // }, [play, win, gameOver]);
+  useEffect(() => {
+    let count = 1;
+    const interval = setInterval(() => {
+      if (play && !gameOver) {
+        moveUp();
+        if (count % 3 === 0) moveRight();
+        if (count % 2 === 0) moveLeft();
+        // if (count % 2 !==0) moveDown();
+        count++;
+      }
+    }, 700);
+    return () => clearInterval(interval);
+  }, [play, gameOver, history]);
 
-  // const autoPlay = () => play ? setPlay(false) : setPlay(true);
+  const autoPlay = () => play ? setPlay(false) : setPlay(true);
 
   return (
     <footer className="footer">
@@ -205,7 +217,7 @@ const Footer = (props) => {
         HOW TO PLAY: Use your arrow keys on keyboard or in app to move the tiles (w,a,s,d works
         too). Tiles with the same number merge into one when they touch. Add them up to reach
         64(2048 hard to test)! You can continue to play after you have reached 64(2048 hard to
-        test).
+        test). Auto play runs until game over(click play button). Also you can stop auto play clicking again same button.
       </div>
       <div className="footer__bottom">
         <div className="footer__links">
@@ -227,7 +239,7 @@ const Footer = (props) => {
         </div>
         <h3>2021</h3>
         <button type="button" className="button button--nav">
-          <SlowMotionVideoIcon fontSize="inherit" />
+          <SlowMotionVideoIcon fontSize="inherit" onClick={autoPlay} />
         </button>
         <div className="button__container">
           <button type="button" className="button button--nav item-b" onClick={moveLeft}>
