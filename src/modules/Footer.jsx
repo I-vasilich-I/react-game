@@ -16,6 +16,7 @@ const Footer = (props) => {
     setHistory,
     setOpenWin,
     setOpenLose,
+    winningNumber,
   } = props;
   const currentBestScore = bestScore[bestScore.length - 1] ? bestScore[bestScore.length - 1] : 0;
   const current = history[history.length - 1];
@@ -26,12 +27,12 @@ const Footer = (props) => {
 
   const isWin = (array) => {
     const tempArr = [...array].sort((a, b) => a - b);
-    return tempArr[tempArr.length - 1] >= 64;
+    return tempArr[tempArr.length - 1] >= winningNumber;
   };
 
   const handleGameOver = () => {
     if (!gameOver) {
-      setOpenLose(true); // alert(`Game over. Your score is ${score}`);
+      setOpenLose(true);
       setPlay(false);
     }
 
@@ -50,11 +51,7 @@ const Footer = (props) => {
       checkObj.resultBoard = tempBoard !== -1 ? tempBoard : newBoard;
       if (isWin(checkObj.resultBoard) && !win) {
         checkObj.winCheck = true;
-        // alert('Congrats, you won! You can continue playing or start new game.');
-        // return <DescriptionAlerts />;
         setOpenWin(true);
-        // setPlay(false);
-        // alert('error');
       }
       // eslint-disable-next-line no-use-before-define
       if (isGameOver(checkObj.resultBoard)) checkObj.gameOver = handleGameOver();
@@ -209,15 +206,16 @@ const Footer = (props) => {
     return () => clearInterval(interval);
   }, [play, gameOver, history]);
 
-  const autoPlay = () => play ? setPlay(false) : setPlay(true);
+  const autoPlay = () => (play ? setPlay(false) : setPlay(true));
 
   return (
     <footer className="footer">
       <div className="footer__info">
         HOW TO PLAY: Use your arrow keys on keyboard or in app to move the tiles (w,a,s,d works
-        too). Tiles with the same number merge into one when they touch. Add them up to reach
-        64(2048 hard to test)! You can continue to play after you have reached 64(2048 hard to
-        test). Auto play runs until game over(click play button). Also you can stop auto play clicking again same button.
+        too). Tiles with the same number merge into one when they touch. Add them up to reach 64 or
+        2048(can choose in menu)! You can continue to play after you have reached 64 or 2048. Auto
+        play runs until game over(click play button). Also you can stop auto play clicking again
+        same button. Step back button does step back))
       </div>
       <div className="footer__bottom">
         <div className="footer__links">

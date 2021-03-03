@@ -2,9 +2,22 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
 import SimpleSelect from './SimpleSelect';
+import WinningNumberRadio from './WinningNumberRadio';
+import StepBackRadio from './StepBackRadio';
 
 const PopUp = (props) => {
-  const { isPopUpActive, setIsPopUpActive, bestScore, boardSize, setBoardSize, setHistory } = props;
+  const {
+    isPopUpActive,
+    setIsPopUpActive,
+    bestScore,
+    boardSize,
+    setBoardSize,
+    setHistory,
+    winningNumber,
+    setWinningNumber,
+    stepBackButton,
+    setStepBackButton,
+  } = props;
   const popupClassName = isPopUpActive ? 'popup blackout' : 'popup popup--hidden';
   const bestScoreArray = bestScore.slice(bestScore.length - 10, bestScore.length);
 
@@ -22,6 +35,12 @@ const PopUp = (props) => {
   return (
     <div className={popupClassName}>
       <div className="popup__container">
+        <div className="radio">
+          <WinningNumberRadio winningNumber={winningNumber} setWinningNumber={setWinningNumber} />
+        </div>
+        <div className="radio">
+          <StepBackRadio stepBackButton={stepBackButton} setStepBackButton={setStepBackButton} />
+        </div>
         <SimpleSelect
           setIsPopUpActive={setIsPopUpActive}
           boardSize={boardSize}

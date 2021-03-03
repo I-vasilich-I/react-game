@@ -28,7 +28,7 @@
   box-sizing: border-box;
   margin: auto;
   height: 400px;
-  width: 300px;
+  width: 400px;
 
   padding: 15px 25px;
   display: flex;
@@ -41,6 +41,10 @@
   &:hover {
     cursor: auto;
   }
+}
+
+.radio {
+  font-size: 2rem;
 }
 
 .best-score__list {
