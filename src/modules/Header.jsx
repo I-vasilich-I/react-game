@@ -17,14 +17,16 @@ const Header = (props) => {
   };
 
   const newGame = () => {
-    setHistory([
+    const newHistory = [
       {
         board: getInitialBoardArray(boardSize * boardSize),
         score: 0,
         win: false,
         gameOver: false,
       },
-    ]);
+    ];
+    setHistory(newHistory);
+    setValueInLocalStorage('2048-history', newHistory);
   };
 
   const stepBack = () => {
