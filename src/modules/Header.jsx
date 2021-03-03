@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { getInitialBoardArray, setValueInLocalStorage } from './utils/helpers';
 import ReplyIcon from '@material-ui/icons/Reply';
 import FiberNewOutlinedIcon from '@material-ui/icons/FiberNewOutlined';
 import FullscreenIcon from '@material-ui/icons/Fullscreen';
 import MenuIcon from '@material-ui/icons/Menu';
+import { getInitialBoardArray, setValueInLocalStorage } from './utils/helpers';
 
 const Header = (props) => {
   const { setIsPopUpActive, bestScore, boardSize, history, setHistory } = props;

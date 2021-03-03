@@ -4,20 +4,19 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-// const CopyWebpackPlugin = require("copy-webpack-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // const isDev = process.env.NODE_ENV === 'development';
 // const isProd = !isDev;
-/*
-const optimization = () => {
-  const config = {
-      splitChunks: {
-      chunks: 'all',
-    }
-  }
-  return config;
-}
-*/
+
+// const optimization = () => {
+//   const config = {
+//     splitChunks: {
+//       chunks: 'all',
+//     },
+//   };
+//   return config;
+// };
 
 module.exports = (env, options) => {
   const isProd = options.mode === 'production';
@@ -32,9 +31,38 @@ module.exports = (env, options) => {
     entry: ['@babel/polyfill', './src/index.jsx', './src/assets/sass/style.scss'],
     output: {
       path: path.join(__dirname, '/dist'),
-      publicPath: '/dist/',
-      filename: 'script.js',
+      // publicPath: '/dist/',
+      filename: '[name].js',
     },
+    optimization: {
+      splitChunks: {
+        chunks: 'all',
+      },
+    },
+    // optimization: {
+    //   splitChunks: {
+    //     chunks: 'async',
+    //     minSize: 20000,
+    //     minRemainingSize: 0,
+    //     maxSize: 30000,
+    //     minChunks: 1,
+    //     maxAsyncRequests: 30,
+    //     maxInitialRequests: 30,
+    //     enforceSizeThreshold: 50000,
+    //     cacheGroups: {
+    //       defaultVendors: {
+    //         test: /[\\/]node_modules[\\/]/,
+    //         priority: -10,
+    //         reuseExistingChunk: true,
+    //       },
+    //       default: {
+    //         minChunks: 2,
+    //         priority: -20,
+    //         reuseExistingChunk: true,
+    //       },
+    //     },
+    //   },
+    // },
 
     module: {
       rules: [
@@ -69,10 +97,10 @@ module.exports = (env, options) => {
           use: [
             {
               loader: 'file-loader',
-              // options: {
-              //   outputPath: 'assets/icons',
-              //   name: '[name].[ext]',
-              // },
+              options: {
+                outputPath: 'assets/icons',
+                name: '[name].[ext]',
+              },
             },
           ],
         },
@@ -126,18 +154,18 @@ module.exports = (env, options) => {
         fix: true,
       }),
 
-      // new CopyWebpackPlugin({
-      //   patterns: [
-      //     // { from: 'src/assets/audio/shifting.wav'},
-      //     // { from: 'src/assets/audio/', to: 'assets/audio/' },
-      //     // { from: 'src/assets/images/svg/favicon.svg' },
-      //     // { from: 'rs_school_js.svg' },
-      //     // { from: "src/assets/images/", to: "assets/images/" },
-      //     // { from: "src/assets/icons/", to: "assets/icons/" },
-      //     // { from: "src/assets/favicon/", to: "assets/favicon/" },
-      //     // { from: 'src/assets/fonts/', to: 'assets/fonts/'},
-      //   ],
-      // }),
+      new CopyWebpackPlugin({
+        patterns: [
+          // { from: 'src/assets/audio/shifting.wav'},
+          // { from: 'src/assets/audio/', to: 'assets/audio/' },
+          // { from: 'src/assets/images/svg/favicon.svg' },
+          // { from: 'favicon.svg' },
+          { from: 'src/assets/images/', to: 'assets/images/' },
+          { from: 'src/assets/icons/', to: 'assets/icons/' },
+          // { from: "src/assets/favicon/", to: "assets/favicon/" },
+          { from: 'src/assets/fonts/', to: 'assets/fonts/' },
+        ],
+      }),
     ],
   };
 
