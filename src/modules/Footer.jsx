@@ -231,6 +231,14 @@ const Footer = (props) => {
               alt="Oleg Vaskevich"
             />
           </a>
+          <a
+            href="https://youtu.be/1bePpGUQ7lE"
+            className="footer__link youtube"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img src="assets/images/YouTube.svg" alt="How to use" />
+          </a>
           <a href="https://rs.school/js/" className="footer__link" target="_blank" rel="noreferrer">
             <img src="assets/images/rs_school_js.svg" alt="The Rolling Scopes" />
           </a>

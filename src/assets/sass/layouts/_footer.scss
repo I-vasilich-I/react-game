@@ -41,14 +41,14 @@
 }
 
 .footer__links {
-  width: 33%;
+  width: 40%;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
 
 .footer__link {
-  width: 50%;
+  width: 33%;
 }
 
 .github__logo {
@@ -69,4 +69,9 @@
 
 }
 
-
+.youtube {
+  margin-right: 10px;
+  img {
+    width: 65%;
+  }
+}
