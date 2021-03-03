@@ -161,7 +161,7 @@ module.exports = (env, options) => {
           // { from: 'src/assets/images/svg/favicon.svg' },
           // { from: 'favicon.svg' },
           { from: 'src/assets/images/', to: 'assets/images/' },
-          // { from: "src/assets/icons/", to: "assets/icons/" },
+          { from: 'src/assets/icons/', to: 'assets/icons/' },
           // { from: "src/assets/favicon/", to: "assets/favicon/" },
           { from: 'src/assets/fonts/', to: 'assets/fonts/' },
         ],
