@@ -90,6 +90,10 @@
     width: 70px;
   }
 
+  &--hidden {
+    display: none;
+  }
+
   &:hover {
     background:   $color-prime-hover;
   }
