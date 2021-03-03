@@ -31,7 +31,7 @@ const Footer = (props) => {
 
   const handleGameOver = () => {
     if (!gameOver) {
-      setOpenLose(true); // alert(`Game over. Your score is ${score}`);
+      setOpenLose(true);
       setPlay(false);
     }
 
@@ -50,11 +50,7 @@ const Footer = (props) => {
       checkObj.resultBoard = tempBoard !== -1 ? tempBoard : newBoard;
       if (isWin(checkObj.resultBoard) && !win) {
         checkObj.winCheck = true;
-        // alert('Congrats, you won! You can continue playing or start new game.');
-        // return <DescriptionAlerts />;
         setOpenWin(true);
-        // setPlay(false);
-        // alert('error');
       }
       // eslint-disable-next-line no-use-before-define
       if (isGameOver(checkObj.resultBoard)) checkObj.gameOver = handleGameOver();
@@ -209,7 +205,7 @@ const Footer = (props) => {
     return () => clearInterval(interval);
   }, [play, gameOver, history]);
 
-  const autoPlay = () => play ? setPlay(false) : setPlay(true);
+  const autoPlay = () => (play ? setPlay(false) : setPlay(true));
 
   return (
     <footer className="footer">
@@ -217,7 +213,8 @@ const Footer = (props) => {
         HOW TO PLAY: Use your arrow keys on keyboard or in app to move the tiles (w,a,s,d works
         too). Tiles with the same number merge into one when they touch. Add them up to reach
         64(2048 hard to test)! You can continue to play after you have reached 64(2048 hard to
-        test). Auto play runs until game over(click play button). Also you can stop auto play clicking again same button.
+        test). Auto play runs until game over(click play button). Also you can stop auto play
+        clicking again same button.
       </div>
       <div className="footer__bottom">
         <div className="footer__links">

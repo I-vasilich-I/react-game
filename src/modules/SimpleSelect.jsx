@@ -32,10 +32,10 @@ export default function SimpleSelect(props) {
   const classes = useStyles();
   const { boardSize, setBoardSize, setHistory, setIsPopUpActive } = props;
 
-  const newGame = () => {
+  const newGame = (size) => {
     setHistory([
       {
-        board: getInitialBoardArray(boardSize * boardSize),
+        board: getInitialBoardArray(size * size),
         score: 0,
         win: false,
         gameOver: false,
@@ -44,12 +44,12 @@ export default function SimpleSelect(props) {
   };
 
   useEffect(() => {
-    newGame();
     setIsPopUpActive(false);
   }, [boardSize]);
 
   const handleChange = (event) => {
     setBoardSize(event.target.value);
+    newGame(event.target.value);
   };
 
   return (
