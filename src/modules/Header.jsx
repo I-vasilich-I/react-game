@@ -7,7 +7,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { getInitialBoardArray, setValueInLocalStorage } from './utils/helpers';
 
 const Header = (props) => {
-  const { setIsPopUpActive, bestScore, boardSize, history, setHistory } = props;
+  const { setIsPopUpActive, bestScore, boardSize, history, setHistory, stepBackButton } = props;
   const currentBestScore = bestScore ? bestScore[bestScore.length - 1] : 0;
   const current = history[history.length - 1];
   const { score } = current;
@@ -61,10 +61,14 @@ const Header = (props) => {
         <button type="button" className="button button--nav" onClick={newGame}>
           <FiberNewOutlinedIcon fontSize="inherit" />
         </button>
-        <button type="button" className="button button--nav" onClick={stepBack}>
+        <button
+          type="button"
+          className={`${stepBackButton === '1' ? 'button button--nav' : 'button button--hidden'}`}
+          onClick={stepBack}
+        >
           <ReplyIcon fontSize="inherit" />
         </button>
-        <button type="button" className="button  button--nav" onClick={fullScreen}>
+        <button type="button" className="button button--nav" onClick={fullScreen}>
           <FullscreenIcon fontSize="inherit" />
         </button>
       </div>

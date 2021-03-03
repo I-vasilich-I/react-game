@@ -27,6 +27,9 @@ const App = () => {
   const [isPopUpActive, setIsPopUpActive] = useState(false);
   const [openWin, setOpenWin] = useState(false);
   const [openLose, setOpenLose] = useState(false);
+  const [winningNumber, setWinningNumber] = useState('2048');
+  const [stepBackButton, setStepBackButton] = useState('0');
+
   return (
     <div className="App">
       <h1 className="hidden">2048</h1>
@@ -39,6 +42,10 @@ const App = () => {
         bestScore={bestScore}
         isPopUpActive={isPopUpActive}
         setIsPopUpActive={setIsPopUpActive}
+        winningNumber={winningNumber}
+        setWinningNumber={setWinningNumber}
+        stepBackButton={stepBackButton}
+        setStepBackButton={setStepBackButton}
       />
       <Header
         bestScore={bestScore}
@@ -48,6 +55,7 @@ const App = () => {
         setHistory={setHistory}
         isPopUpActive={isPopUpActive}
         setIsPopUpActive={setIsPopUpActive}
+        stepBackButton={stepBackButton}
       />
       <Board history={history} boardSize={boardSize} />
       <Footer
@@ -58,6 +66,7 @@ const App = () => {
         setHistory={setHistory}
         setOpenWin={setOpenWin}
         setOpenLose={setOpenLose}
+        winningNumber={winningNumber}
       />
     </div>
   );
