@@ -22,7 +22,7 @@ h2 {
 }
 
 h3 {
-  @include font(3.5rem, 130%, $color-tile-text-dark);
+  @include font(3rem, 130%, $color-tile-text-dark);
 }
 
 h4 {
