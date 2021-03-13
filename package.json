@@ -1,7 +1,7 @@
 {
   "name": "game",
   "version": "1.0.0",
-  "description": "",
+  "description": "react-game",
   "main": "index.js",
   "scripts": {
     "dev": "webpack --mode development",
@@ -15,7 +15,7 @@
     "url": "git+https://github.com/I-vasilich-I/game.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Oleg Vaskevich",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/I-vasilich-I/game/issues"

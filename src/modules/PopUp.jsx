@@ -30,7 +30,7 @@ const PopUp = (props) => {
     return () => {
       document.removeEventListener('mousedown', handleClick);
     };
-  }, ['mousedown', handleClick]);
+  }, []);
 
   return (
     <div className={popupClassName}>

@@ -6,11 +6,16 @@ import FullscreenIcon from '@material-ui/icons/Fullscreen';
 import MenuIcon from '@material-ui/icons/Menu';
 import { getInitialBoardArray, setValueInLocalStorage } from './utils/helpers';
 
-const Header = (props) => {
-  const { setIsPopUpActive, bestScore, boardSize, history, setHistory, stepBackButton } = props;
+const Header = ({
+  setIsPopUpActive,
+  bestScore,
+  boardSize,
+  history,
+  setHistory,
+  stepBackButton,
+}) => {
   const currentBestScore = bestScore ? bestScore[bestScore.length - 1] : 0;
-  const current = history[history.length - 1];
-  const { score } = current;
+  const { score } = history[history.length - 1];
 
   const popUp = () => {
     setIsPopUpActive(true);

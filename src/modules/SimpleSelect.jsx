@@ -47,9 +47,9 @@ export default function SimpleSelect(props) {
     setIsPopUpActive(false);
   }, [boardSize]);
 
-  const handleChange = (event) => {
-    setBoardSize(event.target.value);
-    newGame(event.target.value);
+  const handleChange = ({ target: { value } }) => {
+    setBoardSize(value);
+    newGame(value);
   };
 
   return (

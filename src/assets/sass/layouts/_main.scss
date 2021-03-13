@@ -46,6 +46,7 @@
   height: 100px;
   @include font(5rem, 200%, $color-tile-text-dark);
   text-align: center;
+  
   &--3 {
     width: 135px;
     height: 135px;
@@ -62,6 +63,7 @@
     height: 70px;
     font-size: 4rem;
   }
+
   &--0 {
     background-color: $color-tile-0;
   }
@@ -111,25 +113,21 @@
 
   &--1024 {
     background-color: $color-tile-1024;
-    color: $color-tile-text-light;
-    font-size: 3rem;
-    line-height: 250%;
   }
 
   &--2048 {
     background-color: $color-tile-2048;
-    color: $color-tile-text-light;
-    font-size: 3rem;
-    line-height: 250%;
   }
+
   &--4096 {
     background-color: $color-tile-4096;
-    color: $color-tile-text-light;
-    font-size: 3rem;
-    line-height: 250%;
   }
+
   &--8192 {
     background-color: $color-tile-8192;
+  }
+
+  &--1024, &--2048, &--4096, &--8192 {
     color: $color-tile-text-light;
     font-size: 3rem;
     line-height: 250%;

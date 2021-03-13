@@ -25,6 +25,10 @@ const Footer = (props) => {
   let newScore = 0;
   const [play, setPlay] = useState(false);
 
+  const getRow = (array, i) => array.filter((elem, id) => id >= i && id < i + boardSize);
+
+  const getColumn = (array, i) => array.filter((elem, id) => (id - i) % boardSize === 0);
+
   const isWin = (array) => {
     const tempArr = [...array].sort((a, b) => a - b);
     return tempArr[tempArr.length - 1] >= winningNumber;
@@ -34,6 +38,30 @@ const Footer = (props) => {
     if (!gameOver) {
       setOpenLose(true);
       setPlay(false);
+    }
+
+    return true;
+  };
+
+  const isGameOver = (array) => {
+    const emptySpots = array.filter((elem) => !elem).length;
+    if (emptySpots) return false;
+    for (let i = 0; i < squareBoardSize; i += boardSize) {
+      const line = getRow(array, i);
+      for (let j = 0; j < line.length - 1; j++) {
+        if (line[j] === line[j + 1]) {
+          return false;
+        }
+      }
+    }
+
+    for (let i = 0; i < boardSize; i++) {
+      const line = getColumn(array, i);
+      for (let j = 0; j < line.length - 1; j++) {
+        if (line[j] === line[j + 1]) {
+          return false;
+        }
+      }
     }
 
     return true;
@@ -53,7 +81,6 @@ const Footer = (props) => {
         checkObj.winCheck = true;
         setOpenWin(true);
       }
-      // eslint-disable-next-line no-use-before-define
       if (isGameOver(checkObj.resultBoard)) checkObj.gameOver = handleGameOver();
       if (!gameOver) {
         setHistory(
@@ -99,24 +126,20 @@ const Footer = (props) => {
     return direction ? newLine.reverse() : newLine;
   };
 
-  const getRow = (array, i) => array.filter((elem, id) => id >= i && id < i + boardSize);
-
-  const getColumn = (array, i) => array.filter((elem, id) => (id - i) % boardSize === 0);
-
   const updateNewBoardHorizontal = (newBoard, i, direction = false) => {
+    const tempNewBoard = newBoard;
     const newLine = processLine(getRow(board, i), direction);
     newLine.map((elem, id) => {
-      // eslint-disable-next-line no-param-reassign
-      newBoard[id + i] = elem;
+      tempNewBoard[id + i] = elem;
       return elem;
     });
   };
 
   const updateNewBoardVertical = (newBoard, i, direction = false) => {
+    const tempNewBoard = newBoard;
     const newLine = processLine(getColumn(board, i), direction);
     newLine.map((elem, id) => {
-      // eslint-disable-next-line no-param-reassign
-      newBoard[id * boardSize + i] = elem;
+      tempNewBoard[id * boardSize + i] = elem;
       return elem;
     });
   };
@@ -153,30 +176,6 @@ const Footer = (props) => {
     setNewBoard(newBoard);
   };
 
-  const isGameOver = (array) => {
-    const emptySpots = array.filter((elem) => !elem).length;
-    if (emptySpots) return false;
-    for (let i = 0; i < squareBoardSize; i += boardSize) {
-      const line = getRow(array, i);
-      for (let j = 0; j < line.length - 1; j++) {
-        if (line[j] === line[j + 1]) {
-          return false;
-        }
-      }
-    }
-
-    for (let i = 0; i < boardSize; i++) {
-      const line = getColumn(array, i);
-      for (let j = 0; j < line.length - 1; j++) {
-        if (line[j] === line[j + 1]) {
-          return false;
-        }
-      }
-    }
-
-    return true;
-  };
-
   const handleEvent = (e) => {
     if (e.stopPropagation) e.stopPropagation();
     if (e.code === 'ArrowLeft' || e.code === 'KeyA') moveLeft();
@@ -190,7 +189,7 @@ const Footer = (props) => {
     return () => {
       document.removeEventListener('keydown', handleEvent);
     };
-  }, ['keydown', handleEvent]);
+  }, [handleEvent]);
 
   useEffect(() => {
     let count = 1;
@@ -199,7 +198,6 @@ const Footer = (props) => {
         moveUp();
         if (count % 3 === 0) moveRight();
         if (count % 2 === 0) moveLeft();
-        // if (count % 2 !==0) moveDown();
         count++;
       }
     }, 700);

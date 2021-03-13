@@ -10,10 +10,10 @@ const App = () => {
   const [boardSize, setBoardSize] = useState(4);
   const [bestScore, setBestScore] = useState(getValueFromLocalStorage('bestScore') || [0]);
   const localHistory = getValueFromLocalStorage('2048-history');
-  const isLocalBoardSizeSame =
-    localHistory && localHistory[localHistory.length - 1].board.length === boardSize * boardSize;
-  const [history, setHistory] = useState(
-    localHistory && isLocalBoardSizeSame
+  const prepareHistoryState = () => {
+    const isLocalBoardSizeSame =
+      localHistory && localHistory[localHistory.length - 1].board.length === boardSize * boardSize;
+    return localHistory && isLocalBoardSizeSame
       ? localHistory
       : [
           {
@@ -22,8 +22,10 @@ const App = () => {
             win: false,
             gameOver: false,
           },
-        ]
-  );
+        ];
+  };
+
+  const [history, setHistory] = useState(prepareHistoryState());
   const [isPopUpActive, setIsPopUpActive] = useState(false);
   const [openWin, setOpenWin] = useState(false);
   const [openLose, setOpenLose] = useState(false);

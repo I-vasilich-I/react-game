@@ -19,6 +19,7 @@
   top: 0;
   display: flex;
   justify-content: flex-start;
+
   &--hidden {
     display: none;
   }
@@ -29,7 +30,6 @@
   margin: auto;
   height: 400px;
   width: 400px;
-
   padding: 15px 25px;
   display: flex;
   flex-direction: column;
@@ -38,6 +38,7 @@
   align-items: center;
   background-color: $color-popup;
   border-radius: 20px;
+
   &:hover {
     cursor: auto;
   }
@@ -51,7 +52,6 @@
   margin: auto;
   height: 300px;
   width: 200px;
-
   padding: 15px 25px;
   display: flex;
   flex-direction: column;

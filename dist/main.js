@@ -1,1 +1,1373 @@
-(()=>{"use strict";var e={9057:(e,t,n)=>{var r=n(7294),o=n(3935);const a=function(e){var t=e.history,n=e.boardSize,o=t[t.length-1].board,a={4:"tile",3:"tile tile--3",5:"tile tile--5",6:"tile tile--6"},l="board".concat(4!==n?" board-".concat(n):""),c=function(e){return e||""};return r.createElement("main",{className:"main"},r.createElement("section",{className:l},o.map((function(e,t){return r.createElement("div",{key:t,className:"".concat(a[n]," tile--").concat(c(e)?c(e):0)},c(e))}))))};var l=n(7168),c=n(2046),i=n(7118),s=n(8884);function u(e,t){(null==t||t>e.length)&&(t=e.length);for(var n=0,r=new Array(t);n<t;n++)r[n]=e[n];return r}var m=function(e){return JSON.parse(localStorage.getItem(e))||null},f=function(e,t){return localStorage.setItem(e,JSON.stringify(t))},b=function(e){var t,n=function(e){if(Array.isArray(e))return u(e)}(t=e)||function(e){if("undefined"!=typeof Symbol&&Symbol.iterator in Object(e))return Array.from(e)}(t)||function(e,t){if(e){if("string"==typeof e)return u(e,t);var n=Object.prototype.toString.call(e).slice(8,-1);return"Object"===n&&e.constructor&&(n=e.constructor.name),"Map"===n||"Set"===n?Array.from(e):"Arguments"===n||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)?u(e,t):void 0}}(t)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}(),r=function(e){return e.map((function(e,t){return e?-1:t})).filter((function(e){return-1!==e}))}(e);if(!r.length)return-1;var o,a=Math.floor(Math.random()<.8?2:4);return n[r[(o=r.length,Math.floor(Math.random()*Math.floor(o)))]]=a,n},d=function(e){return b(b(Array(e).fill(0)))};const p=function(e){var t=e.setIsPopUpActive,n=e.bestScore,o=e.boardSize,a=e.history,u=e.setHistory,m=e.stepBackButton,b=n?n[n.length-1]:0,p=a[a.length-1].score;return r.createElement("header",{className:"header"},r.createElement("div",{className:"header__top"},r.createElement("h2",{className:"logo"},"2048"),r.createElement("div",{className:"score__container"},r.createElement("div",{className:"score"},r.createElement("p",{className:"score__title"},"Score"),r.createElement("p",{className:"score__count"},p)),r.createElement("div",{className:"score"},r.createElement("p",{className:"score__title"},"Best score"),r.createElement("p",{className:"score__count"},b)))),r.createElement("div",{className:"header__bottom"},r.createElement("button",{type:"button",className:"button button--nav",onClick:function(){t(!0)}},r.createElement(s.Z,{fontSize:"inherit"})),r.createElement("button",{type:"button",className:"button button--nav",onClick:function(){var e=[{board:d(o*o),score:0,win:!1,gameOver:!1}];u(e),f("2048-history",e)}},r.createElement(c.Z,{fontSize:"inherit"})),r.createElement("button",{type:"button",className:"".concat("1"===m?"button button--nav":"button button--hidden"),onClick:function(){a.length<2||(u(a.slice(0,a.length-1)),f("2048-history",a.slice(0,a.length-1)))}},r.createElement(l.Z,{fontSize:"inherit"})),r.createElement("button",{type:"button",className:"button button--nav",onClick:function(){document.body.requestFullscreen()}},r.createElement(i.Z,{fontSize:"inherit"}))))};var v=n(9826),h=n(9973),y=n(1673),g=n(9594),E=n(8735);function S(e,t){if(e){if("string"==typeof e)return N(e,t);var n=Object.prototype.toString.call(e).slice(8,-1);return"Object"===n&&e.constructor&&(n=e.constructor.name),"Map"===n||"Set"===n?Array.from(e):"Arguments"===n||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)?N(e,t):void 0}}function N(e,t){(null==t||t>e.length)&&(t=e.length);for(var n=0,r=new Array(t);n<t;n++)r[n]=e[n];return r}const w=function(e){var t,n,o=e.bestScore,a=e.setBestScore,l=e.boardSize,c=e.history,i=e.setHistory,s=e.setOpenWin,u=e.setOpenLose,m=e.winningNumber,d=o[o.length-1]?o[o.length-1]:0,p=c[c.length-1],w=p.board,k=p.score,_=p.win,A=p.gameOver,B=l*l,Z=0,O=(t=(0,r.useState)(!1),n=2,function(e){if(Array.isArray(e))return e}(t)||function(e,t){if("undefined"!=typeof Symbol&&Symbol.iterator in Object(e)){var n=[],r=!0,o=!1,a=void 0;try{for(var l,c=e[Symbol.iterator]();!(r=(l=c.next()).done)&&(n.push(l.value),!t||n.length!==t);r=!0);}catch(e){o=!0,a=e}finally{try{r||null==c.return||c.return()}finally{if(o)throw a}}return n}}(t,n)||S(t,n)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()),z=O[0],C=O[1],I=function(e){var t,n,r={resultBoard:null,winCheck:null,gameOver:null};if(n=w,e.toString()!==n.toString()){var l=b(e);r.resultBoard=-1!==l?l:e,(t=function(e){return function(e){if(Array.isArray(e))return N(e)}(e)||function(e){if("undefined"!=typeof Symbol&&Symbol.iterator in Object(e))return Array.from(e)}(e)||S(e)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}(r.resultBoard).sort((function(e,t){return e-t})))[t.length-1]>=m&&!_&&(r.winCheck=!0,s(!0)),K(r.resultBoard)&&(r.gameOver=(A||(u(!0),C(!1)),!0)),A||(i(c.concat({board:r.resultBoard||w,score:k+Z,win:r.winCheck||_,gameOver:r.gameOver||A})),f("2048-history",c.concat({board:r.resultBoard||w,score:k+Z,win:r.winCheck||_,gameOver:r.gameOver||A})))}var p=k+Z>d?k+Z:null;p&&(a(o.concat(p)),f("bestScore",o.concat(p)))},x=function(e){var t=arguments.length>1&&void 0!==arguments[1]&&arguments[1],n=e.filter((function(e){return!!e}));t&&n.reverse();for(var r=0;r<n.length;r++)if(n[r]===n[r+1]){Z+=n[r]+n[r+1];var o=[n[r]+n[r+1],0];n[r]=o[0],n[r+1]=o[1]}for(var a=n.filter((function(e){return!!e}));a.length<e.length;)a.push(0);return t?a.reverse():a},j=function(e,t){return e.filter((function(e,n){return n>=t&&n<t+l}))},P=function(e,t){return e.filter((function(e,n){return(n-t)%l==0}))},U=function(e,t){var n=arguments.length>2&&void 0!==arguments[2]&&arguments[2],r=x(j(w,t),n);r.map((function(n,r){return e[r+t]=n,n}))},W=function(e,t){var n=arguments.length>2&&void 0!==arguments[2]&&arguments[2],r=x(P(w,t),n);r.map((function(n,r){return e[r*l+t]=n,n}))},L=function(){for(var e=new Array(B),t=0;t<B;t+=l)U(e,t);I(e)},M=function(){for(var e=new Array(B),t=0;t<B;t+=l)U(e,t,!0);I(e)},T=function(){for(var e=new Array(B),t=0;t<l;t++)W(e,t);I(e)},H=function(){for(var e=new Array(B),t=0;t<l;t++)W(e,t,!0);I(e)},K=function(e){if(e.filter((function(e){return!e})).length)return!1;for(var t=0;t<B;t+=l)for(var n=j(e,t),r=0;r<n.length-1;r++)if(n[r]===n[r+1])return!1;for(var o=0;o<l;o++)for(var a=P(e,o),c=0;c<a.length-1;c++)if(a[c]===a[c+1])return!1;return!0},Y=function(e){e.stopPropagation&&e.stopPropagation(),"ArrowLeft"!==e.code&&"KeyA"!==e.code||L(),"ArrowRight"!==e.code&&"KeyD"!==e.code||M(),"ArrowUp"!==e.code&&"KeyW"!==e.code||T(),"ArrowDown"!==e.code&&"KeyS"!==e.code||H()};return(0,r.useEffect)((function(){return document.addEventListener("keydown",Y),function(){document.removeEventListener("keydown",Y)}}),["keydown",Y]),(0,r.useEffect)((function(){var e=1,t=setInterval((function(){z&&!A&&(T(),e%3==0&&M(),e%2==0&&L(),e++)}),700);return function(){return clearInterval(t)}}),[z,A,c]),r.createElement("footer",{className:"footer"},r.createElement("div",{className:"footer__info"},"HOW TO PLAY: Use your arrow keys on keyboard or in app to move the tiles (w,a,s,d works too). Tiles with the same number merge into one when they touch. Add them up to reach 64 or 2048(can choose in menu)! You can continue to play after you have reached 64 or 2048. Auto play runs until game over(click play button). Also you can stop auto play clicking again same button. Step back button does step back))"),r.createElement("div",{className:"footer__bottom"},r.createElement("div",{className:"footer__links"},r.createElement("a",{href:"https://github.com/I-vasilich-I",className:"footer__link",target:"_blank",rel:"noreferrer"},r.createElement("img",{className:"github__logo",src:"assets/images/GitHub-Mark.png",alt:"Oleg Vaskevich"})),r.createElement("a",{href:"https://youtu.be/1bePpGUQ7lE",className:"footer__link youtube",target:"_blank",rel:"noreferrer"},r.createElement("img",{src:"assets/images/YouTube.svg",alt:"How to use"})),r.createElement("a",{href:"https://rs.school/js/",className:"footer__link",target:"_blank",rel:"noreferrer"},r.createElement("img",{src:"assets/images/rs_school_js.svg",alt:"The Rolling Scopes"}))),r.createElement("h3",null,"2021"),r.createElement("button",{type:"button",className:"button button--nav"},r.createElement(E.Z,{fontSize:"inherit",onClick:function(){return C(!z)}})),r.createElement("div",{className:"button__container"},r.createElement("button",{type:"button",className:"button button--nav item-b",onClick:L},r.createElement(v.Z,{fontSize:"large"})),r.createElement("button",{type:"button",className:"button button--nav item-a",onClick:T},r.createElement(g.Z,{fontSize:"large"})),r.createElement("button",{type:"button",className:"button button--nav item-d",onClick:M},r.createElement(h.Z,{fontSize:"large"})),r.createElement("button",{type:"button",className:"button button--nav item-c",onClick:H},r.createElement(y.Z,{fontSize:"large"})))))};var k=n(1120),_=n(6394),A=n(6775),B=n(4436),Z=n(6975),O=(0,k.Z)((function(e){return{formControl:{margin:e.spacing(1),minWidth:120,fontSize:"2rem"},label:{fontSize:"2rem"},select:{fontSize:"2rem"},menuItem:{fontSize:"2rem",backgroundColor:"#e0e0e0"},selectEmpty:{marginTop:e.spacing(2)}}}));function z(e){var t=O(),n=e.boardSize,o=e.setBoardSize,a=e.setHistory,l=e.setIsPopUpActive;return(0,r.useEffect)((function(){l(!1)}),[n]),r.createElement("div",null,r.createElement(B.Z,{className:t.formControl},r.createElement(_.Z,{className:t.label,id:"demo-simple-select-label"},"Board size"),r.createElement(Z.Z,{className:t.select,labelId:"demo-simple-select-label",id:"demo-simple-select",value:n,onChange:function(e){var t;o(e.target.value),t=e.target.value,a([{board:d(t*t),score:0,win:!1,gameOver:!1}])}},r.createElement(A.Z,{className:t.menuItem,value:3},"3x3"),r.createElement(A.Z,{className:t.menuItem,value:4},"4x4"),r.createElement(A.Z,{className:t.menuItem,value:5},"5x5"),r.createElement(A.Z,{className:t.menuItem,value:6},"6x6"))))}var C=n(1846),I=n(7162),x=n(6546),j=n(6019),P=(0,k.Z)((function(){return{formControl:{fontSize:"1.7rem"},label:{fontSize:"2rem"}}}));function U(e){var t=P(),n=e.winningNumber,o=e.setWinningNumber;return r.createElement(B.Z,{className:t.formControl,component:"fieldset"},r.createElement(j.Z,{className:t.formControl,component:"legend"},"Winning number"),r.createElement(I.Z,{className:t.formControl,row:!0,"aria-label":"winningNumber",name:"64",value:n,onChange:function(e){o(e.target.value)}},r.createElement(x.Z,{className:t.label,value:"64",control:r.createElement(C.Z,{className:t.label,color:"default"}),label:"64"}),r.createElement(x.Z,{className:t.label,value:"2048",control:r.createElement(C.Z,{className:t.label,color:"default"}),label:"2048"})))}var W=(0,k.Z)((function(){return{formControl:{fontSize:"1.7rem"},label:{fontSize:"2rem"}}}));function L(e){var t=W(),n=e.stepBackButton,o=e.setStepBackButton;return r.createElement(B.Z,{className:t.formControl,component:"fieldset"},r.createElement(j.Z,{className:t.formControl,component:"legend"},"Step back button"),r.createElement(I.Z,{className:t.formControl,row:!0,"aria-label":"stepBackButton",name:"stepBackButton",value:n,onChange:function(e){o(e.target.value)}},r.createElement(x.Z,{className:t.label,value:"1",control:r.createElement(C.Z,{className:t.label,color:"default"}),label:"On"}),r.createElement(x.Z,{className:t.label,value:"0",control:r.createElement(C.Z,{className:t.label,color:"default"}),label:"Off"})))}const M=function(e){var t=e.isPopUpActive,n=e.setIsPopUpActive,o=e.bestScore,a=e.boardSize,l=e.setBoardSize,c=e.setHistory,i=e.winningNumber,s=e.setWinningNumber,u=e.stepBackButton,m=e.setStepBackButton,f=t?"popup blackout":"popup popup--hidden",b=o.slice(o.length-10,o.length),d=function(e){"popup blackout"===e.target.className&&n(!1)};return(0,r.useEffect)((function(){return document.addEventListener("mousedown",d),function(){document.removeEventListener("mousedown",d)}}),["mousedown",d]),r.createElement("div",{className:f},r.createElement("div",{className:"popup__container"},r.createElement("div",{className:"radio"},r.createElement(U,{winningNumber:i,setWinningNumber:s})),r.createElement("div",{className:"radio"},r.createElement(L,{stepBackButton:u,setStepBackButton:m})),r.createElement(z,{setIsPopUpActive:n,boardSize:a,setBoardSize:l,setHistory:c}),r.createElement("div",{className:"best-score__list"},"Best score:",b.reverse().map((function(e,t){return r.createElement("div",{key:t+1,className:"best-score__item"},r.createElement("div",{className:"best-score__id"},t+1),r.createElement("div",{className:"best-score__score"},e))})))))};var T=n(8715),H=n(7812),K=n(6037),Y=n(366),$=(0,k.Z)((function(e){return{root:{width:"80%","& > * + *":{marginTop:e.spacing(2)},position:"absolute",top:0,left:"10%"},alert__text:{fontSize:"3rem",display:"flex",justifyContent:"space-evenly",alignItems:"center"}}}));function D(e){var t=$(),n=e.openWin,o=e.setOpenWin;return r.createElement("div",{className:t.root},r.createElement(K.Z,{in:n},r.createElement(T.Z,{severity:"success",className:t.alert__text,action:r.createElement(H.Z,{"aria-label":"close",color:"inherit",size:"small",onClick:function(){o(!1)}},r.createElement(Y.Z,{fontSize:"inherit"}))},"Congrats, you won!")))}function G(e){var t=$(),n=e.openLose,o=e.setOpenLose;return r.createElement("div",{className:t.root},r.createElement(K.Z,{in:n},r.createElement(T.Z,{severity:"error",className:t.alert__text,action:r.createElement(H.Z,{"aria-label":"close",color:"inherit",size:"small",onClick:function(){o(!1)}},r.createElement(Y.Z,{fontSize:"inherit"}))},"Sorry, you lose. Better luck next time.")))}function J(e,t){return function(e){if(Array.isArray(e))return e}(e)||function(e,t){if("undefined"!=typeof Symbol&&Symbol.iterator in Object(e)){var n=[],r=!0,o=!1,a=void 0;try{for(var l,c=e[Symbol.iterator]();!(r=(l=c.next()).done)&&(n.push(l.value),!t||n.length!==t);r=!0);}catch(e){o=!0,a=e}finally{try{r||null==c.return||c.return()}finally{if(o)throw a}}return n}}(e,t)||function(e,t){if(e){if("string"==typeof e)return R(e,t);var n=Object.prototype.toString.call(e).slice(8,-1);return"Object"===n&&e.constructor&&(n=e.constructor.name),"Map"===n||"Set"===n?Array.from(e):"Arguments"===n||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)?R(e,t):void 0}}(e,t)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function R(e,t){(null==t||t>e.length)&&(t=e.length);for(var n=0,r=new Array(t);n<t;n++)r[n]=e[n];return r}const q=function(){var e=J((0,r.useState)(4),2),t=e[0],n=e[1],o=J((0,r.useState)(m("bestScore")||[0]),2),l=o[0],c=o[1],i=m("2048-history"),s=i&&i[i.length-1].board.length===t*t,u=J((0,r.useState)(i&&s?i:[{board:d(t*t),score:0,win:!1,gameOver:!1}]),2),f=u[0],b=u[1],v=J((0,r.useState)(!1),2),h=v[0],y=v[1],g=J((0,r.useState)(!1),2),E=g[0],S=g[1],N=J((0,r.useState)(!1),2),k=N[0],_=N[1],A=J((0,r.useState)("2048"),2),B=A[0],Z=A[1],O=J((0,r.useState)("0"),2),z=O[0],C=O[1];return r.createElement("div",{className:"App"},r.createElement("h1",{className:"hidden"},"2048"),r.createElement(D,{openWin:E,setOpenWin:S}),r.createElement(G,{openLose:k,setOpenLose:_}),r.createElement(M,{boardSize:t,setBoardSize:n,setHistory:b,bestScore:l,isPopUpActive:h,setIsPopUpActive:y,winningNumber:B,setWinningNumber:Z,stepBackButton:z,setStepBackButton:C}),r.createElement(p,{bestScore:l,boardSize:t,setBoardSize:n,history:f,setHistory:b,isPopUpActive:h,setIsPopUpActive:y,stepBackButton:z}),r.createElement(a,{history:f,boardSize:t}),r.createElement(w,{bestScore:l,setBestScore:c,boardSize:t,history:f,setHistory:b,setOpenWin:S,setOpenLose:_,winningNumber:B}))};o.render(r.createElement(q,null),document.getElementById("root"))},6277:()=>{}},t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={exports:{}};return e[r](o,o.exports,n),o.exports}n.m=e,n.x=e=>{},n.n=e=>{var t=e&&e.__esModule?()=>e.default:()=>e;return n.d(t,{a:t}),t},n.d=(e,t)=>{for(var r in t)n.o(t,r)&&!n.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},n.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),n.r=e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},(()=>{var e={179:0},t=[[6981,505],[9057,505],[6277,505]],r=e=>{},o=(o,a)=>{for(var l,c,[i,s,u,m]=a,f=0,b=[];f<i.length;f++)c=i[f],n.o(e,c)&&e[c]&&b.push(e[c][0]),e[c]=0;for(l in s)n.o(s,l)&&(n.m[l]=s[l]);for(u&&u(n),o&&o(a);b.length;)b.shift()();return m&&t.push.apply(t,m),r()},a=self.webpackChunkgame=self.webpackChunkgame||[];function l(){for(var r,o=0;o<t.length;o++){for(var a=t[o],l=!0,c=1;c<a.length;c++){var i=a[c];0!==e[i]&&(l=!1)}l&&(t.splice(o--,1),r=n(n.s=a[0]))}return 0===t.length&&(n.x(),n.x=e=>{}),r}a.forEach(o.bind(null,0)),a.push=o.bind(null,a.push.bind(a));var c=n.x;n.x=()=>(n.x=c||(e=>{}),(r=l)())})(),n.x()})();
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/index.jsx":
+/*!***********************!*\
+  !*** ./src/index.jsx ***!
+  \***********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var _modules_App__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/App */ "./src/modules/App.jsx");
+
+
+
+react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_modules_App__WEBPACK_IMPORTED_MODULE_2__.default, null), document.getElementById('root'));
+
+/***/ }),
+
+/***/ "./src/modules/Alert.jsx":
+/*!*******************************!*\
+  !*** ./src/modules/Alert.jsx ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "TransitionAlertsWin": () => (/* binding */ TransitionAlertsWin),
+/* harmony export */   "TransitionAlertsLose": () => (/* binding */ TransitionAlertsLose)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
+/* harmony import */ var _material_ui_lab_Alert__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/lab/Alert */ "./node_modules/@material-ui/lab/esm/Alert/Alert.js");
+/* harmony import */ var _material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/IconButton */ "./node_modules/@material-ui/core/esm/IconButton/IconButton.js");
+/* harmony import */ var _material_ui_core_Collapse__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/Collapse */ "./node_modules/@material-ui/core/esm/Collapse/Collapse.js");
+/* harmony import */ var _material_ui_icons_Close__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/icons/Close */ "./node_modules/@material-ui/icons/Close.js");
+/* eslint-disable prettier/prettier */
+
+/* eslint-disable react/prop-types */
+
+
+
+
+
+
+var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__.default)(function (theme) {
+  return {
+    root: {
+      width: '80%',
+      '& > * + *': {
+        marginTop: theme.spacing(2)
+      },
+      position: 'absolute',
+      top: 0,
+      left: '10%'
+    },
+    alert__text: {
+      fontSize: '3rem',
+      display: 'flex',
+      justifyContent: 'space-evenly',
+      alignItems: 'center'
+    }
+  };
+});
+
+function TransitionAlertsWin(props) {
+  var classes = useStyles();
+  var openWin = props.openWin,
+      setOpenWin = props.setOpenWin;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: classes.root
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core_Collapse__WEBPACK_IMPORTED_MODULE_2__.default, {
+    "in": openWin
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_lab_Alert__WEBPACK_IMPORTED_MODULE_3__.default, {
+    severity: "success",
+    className: classes.alert__text,
+    action: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_4__.default, {
+      "aria-label": "close",
+      color: "inherit",
+      size: "small",
+      onClick: function onClick() {
+        setOpenWin(false);
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_icons_Close__WEBPACK_IMPORTED_MODULE_5__.default, {
+      fontSize: "inherit"
+    }))
+  }, "Congrats, you won!")));
+}
+
+function TransitionAlertsLose(props) {
+  var classes = useStyles();
+  var openLose = props.openLose,
+      setOpenLose = props.setOpenLose;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: classes.root
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core_Collapse__WEBPACK_IMPORTED_MODULE_2__.default, {
+    "in": openLose
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_lab_Alert__WEBPACK_IMPORTED_MODULE_3__.default, {
+    severity: "error",
+    className: classes.alert__text,
+    action: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_4__.default, {
+      "aria-label": "close",
+      color: "inherit",
+      size: "small",
+      onClick: function onClick() {
+        setOpenLose(false);
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_icons_Close__WEBPACK_IMPORTED_MODULE_5__.default, {
+      fontSize: "inherit"
+    }))
+  }, "Sorry, you lose. Better luck next time.")));
+}
+
+
+
+/***/ }),
+
+/***/ "./src/modules/App.jsx":
+/*!*****************************!*\
+  !*** ./src/modules/App.jsx ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _Board__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Board */ "./src/modules/Board.jsx");
+/* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Header */ "./src/modules/Header.jsx");
+/* harmony import */ var _Footer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Footer */ "./src/modules/Footer.jsx");
+/* harmony import */ var _PopUp__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./PopUp */ "./src/modules/PopUp.jsx");
+/* harmony import */ var _Alert__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Alert */ "./src/modules/Alert.jsx");
+/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+var App = function App() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(4),
+      _useState2 = _slicedToArray(_useState, 2),
+      boardSize = _useState2[0],
+      setBoardSize = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((0,_utils_helpers__WEBPACK_IMPORTED_MODULE_6__.getValueFromLocalStorage)('bestScore') || [0]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      bestScore = _useState4[0],
+      setBestScore = _useState4[1];
+
+  var localHistory = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_6__.getValueFromLocalStorage)('2048-history');
+
+  var prepareHistoryState = function prepareHistoryState() {
+    var isLocalBoardSizeSame = localHistory && localHistory[localHistory.length - 1].board.length === boardSize * boardSize;
+    return localHistory && isLocalBoardSizeSame ? localHistory : [{
+      board: (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_6__.getInitialBoardArray)(boardSize * boardSize),
+      score: 0,
+      win: false,
+      gameOver: false
+    }];
+  };
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(prepareHistoryState()),
+      _useState6 = _slicedToArray(_useState5, 2),
+      history = _useState6[0],
+      setHistory = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState8 = _slicedToArray(_useState7, 2),
+      isPopUpActive = _useState8[0],
+      setIsPopUpActive = _useState8[1];
+
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState10 = _slicedToArray(_useState9, 2),
+      openWin = _useState10[0],
+      setOpenWin = _useState10[1];
+
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState12 = _slicedToArray(_useState11, 2),
+      openLose = _useState12[0],
+      setOpenLose = _useState12[1];
+
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('2048'),
+      _useState14 = _slicedToArray(_useState13, 2),
+      winningNumber = _useState14[0],
+      setWinningNumber = _useState14[1];
+
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('0'),
+      _useState16 = _slicedToArray(_useState15, 2),
+      stepBackButton = _useState16[0],
+      setStepBackButton = _useState16[1];
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "App"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
+    className: "hidden"
+  }, "2048"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Alert__WEBPACK_IMPORTED_MODULE_5__.TransitionAlertsWin, {
+    openWin: openWin,
+    setOpenWin: setOpenWin
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Alert__WEBPACK_IMPORTED_MODULE_5__.TransitionAlertsLose, {
+    openLose: openLose,
+    setOpenLose: setOpenLose
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_PopUp__WEBPACK_IMPORTED_MODULE_4__.default, {
+    boardSize: boardSize,
+    setBoardSize: setBoardSize,
+    setHistory: setHistory,
+    bestScore: bestScore,
+    isPopUpActive: isPopUpActive,
+    setIsPopUpActive: setIsPopUpActive,
+    winningNumber: winningNumber,
+    setWinningNumber: setWinningNumber,
+    stepBackButton: stepBackButton,
+    setStepBackButton: setStepBackButton
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Header__WEBPACK_IMPORTED_MODULE_2__.default, {
+    bestScore: bestScore,
+    boardSize: boardSize,
+    setBoardSize: setBoardSize,
+    history: history,
+    setHistory: setHistory,
+    isPopUpActive: isPopUpActive,
+    setIsPopUpActive: setIsPopUpActive,
+    stepBackButton: stepBackButton
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Board__WEBPACK_IMPORTED_MODULE_1__.default, {
+    history: history,
+    boardSize: boardSize
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Footer__WEBPACK_IMPORTED_MODULE_3__.default, {
+    bestScore: bestScore,
+    setBestScore: setBestScore,
+    boardSize: boardSize,
+    history: history,
+    setHistory: setHistory,
+    setOpenWin: setOpenWin,
+    setOpenLose: setOpenLose,
+    winningNumber: winningNumber
+  }));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
+
+/***/ }),
+
+/***/ "./src/modules/Board.jsx":
+/*!*******************************!*\
+  !*** ./src/modules/Board.jsx ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* eslint-disable react/prop-types */
+
+
+var Board = function Board(props) {
+  var history = props.history,
+      boardSize = props.boardSize;
+  var current = history[history.length - 1];
+  var board = current.board;
+  var tileStyle = {
+    4: 'tile',
+    3: 'tile tile--3',
+    5: 'tile tile--5',
+    6: 'tile tile--6'
+  };
+  var boardStyle = "board".concat(boardSize !== 4 ? " board-".concat(boardSize) : '');
+
+  var setValue = function setValue(elem) {
+    if (!elem) return '';
+    return elem;
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("main", {
+    className: "main"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
+    className: boardStyle
+  }, board.map(function (elem, id) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      // eslint-disable-next-line react/no-array-index-key
+      key: id,
+      className: "".concat(tileStyle[boardSize], " tile--").concat(setValue(elem) ? setValue(elem) : 0)
+    }, setValue(elem));
+  })));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Board);
+
+/***/ }),
+
+/***/ "./src/modules/Footer.jsx":
+/*!********************************!*\
+  !*** ./src/modules/Footer.jsx ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _material_ui_icons_ArrowBack__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/icons/ArrowBack */ "./node_modules/@material-ui/icons/ArrowBack.js");
+/* harmony import */ var _material_ui_icons_ArrowForward__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/icons/ArrowForward */ "./node_modules/@material-ui/icons/ArrowForward.js");
+/* harmony import */ var _material_ui_icons_ArrowDownward__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/icons/ArrowDownward */ "./node_modules/@material-ui/icons/ArrowDownward.js");
+/* harmony import */ var _material_ui_icons_ArrowUpward__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/icons/ArrowUpward */ "./node_modules/@material-ui/icons/ArrowUpward.js");
+/* harmony import */ var _material_ui_icons_SlowMotionVideo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/icons/SlowMotionVideo */ "./node_modules/@material-ui/icons/SlowMotionVideo.js");
+/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+/* eslint-disable react/prop-types */
+
+
+
+
+
+
+
+
+var Footer = function Footer(props) {
+  var bestScore = props.bestScore,
+      setBestScore = props.setBestScore,
+      boardSize = props.boardSize,
+      history = props.history,
+      setHistory = props.setHistory,
+      setOpenWin = props.setOpenWin,
+      setOpenLose = props.setOpenLose,
+      winningNumber = props.winningNumber;
+  var currentBestScore = bestScore[bestScore.length - 1] ? bestScore[bestScore.length - 1] : 0;
+  var current = history[history.length - 1];
+  var board = current.board,
+      score = current.score,
+      win = current.win,
+      gameOver = current.gameOver;
+  var squareBoardSize = boardSize * boardSize;
+  var newScore = 0;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      play = _useState2[0],
+      setPlay = _useState2[1];
+
+  var getRow = function getRow(array, i) {
+    return array.filter(function (elem, id) {
+      return id >= i && id < i + boardSize;
+    });
+  };
+
+  var getColumn = function getColumn(array, i) {
+    return array.filter(function (elem, id) {
+      return (id - i) % boardSize === 0;
+    });
+  };
+
+  var isWin = function isWin(array) {
+    var tempArr = _toConsumableArray(array).sort(function (a, b) {
+      return a - b;
+    });
+
+    return tempArr[tempArr.length - 1] >= winningNumber;
+  };
+
+  var handleGameOver = function handleGameOver() {
+    if (!gameOver) {
+      setOpenLose(true);
+      setPlay(false);
+    }
+
+    return true;
+  };
+
+  var isGameOver = function isGameOver(array) {
+    var emptySpots = array.filter(function (elem) {
+      return !elem;
+    }).length;
+    if (emptySpots) return false;
+
+    for (var i = 0; i < squareBoardSize; i += boardSize) {
+      var line = getRow(array, i);
+
+      for (var j = 0; j < line.length - 1; j++) {
+        if (line[j] === line[j + 1]) {
+          return false;
+        }
+      }
+    }
+
+    for (var _i2 = 0; _i2 < boardSize; _i2++) {
+      var _line = getColumn(array, _i2);
+
+      for (var _j = 0; _j < _line.length - 1; _j++) {
+        if (_line[_j] === _line[_j + 1]) {
+          return false;
+        }
+      }
+    }
+
+    return true;
+  };
+
+  var setNewBoard = function setNewBoard(newBoard) {
+    var checkObj = {
+      resultBoard: null,
+      winCheck: null,
+      gameOver: null
+    };
+
+    if (!(0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.areArraysEqual)(newBoard, board)) {
+      var tempBoard = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.getNewBoardArray)(newBoard);
+      checkObj.resultBoard = tempBoard !== -1 ? tempBoard : newBoard;
+
+      if (isWin(checkObj.resultBoard) && !win) {
+        checkObj.winCheck = true;
+        setOpenWin(true);
+      }
+
+      if (isGameOver(checkObj.resultBoard)) checkObj.gameOver = handleGameOver();
+
+      if (!gameOver) {
+        setHistory(history.concat({
+          board: checkObj.resultBoard || board,
+          score: score + newScore,
+          win: checkObj.winCheck || win,
+          gameOver: checkObj.gameOver || gameOver
+        }));
+        (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.setValueInLocalStorage)('2048-history', history.concat({
+          board: checkObj.resultBoard || board,
+          score: score + newScore,
+          win: checkObj.winCheck || win,
+          gameOver: checkObj.gameOver || gameOver
+        }));
+      }
+    }
+
+    var newBestScore = score + newScore > currentBestScore ? score + newScore : null;
+
+    if (newBestScore) {
+      setBestScore(bestScore.concat(newBestScore));
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.setValueInLocalStorage)('bestScore', bestScore.concat(newBestScore));
+    }
+  };
+
+  var processLine = function processLine(line) {
+    var direction = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+    var trimLine = line.filter(function (elem) {
+      return !!elem;
+    });
+    if (direction) trimLine.reverse();
+
+    for (var j = 0; j < trimLine.length; j++) {
+      if (trimLine[j] === trimLine[j + 1]) {
+        newScore += trimLine[j] + trimLine[j + 1];
+        var _ref = [trimLine[j] + trimLine[j + 1], 0];
+        trimLine[j] = _ref[0];
+        trimLine[j + 1] = _ref[1];
+      }
+    }
+
+    var newLine = trimLine.filter(function (elem) {
+      return !!elem;
+    });
+
+    while (newLine.length < line.length) {
+      newLine.push(0);
+    }
+
+    return direction ? newLine.reverse() : newLine;
+  };
+
+  var updateNewBoardHorizontal = function updateNewBoardHorizontal(newBoard, i) {
+    var direction = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+    var tempNewBoard = newBoard;
+    var newLine = processLine(getRow(board, i), direction);
+    newLine.map(function (elem, id) {
+      tempNewBoard[id + i] = elem;
+      return elem;
+    });
+  };
+
+  var updateNewBoardVertical = function updateNewBoardVertical(newBoard, i) {
+    var direction = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+    var tempNewBoard = newBoard;
+    var newLine = processLine(getColumn(board, i), direction);
+    newLine.map(function (elem, id) {
+      tempNewBoard[id * boardSize + i] = elem;
+      return elem;
+    });
+  };
+
+  var moveLeft = function moveLeft() {
+    var newBoard = new Array(squareBoardSize);
+
+    for (var i = 0; i < squareBoardSize; i += boardSize) {
+      updateNewBoardHorizontal(newBoard, i);
+    }
+
+    setNewBoard(newBoard);
+  };
+
+  var moveRight = function moveRight() {
+    var newBoard = new Array(squareBoardSize);
+
+    for (var i = 0; i < squareBoardSize; i += boardSize) {
+      updateNewBoardHorizontal(newBoard, i, true);
+    }
+
+    setNewBoard(newBoard);
+  };
+
+  var moveUp = function moveUp() {
+    var newBoard = new Array(squareBoardSize);
+
+    for (var i = 0; i < boardSize; i++) {
+      updateNewBoardVertical(newBoard, i);
+    }
+
+    setNewBoard(newBoard);
+  };
+
+  var moveDown = function moveDown() {
+    var newBoard = new Array(squareBoardSize);
+
+    for (var i = 0; i < boardSize; i++) {
+      updateNewBoardVertical(newBoard, i, true);
+    }
+
+    setNewBoard(newBoard);
+  };
+
+  var handleEvent = function handleEvent(e) {
+    if (e.stopPropagation) e.stopPropagation();
+    if (e.code === 'ArrowLeft' || e.code === 'KeyA') moveLeft();
+    if (e.code === 'ArrowRight' || e.code === 'KeyD') moveRight();
+    if (e.code === 'ArrowUp' || e.code === 'KeyW') moveUp();
+    if (e.code === 'ArrowDown' || e.code === 'KeyS') moveDown();
+  };
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    document.addEventListener('keydown', handleEvent);
+    return function () {
+      document.removeEventListener('keydown', handleEvent);
+    };
+  }, [handleEvent]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var count = 1;
+    var interval = setInterval(function () {
+      if (play && !gameOver) {
+        moveUp();
+        if (count % 3 === 0) moveRight();
+        if (count % 2 === 0) moveLeft();
+        count++;
+      }
+    }, 700);
+    return function () {
+      return clearInterval(interval);
+    };
+  }, [play, gameOver, history]);
+
+  var autoPlay = function autoPlay() {
+    return play ? setPlay(false) : setPlay(true);
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("footer", {
+    className: "footer"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "footer__info"
+  }, "HOW TO PLAY: Use your arrow keys on keyboard or in app to move the tiles (w,a,s,d works too). Tiles with the same number merge into one when they touch. Add them up to reach 64 or 2048(can choose in menu)! You can continue to play after you have reached 64 or 2048. Auto play runs until game over(click play button). Also you can stop auto play clicking again same button. Step back button does step back))"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "footer__bottom"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "footer__links"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "https://github.com/I-vasilich-I",
+    className: "footer__link",
+    target: "_blank",
+    rel: "noreferrer"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    className: "github__logo",
+    src: "assets/images/GitHub-Mark.png",
+    alt: "Oleg Vaskevich"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "https://youtu.be/1bePpGUQ7lE",
+    className: "footer__link youtube",
+    target: "_blank",
+    rel: "noreferrer"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: "assets/images/YouTube.svg",
+    alt: "How to use"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "https://rs.school/js/",
+    className: "footer__link",
+    target: "_blank",
+    rel: "noreferrer"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: "assets/images/rs_school_js.svg",
+    alt: "The Rolling Scopes"
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "2021"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "button",
+    className: "button button--nav"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_icons_SlowMotionVideo__WEBPACK_IMPORTED_MODULE_2__.default, {
+    fontSize: "inherit",
+    onClick: autoPlay
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "button__container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "button",
+    className: "button button--nav item-b",
+    onClick: moveLeft
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_icons_ArrowBack__WEBPACK_IMPORTED_MODULE_3__.default, {
+    fontSize: "large"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "button",
+    className: "button button--nav item-a",
+    onClick: moveUp
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_icons_ArrowUpward__WEBPACK_IMPORTED_MODULE_4__.default, {
+    fontSize: "large"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "button",
+    className: "button button--nav item-d",
+    onClick: moveRight
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_icons_ArrowForward__WEBPACK_IMPORTED_MODULE_5__.default, {
+    fontSize: "large"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "button",
+    className: "button button--nav item-c",
+    onClick: moveDown
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_icons_ArrowDownward__WEBPACK_IMPORTED_MODULE_6__.default, {
+    fontSize: "large"
+  })))));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Footer);
+
+/***/ }),
+
+/***/ "./src/modules/Header.jsx":
+/*!********************************!*\
+  !*** ./src/modules/Header.jsx ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _material_ui_icons_Reply__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/icons/Reply */ "./node_modules/@material-ui/icons/Reply.js");
+/* harmony import */ var _material_ui_icons_FiberNewOutlined__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/icons/FiberNewOutlined */ "./node_modules/@material-ui/icons/FiberNewOutlined.js");
+/* harmony import */ var _material_ui_icons_Fullscreen__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/icons/Fullscreen */ "./node_modules/@material-ui/icons/Fullscreen.js");
+/* harmony import */ var _material_ui_icons_Menu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/icons/Menu */ "./node_modules/@material-ui/icons/Menu.js");
+/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
+/* eslint-disable react/prop-types */
+
+
+
+
+
+
+
+var Header = function Header(_ref) {
+  var setIsPopUpActive = _ref.setIsPopUpActive,
+      bestScore = _ref.bestScore,
+      boardSize = _ref.boardSize,
+      history = _ref.history,
+      setHistory = _ref.setHistory,
+      stepBackButton = _ref.stepBackButton;
+  var currentBestScore = bestScore ? bestScore[bestScore.length - 1] : 0;
+  var score = history[history.length - 1].score;
+
+  var popUp = function popUp() {
+    setIsPopUpActive(true);
+  };
+
+  var newGame = function newGame() {
+    var newHistory = [{
+      board: (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.getInitialBoardArray)(boardSize * boardSize),
+      score: 0,
+      win: false,
+      gameOver: false
+    }];
+    setHistory(newHistory);
+    (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.setValueInLocalStorage)('2048-history', newHistory);
+  };
+
+  var stepBack = function stepBack() {
+    if (history.length < 2) return;
+    setHistory(history.slice(0, history.length - 1));
+    (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.setValueInLocalStorage)('2048-history', history.slice(0, history.length - 1));
+  };
+
+  var fullScreen = function fullScreen() {
+    document.body.requestFullscreen();
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("header", {
+    className: "header"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "header__top"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
+    className: "logo"
+  }, "2048"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "score__container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "score"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    className: "score__title"
+  }, "Score"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    className: "score__count"
+  }, score)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "score"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    className: "score__title"
+  }, "Best score"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    className: "score__count"
+  }, currentBestScore)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "header__bottom"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "button",
+    className: "button button--nav",
+    onClick: popUp
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_icons_Menu__WEBPACK_IMPORTED_MODULE_2__.default, {
+    fontSize: "inherit"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "button",
+    className: "button button--nav",
+    onClick: newGame
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_icons_FiberNewOutlined__WEBPACK_IMPORTED_MODULE_3__.default, {
+    fontSize: "inherit"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "button",
+    className: "".concat(stepBackButton === '1' ? 'button button--nav' : 'button button--hidden'),
+    onClick: stepBack
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_icons_Reply__WEBPACK_IMPORTED_MODULE_4__.default, {
+    fontSize: "inherit"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "button",
+    className: "button button--nav",
+    onClick: fullScreen
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_icons_Fullscreen__WEBPACK_IMPORTED_MODULE_5__.default, {
+    fontSize: "inherit"
+  }))));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Header);
+
+/***/ }),
+
+/***/ "./src/modules/PopUp.jsx":
+/*!*******************************!*\
+  !*** ./src/modules/PopUp.jsx ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _SimpleSelect__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SimpleSelect */ "./src/modules/SimpleSelect.jsx");
+/* harmony import */ var _WinningNumberRadio__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./WinningNumberRadio */ "./src/modules/WinningNumberRadio.jsx");
+/* harmony import */ var _StepBackRadio__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./StepBackRadio */ "./src/modules/StepBackRadio.jsx");
+/* eslint-disable react/no-array-index-key */
+
+/* eslint-disable react/prop-types */
+
+
+
+
+
+var PopUp = function PopUp(props) {
+  var isPopUpActive = props.isPopUpActive,
+      setIsPopUpActive = props.setIsPopUpActive,
+      bestScore = props.bestScore,
+      boardSize = props.boardSize,
+      setBoardSize = props.setBoardSize,
+      setHistory = props.setHistory,
+      winningNumber = props.winningNumber,
+      setWinningNumber = props.setWinningNumber,
+      stepBackButton = props.stepBackButton,
+      setStepBackButton = props.setStepBackButton;
+  var popupClassName = isPopUpActive ? 'popup blackout' : 'popup popup--hidden';
+  var bestScoreArray = bestScore.slice(bestScore.length - 10, bestScore.length);
+
+  var handleClick = function handleClick(e) {
+    if (e.target.className === 'popup blackout') setIsPopUpActive(false);
+  };
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    document.addEventListener('mousedown', handleClick);
+    return function () {
+      document.removeEventListener('mousedown', handleClick);
+    };
+  }, []);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: popupClassName
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "popup__container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "radio"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_WinningNumberRadio__WEBPACK_IMPORTED_MODULE_2__.default, {
+    winningNumber: winningNumber,
+    setWinningNumber: setWinningNumber
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "radio"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_StepBackRadio__WEBPACK_IMPORTED_MODULE_3__.default, {
+    stepBackButton: stepBackButton,
+    setStepBackButton: setStepBackButton
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_SimpleSelect__WEBPACK_IMPORTED_MODULE_1__.default, {
+    setIsPopUpActive: setIsPopUpActive,
+    boardSize: boardSize,
+    setBoardSize: setBoardSize,
+    setHistory: setHistory
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "best-score__list"
+  }, "Best score:", bestScoreArray.reverse().map(function (elem, id) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      key: id + 1,
+      className: "best-score__item"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "best-score__id"
+    }, id + 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "best-score__score"
+    }, elem));
+  }))));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PopUp);
+
+/***/ }),
+
+/***/ "./src/modules/SimpleSelect.jsx":
+/*!**************************************!*\
+  !*** ./src/modules/SimpleSelect.jsx ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ SimpleSelect)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
+/* harmony import */ var _material_ui_core_InputLabel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/InputLabel */ "./node_modules/@material-ui/core/esm/InputLabel/InputLabel.js");
+/* harmony import */ var _material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/MenuItem */ "./node_modules/@material-ui/core/esm/MenuItem/MenuItem.js");
+/* harmony import */ var _material_ui_core_FormControl__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/FormControl */ "./node_modules/@material-ui/core/esm/FormControl/FormControl.js");
+/* harmony import */ var _material_ui_core_Select__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/Select */ "./node_modules/@material-ui/core/esm/Select/Select.js");
+/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
+/* eslint-disable react/prop-types */
+
+
+
+
+
+
+
+var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__.default)(function (theme) {
+  return {
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120,
+      fontSize: '2rem'
+    },
+    label: {
+      fontSize: '2rem'
+    },
+    select: {
+      fontSize: '2rem'
+    },
+    menuItem: {
+      fontSize: '2rem',
+      backgroundColor: "#e0e0e0"
+    },
+    selectEmpty: {
+      marginTop: theme.spacing(2)
+    }
+  };
+});
+function SimpleSelect(props) {
+  var classes = useStyles();
+  var boardSize = props.boardSize,
+      setBoardSize = props.setBoardSize,
+      setHistory = props.setHistory,
+      setIsPopUpActive = props.setIsPopUpActive;
+
+  var newGame = function newGame(size) {
+    setHistory([{
+      board: (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.getInitialBoardArray)(size * size),
+      score: 0,
+      win: false,
+      gameOver: false
+    }]);
+  };
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    setIsPopUpActive(false);
+  }, [boardSize]);
+
+  var handleChange = function handleChange(_ref) {
+    var value = _ref.target.value;
+    setBoardSize(value);
+    newGame(value);
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core_FormControl__WEBPACK_IMPORTED_MODULE_3__.default, {
+    className: classes.formControl
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core_InputLabel__WEBPACK_IMPORTED_MODULE_4__.default, {
+    className: classes.label,
+    id: "demo-simple-select-label"
+  }, "Board size"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core_Select__WEBPACK_IMPORTED_MODULE_5__.default, {
+    className: classes.select,
+    labelId: "demo-simple-select-label",
+    id: "demo-simple-select",
+    value: boardSize,
+    onChange: handleChange
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_6__.default, {
+    className: classes.menuItem,
+    value: 3
+  }, "3x3"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_6__.default, {
+    className: classes.menuItem,
+    value: 4
+  }, "4x4"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_6__.default, {
+    className: classes.menuItem,
+    value: 5
+  }, "5x5"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_6__.default, {
+    className: classes.menuItem,
+    value: 6
+  }, "6x6"))));
+}
+
+/***/ }),
+
+/***/ "./src/modules/StepBackRadio.jsx":
+/*!***************************************!*\
+  !*** ./src/modules/StepBackRadio.jsx ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ StepBackRadioButtonsGroup)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
+/* harmony import */ var _material_ui_core_Radio__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/Radio */ "./node_modules/@material-ui/core/esm/Radio/Radio.js");
+/* harmony import */ var _material_ui_core_RadioGroup__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/RadioGroup */ "./node_modules/@material-ui/core/esm/RadioGroup/RadioGroup.js");
+/* harmony import */ var _material_ui_core_FormControlLabel__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/FormControlLabel */ "./node_modules/@material-ui/core/esm/FormControlLabel/FormControlLabel.js");
+/* harmony import */ var _material_ui_core_FormControl__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/FormControl */ "./node_modules/@material-ui/core/esm/FormControl/FormControl.js");
+/* harmony import */ var _material_ui_core_FormLabel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/FormLabel */ "./node_modules/@material-ui/core/esm/FormLabel/FormLabel.js");
+/* eslint-disable react/prop-types */
+
+
+
+
+
+
+
+var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__.default)(function () {
+  return {
+    formControl: {
+      fontSize: '1.7rem'
+    },
+    label: {
+      fontSize: '2rem'
+    }
+  };
+});
+function StepBackRadioButtonsGroup(props) {
+  var classes = useStyles();
+  var stepBackButton = props.stepBackButton,
+      setStepBackButton = props.setStepBackButton;
+
+  var handleChange = function handleChange(event) {
+    setStepBackButton(event.target.value);
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core_FormControl__WEBPACK_IMPORTED_MODULE_2__.default, {
+    className: classes.formControl,
+    component: "fieldset"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core_FormLabel__WEBPACK_IMPORTED_MODULE_3__.default, {
+    className: classes.formControl,
+    component: "legend"
+  }, "Step back button"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core_RadioGroup__WEBPACK_IMPORTED_MODULE_4__.default, {
+    className: classes.formControl,
+    row: true,
+    "aria-label": "stepBackButton",
+    name: "stepBackButton",
+    value: stepBackButton,
+    onChange: handleChange
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core_FormControlLabel__WEBPACK_IMPORTED_MODULE_5__.default, {
+    className: classes.label,
+    value: "1",
+    control: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core_Radio__WEBPACK_IMPORTED_MODULE_6__.default, {
+      className: classes.label,
+      color: "default"
+    }),
+    label: "On"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core_FormControlLabel__WEBPACK_IMPORTED_MODULE_5__.default, {
+    className: classes.label,
+    value: "0",
+    control: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core_Radio__WEBPACK_IMPORTED_MODULE_6__.default, {
+      className: classes.label,
+      color: "default"
+    }),
+    label: "Off"
+  })));
+}
+
+/***/ }),
+
+/***/ "./src/modules/WinningNumberRadio.jsx":
+/*!********************************************!*\
+  !*** ./src/modules/WinningNumberRadio.jsx ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ WinningNumberRadioButtonsGroup)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
+/* harmony import */ var _material_ui_core_Radio__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/Radio */ "./node_modules/@material-ui/core/esm/Radio/Radio.js");
+/* harmony import */ var _material_ui_core_RadioGroup__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/RadioGroup */ "./node_modules/@material-ui/core/esm/RadioGroup/RadioGroup.js");
+/* harmony import */ var _material_ui_core_FormControlLabel__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/FormControlLabel */ "./node_modules/@material-ui/core/esm/FormControlLabel/FormControlLabel.js");
+/* harmony import */ var _material_ui_core_FormControl__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/FormControl */ "./node_modules/@material-ui/core/esm/FormControl/FormControl.js");
+/* harmony import */ var _material_ui_core_FormLabel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/FormLabel */ "./node_modules/@material-ui/core/esm/FormLabel/FormLabel.js");
+/* eslint-disable react/prop-types */
+
+
+
+
+
+
+
+var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__.default)(function () {
+  return {
+    formControl: {
+      fontSize: '1.7rem'
+    },
+    label: {
+      fontSize: '2rem'
+    }
+  };
+});
+function WinningNumberRadioButtonsGroup(props) {
+  var classes = useStyles();
+  var winningNumber = props.winningNumber,
+      setWinningNumber = props.setWinningNumber;
+
+  var handleChange = function handleChange(event) {
+    setWinningNumber(event.target.value);
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core_FormControl__WEBPACK_IMPORTED_MODULE_2__.default, {
+    className: classes.formControl,
+    component: "fieldset"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core_FormLabel__WEBPACK_IMPORTED_MODULE_3__.default, {
+    className: classes.formControl,
+    component: "legend"
+  }, "Winning number"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core_RadioGroup__WEBPACK_IMPORTED_MODULE_4__.default, {
+    className: classes.formControl,
+    row: true,
+    "aria-label": "winningNumber",
+    name: "64",
+    value: winningNumber,
+    onChange: handleChange
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core_FormControlLabel__WEBPACK_IMPORTED_MODULE_5__.default, {
+    className: classes.label,
+    value: "64",
+    control: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core_Radio__WEBPACK_IMPORTED_MODULE_6__.default, {
+      className: classes.label,
+      color: "default"
+    }),
+    label: "64"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core_FormControlLabel__WEBPACK_IMPORTED_MODULE_5__.default, {
+    className: classes.label,
+    value: "2048",
+    control: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core_Radio__WEBPACK_IMPORTED_MODULE_6__.default, {
+      className: classes.label,
+      color: "default"
+    }),
+    label: "2048"
+  })));
+}
+
+/***/ }),
+
+/***/ "./src/modules/utils/helpers.js":
+/*!**************************************!*\
+  !*** ./src/modules/utils/helpers.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getNewBoardArray": () => (/* binding */ getNewBoardArray),
+/* harmony export */   "getInitialBoardArray": () => (/* binding */ getInitialBoardArray),
+/* harmony export */   "areArraysEqual": () => (/* binding */ areArraysEqual),
+/* harmony export */   "getValueFromLocalStorage": () => (/* binding */ getValueFromLocalStorage),
+/* harmony export */   "setValueInLocalStorage": () => (/* binding */ setValueInLocalStorage)
+/* harmony export */ });
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+var areArraysEqual = function areArraysEqual(arr1, arr2) {
+  return arr1.toString() === arr2.toString();
+};
+
+var getValueFromLocalStorage = function getValueFromLocalStorage(name) {
+  return JSON.parse(localStorage.getItem(name)) || null;
+};
+
+var setValueInLocalStorage = function setValueInLocalStorage(name, value) {
+  return localStorage.setItem(name, JSON.stringify(value));
+};
+
+var getArrayOfEmptySpotIds = function getArrayOfEmptySpotIds(array) {
+  return array.map(function (elem, id) {
+    return !elem ? id : -1;
+  }).filter(function (elem) {
+    return elem !== -1;
+  });
+};
+
+var getRandomEmptySpotId = function getRandomEmptySpotId(Arraylength) {
+  return Math.floor(Math.random() * Math.floor(Arraylength));
+};
+
+var getNewBoardArray = function getNewBoardArray(array) {
+  var newBoard = _toConsumableArray(array);
+
+  var emptySpotsOnBoard = getArrayOfEmptySpotIds(array);
+  if (!emptySpotsOnBoard.length) return -1;
+  var number = Math.floor(Math.random() < 0.8 ? 2 : 4);
+  var spotId = getRandomEmptySpotId(emptySpotsOnBoard.length);
+  var id = emptySpotsOnBoard[spotId];
+  newBoard[id] = number;
+  return newBoard;
+};
+
+var getInitialBoardArray = function getInitialBoardArray(squareBoardSize) {
+  return getNewBoardArray(getNewBoardArray(Array(squareBoardSize).fill(0)));
+};
+
+
+
+/***/ }),
+
+/***/ "./src/assets/sass/style.scss":
+/*!************************************!*\
+  !*** ./src/assets/sass/style.scss ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		if(__webpack_module_cache__[moduleId]) {
+/******/ 			return __webpack_module_cache__[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = __webpack_modules__;
+/******/ 	
+/******/ 	// the startup function
+/******/ 	// It's empty as some runtime module handles the default behavior
+/******/ 	__webpack_require__.x = x => {};
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/jsonp chunk loading */
+/******/ 	(() => {
+/******/ 		// no baseURI
+/******/ 		
+/******/ 		// object to store loaded and loading chunks
+/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 		// Promise = chunk loading, 0 = chunk loaded
+/******/ 		var installedChunks = {
+/******/ 			"main": 0
+/******/ 		};
+/******/ 		
+/******/ 		var deferredModules = [
+/******/ 			["./node_modules/@babel/polyfill/lib/index.js","vendors-node_modules_babel_polyfill_lib_index_js-node_modules_material-ui_core_esm_Collapse_C-c28814"],
+/******/ 			["./src/index.jsx","vendors-node_modules_babel_polyfill_lib_index_js-node_modules_material-ui_core_esm_Collapse_C-c28814"],
+/******/ 			["./src/assets/sass/style.scss","vendors-node_modules_babel_polyfill_lib_index_js-node_modules_material-ui_core_esm_Collapse_C-c28814"]
+/******/ 		];
+/******/ 		// no chunk on demand loading
+/******/ 		
+/******/ 		// no prefetching
+/******/ 		
+/******/ 		// no preloaded
+/******/ 		
+/******/ 		// no HMR
+/******/ 		
+/******/ 		// no HMR manifest
+/******/ 		
+/******/ 		var checkDeferredModules = x => {};
+/******/ 		
+/******/ 		// install a JSONP callback for chunk loading
+/******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
+/******/ 			var [chunkIds, moreModules, runtime, executeModules] = data;
+/******/ 			// add "moreModules" to the modules object,
+/******/ 			// then flag all "chunkIds" as loaded and fire callback
+/******/ 			var moduleId, chunkId, i = 0, resolves = [];
+/******/ 			for(;i < chunkIds.length; i++) {
+/******/ 				chunkId = chunkIds[i];
+/******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
+/******/ 					resolves.push(installedChunks[chunkId][0]);
+/******/ 				}
+/******/ 				installedChunks[chunkId] = 0;
+/******/ 			}
+/******/ 			for(moduleId in moreModules) {
+/******/ 				if(__webpack_require__.o(moreModules, moduleId)) {
+/******/ 					__webpack_require__.m[moduleId] = moreModules[moduleId];
+/******/ 				}
+/******/ 			}
+/******/ 			if(runtime) runtime(__webpack_require__);
+/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
+/******/ 			while(resolves.length) {
+/******/ 				resolves.shift()();
+/******/ 			}
+/******/ 		
+/******/ 			// add entry modules from loaded chunk to deferred list
+/******/ 			if(executeModules) deferredModules.push.apply(deferredModules, executeModules);
+/******/ 		
+/******/ 			// run deferred modules when all chunks ready
+/******/ 			return checkDeferredModules();
+/******/ 		}
+/******/ 		
+/******/ 		var chunkLoadingGlobal = self["webpackChunkgame"] = self["webpackChunkgame"] || [];
+/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
+/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
+/******/ 		
+/******/ 		function checkDeferredModulesImpl() {
+/******/ 			var result;
+/******/ 			for(var i = 0; i < deferredModules.length; i++) {
+/******/ 				var deferredModule = deferredModules[i];
+/******/ 				var fulfilled = true;
+/******/ 				for(var j = 1; j < deferredModule.length; j++) {
+/******/ 					var depId = deferredModule[j];
+/******/ 					if(installedChunks[depId] !== 0) fulfilled = false;
+/******/ 				}
+/******/ 				if(fulfilled) {
+/******/ 					deferredModules.splice(i--, 1);
+/******/ 					result = __webpack_require__(__webpack_require__.s = deferredModule[0]);
+/******/ 				}
+/******/ 			}
+/******/ 			if(deferredModules.length === 0) {
+/******/ 				__webpack_require__.x();
+/******/ 				__webpack_require__.x = x => {};
+/******/ 			}
+/******/ 			return result;
+/******/ 		}
+/******/ 		var startup = __webpack_require__.x;
+/******/ 		__webpack_require__.x = () => {
+/******/ 			// reset startup function so it can be called again when more startup code is added
+/******/ 			__webpack_require__.x = startup || (x => {});
+/******/ 			return (checkDeferredModules = checkDeferredModulesImpl)();
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// run startup
+/******/ 	var __webpack_exports__ = __webpack_require__.x();
+/******/ 	
+/******/ })()
+;
+//# sourceMappingURL=main.js.map
