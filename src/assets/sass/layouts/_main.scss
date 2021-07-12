@@ -1,0 +1,137 @@
+.main {
+  max-width: 500px;
+  width: 100%;
+  margin: auto;
+}
+
+.board {
+  display: grid;
+  grid-template: "a a a a"
+                 "b b b b"
+                 "c c c c"
+                 "d d d d";
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
+  width: 450px;
+  height: 450px;
+  background-color: $color-board-background;
+  padding: 5px 5px;
+
+  &-3 {
+    grid-template: "a a a"
+                   "b b b"
+                   "c c c";
+  }
+
+  &-5 {
+    grid-template: "a a a a a"
+                   "b b b b b"
+                   "c c c c c"
+                   "d d d d d"
+                   "e e e e e";
+  }
+  &-6 {
+    grid-template: "a a a a a a"
+                   "b b b b b b"
+                   "c c c c c c"
+                   "d d d d d d"
+                   "e e e e e e"
+                   "f f f f f f";
+  }
+}
+
+.tile {
+  width: 100px;
+  height: 100px;
+  @include font(5rem, 200%, $color-tile-text-dark);
+  text-align: center;
+  &--3 {
+    width: 135px;
+    height: 135px;
+  }
+
+  &--5 {
+    width: 80px;
+    height: 80px;
+    font-size: 4rem;
+  }
+
+  &--6 {
+    width: 70px;
+    height: 70px;
+    font-size: 4rem;
+  }
+  &--0 {
+    background-color: $color-tile-0;
+  }
+
+  &--2 {
+    background-color: $color-tile-2;
+  }
+
+  &--4 {
+    background-color: $color-tile-4;
+  }
+
+  &--8 {
+    background-color: $color-tile-8;
+    color: $color-tile-text-light;
+  }
+
+  &--16 {
+    background-color: $color-tile-16;
+    color: $color-tile-text-light;
+  }
+
+  &--32 {
+    background-color: $color-tile-32;
+    color: $color-tile-text-light;
+  }
+
+  &--64 {
+    background-color: $color-tile-64;
+    color: $color-tile-text-light;
+  }
+
+  &--128 {
+    background-color: $color-tile-128;
+    color: $color-tile-text-light;
+  }
+
+  &--256 {
+    background-color: $color-tile-256;
+    color: $color-tile-text-light;
+  }
+
+  &--512 {
+    background-color: $color-tile-512;
+    color: $color-tile-text-light;
+  }
+
+  &--1024 {
+    background-color: $color-tile-1024;
+    color: $color-tile-text-light;
+    font-size: 3rem;
+    line-height: 250%;
+  }
+
+  &--2048 {
+    background-color: $color-tile-2048;
+    color: $color-tile-text-light;
+    font-size: 3rem;
+    line-height: 250%;
+  }
+  &--4096 {
+    background-color: $color-tile-4096;
+    color: $color-tile-text-light;
+    font-size: 3rem;
+    line-height: 250%;
+  }
+  &--8192 {
+    background-color: $color-tile-8192;
+    color: $color-tile-text-light;
+    font-size: 3rem;
+    line-height: 250%;
+  }
+}
